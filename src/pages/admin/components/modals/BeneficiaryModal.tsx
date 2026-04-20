@@ -1,34 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Save, Loader2 } from "lucide-react";
 import { Modal } from "../Modal";
 import { FormInput } from "../FormInput";
 import type { BeneficiaryForm } from "../../types/admin";
+import { useBeneficiaryStats } from "../../../../context/BeneficiaryStatsContext";
+import { useToast } from "../../../../components/Toast";
 
 interface BeneficiaryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (form: BeneficiaryForm) => Promise<void>;
-  initialData?: BeneficiaryForm;
 }
 
-export function BeneficiaryModal({
-  isOpen,
-  onClose,
-  onSave,
-  initialData,
-}: BeneficiaryModalProps) {
-  const [form, setForm] = useState<BeneficiaryForm>(
-    initialData || { total_beneficiaries: 0, countries_count: 0 },
-  );
-  const [loading, setLoading] = useState(false);
+export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
+  const { stats, updateStats, loading } = useBeneficiaryStats();
+  const { showToast } = useToast();
+  const [form, setForm] = useState<BeneficiaryForm>({
+    total_beneficiaries: 0,
+    countries_count: 0,
+    water_projects: 0,
+  });
+
+  useEffect(() => {
+    if (stats && isOpen) {
+      setForm({
+        total_beneficiaries: stats.total_beneficiaries,
+        countries_count: stats.countries_count,
+        water_projects: stats.water_projects,
+      });
+    }
+  }, [stats, isOpen]);
 
   const handleSave = async () => {
-    setLoading(true);
     try {
-      await onSave(form);
+      await updateStats(form);
+      showToast("success", "Beneficiary stats updated successfully!");
       onClose();
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      console.error("Error updating stats:", err);
     }
   };
 
@@ -49,6 +57,14 @@ export function BeneficiaryModal({
           value={form.countries_count}
           onChange={(v) => setForm({ ...form, countries_count: Number(v) })}
           placeholder="Enter countries count"
+          required
+        />
+        <FormInput
+          label="Water Projects"
+          type="number"
+          value={form.water_projects}
+          onChange={(v) => setForm({ ...form, water_projects: Number(v) })}
+          placeholder="Enter water projects count"
           required
         />
         <button

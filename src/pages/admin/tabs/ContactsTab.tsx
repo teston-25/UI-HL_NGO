@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   MessageSquare,
   Users,
@@ -7,22 +8,19 @@ import {
 } from "lucide-react";
 import type { Contact } from "../types/admin";
 import { TabError } from "../../../components/admin/TabError";
+import { useContact } from "../../../context/ContactContext";
 
 interface ContactsTabProps {
-  contacts: Contact[];
-  loadingData: boolean;
-  error: string | null;
-  onRetry: () => void;
   onView: (contact: Contact) => void;
 }
 
-export function ContactsTab({
-  contacts,
-  loadingData,
-  error,
-  onRetry,
-  onView,
-}: ContactsTabProps) {
+export function ContactsTab({ onView }: ContactsTabProps) {
+  const { contacts, loading, error, fetchContacts } = useContact();
+
+  useEffect(() => {
+    fetchContacts();
+  }, [fetchContacts]);
+
   if (error) {
     return (
       <div className="space-y-6">
@@ -34,7 +32,7 @@ export function ContactsTab({
             Manage contact form submissions and inquiries
           </p>
         </div>
-        <TabError message={error} onRetry={onRetry} />
+        <TabError message={error} onRetry={fetchContacts} />
       </div>
     );
   }
@@ -96,7 +94,7 @@ export function ContactsTab({
             Recent Messages
           </h2>
         </div>
-        {loadingData ? (
+        {loading ? (
           <div className="flex justify-center py-12">
             <Loader2 className="w-8 h-8 animate-spin text-[#B91C1C]" />
           </div>

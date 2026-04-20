@@ -73,7 +73,7 @@ export function DonationProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       try {
         const res = await donationAPI.getAllDonations(page, limit, status);
-        setDonations(res.data);
+        setDonations(res.data.donations || res.data.data || []);
       } catch (e: any) {
         setError(e.response?.data?.message || "Failed to fetch donations");
       } finally {
@@ -88,7 +88,7 @@ export function DonationProvider({ children }: { children: React.ReactNode }) {
     setError(null);
     try {
       const res = await donationAPI.getDonationStats();
-      setStats(res.data);
+      setStats(res.data.data || res.data);
     } catch (e: any) {
       setError(e.response?.data?.message || "Failed to fetch donation stats");
     } finally {

@@ -1,22 +1,20 @@
+import { useEffect } from "react";
 import { Edit, Loader2 } from "lucide-react";
-import type { BeneficiaryStats } from "../types/admin";
+import { useBeneficiaryStats } from "../../../context/BeneficiaryStatsContext";
 import { TabError } from "../../../components/admin/TabError";
 
 interface BeneficiariesTabProps {
-  stats: BeneficiaryStats | null;
-  loadingData: boolean;
   onEdit: () => void;
-  error: string | null;
   onRetry: () => void;
 }
 
-export function BeneficiariesTab({
-  stats,
-  loadingData,
-  onEdit,
-  error,
-  onRetry,
-}: BeneficiariesTabProps) {
+export function BeneficiariesTab({ onEdit, onRetry }: BeneficiariesTabProps) {
+  const { stats, loading, error, fetchStats } = useBeneficiaryStats();
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
+
   if (error) {
     return (
       <div className="space-y-6">
@@ -53,7 +51,7 @@ export function BeneficiariesTab({
         </button>
       </div>
 
-      {loadingData ? (
+      {loading ? (
         <div className="flex justify-center py-12">
           <Loader2 className="w-8 h-8 animate-spin text-[#B91C1C]" />
         </div>
@@ -75,9 +73,11 @@ export function BeneficiariesTab({
               <p className="text-gray-600 dark:text-gray-400 mt-1">Countries</p>
             </div>
             <div className="p-6 rounded-2xl bg-gradient-to-br from-[#7c3aed]/10 to-[#7c3aed]/5 border border-[#7c3aed]/20">
-              <h3 className="text-4xl font-bold text-[#7c3aed]">Active</h3>
+              <h3 className="text-4xl font-bold text-[#7c3aed]">
+                {stats?.water_projects?.toLocaleString() || "0"}
+              </h3>
               <p className="text-gray-600 dark:text-gray-400 mt-1">
-                Program Status
+                Water Projects
               </p>
             </div>
           </div>

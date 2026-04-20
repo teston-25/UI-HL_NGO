@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Save, Loader2 } from "lucide-react";
 import { FormInput } from "../components/FormInput";
 import { useToast } from "../../../components/Toast";
-import apiClient from "../../../services/axios";
+import { useAdminAuth } from "../../../context/AdminAuthContext";
 
 interface SettingsTabProps {
   admin: { email: string; role: string } | null;
@@ -16,6 +16,7 @@ export function SettingsTab({ admin }: SettingsTabProps) {
   });
   const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
+  const { updatePassword } = useAdminAuth();
 
   const handlePasswordSave = async () => {
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
@@ -24,10 +25,10 @@ export function SettingsTab({ admin }: SettingsTabProps) {
     }
     setLoading(true);
     try {
-      await apiClient.put("/v1/admin/password/me", {
-        currentPassword: passwordForm.currentPassword,
-        newPassword: passwordForm.newPassword,
-      });
+      await updatePassword(
+        passwordForm.currentPassword,
+        passwordForm.newPassword,
+      );
       showToast("success", "Password updated successfully!");
       setPasswordForm({
         currentPassword: "",

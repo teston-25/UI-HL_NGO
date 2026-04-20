@@ -1,23 +1,28 @@
+import { useEffect } from "react";
 import { DollarSign, Users, BarChart3 } from "lucide-react";
 import { AdminTable } from "../../../components/admin/AdminTable";
-import type { Donation, DonationStats } from "../types/admin";
+import { useDonation } from "../../../context/DonationContext";
 import { TabError } from "../../../components/admin/TabError";
 
 interface DonationsTabProps {
-  donations: Donation[];
-  donationStats: DonationStats | null;
-  loadingData: boolean;
-  error: string | null;
   onRetry: () => void;
 }
 
-export function DonationsTab({
-  donations,
-  donationStats,
-  loadingData,
-  error,
-  onRetry,
-}: DonationsTabProps) {
+export function DonationsTab({ onRetry }: DonationsTabProps) {
+  const {
+    donations,
+    donationStats,
+    loading,
+    error,
+    fetchDonations,
+    fetchDonationStats,
+  } = useDonation();
+
+  useEffect(() => {
+    fetchDonationStats();
+    fetchDonations();
+  }, [fetchDonationStats, fetchDonations]);
+
   if (error) {
     return (
       <div className="space-y-6">
@@ -91,7 +96,7 @@ export function DonationsTab({
         </div>
         <AdminTable
           data={donations.slice(0, 10)}
-          loading={loadingData}
+          loading={loading}
           emptyMessage="No donations found"
           columns={[
             {
@@ -116,7 +121,7 @@ export function DonationsTab({
               header: "Amount",
               render: (item) => (
                 <p className="font-semibold text-gray-900 dark:text-white">
-                  ${item.amount.toFixed(2)}
+                  {item.amount.toFixed(2)} Birr
                 </p>
               ),
             },

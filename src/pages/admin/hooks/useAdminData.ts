@@ -1,5 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
 import apiClient from "../../../services/axios";
+import beneficiaryStatsAPI from "../../../services/api/beneficiaryStatsApi";
+import newsAPI from "../../../services/api/newsApi";
+import emergencyAPI from "../../../services/api/emergencyApi";
 import type {
   AdminTab,
   Admin,
@@ -11,6 +14,8 @@ import type {
   Donation,
   DonationStats,
 } from "../types/admin";
+import adminAPI from "../../../services/api/adminApi";
+import transparencyAPI from "../../../services/api/transparencyApi";
 
 export interface AdminData {
   contacts: Contact[];
@@ -63,28 +68,29 @@ export function useAdminData(
   }, []);
 
   const refetchNews = useCallback(async () => {
-    const res = await apiClient.get("/v1/admin/news");
-    setNews(res.data.data);
+    const res = await newsAPI.getAll();
+    setNews(res.data.news);
   }, []);
 
   const refetchEmergencies = useCallback(async () => {
-    const res = await apiClient.get("/v1/admin/emergencies");
-    setEmergencies(res.data.data);
+    const res = await emergencyAPI.getAll();
+    setEmergencies(res.data.emergencies);
   }, []);
 
   const refetchTransparency = useCallback(async () => {
-    const res = await apiClient.get("/v1/admin/transparency");
-    setTransparencyDocs(res.data.data);
+    const res = await transparencyAPI.getAll();
+    setTransparencyDocs(res.data.data || res.data || []);
   }, []);
 
   const refetchAdmins = useCallback(async () => {
-    const res = await apiClient.get("/v1/admin");
-    setAdmins(res.data.data);
+    const res = await adminAPI.getAdmins();
+    setAdmins(res.data.admins || res.data.data || []);
   }, []);
 
   const refetchBeneficiaryStats = useCallback(async () => {
-    const res = await apiClient.get("/v1/admin/beneficiary-stats");
-    setBeneficiaryStats(res.data.data);
+    const res = await beneficiaryStatsAPI.getStats();
+    const statsData = res?.data?.stats ?? res;
+    setBeneficiaryStats(statsData);
   }, []);
 
   const refetchDonations = useCallback(async () => {
@@ -92,8 +98,8 @@ export function useAdminData(
       apiClient.get("/v1/admin/donations"),
       apiClient.get("/v1/admin/donations/stats"),
     ]);
-    setDonations(donationsRes.data.data);
-    setDonationStats(donationStatsRes.data.data);
+    setDonations(donationsRes.data.data || []);
+    setDonationStats(donationStatsRes.data.data || null);
   }, []);
 
   const retry = useCallback(() => {

@@ -97,17 +97,6 @@ export function AdminPage() {
   // Search
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredContacts = useMemo(
-    () =>
-      data.contacts.filter(
-        (c) =>
-          c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          c.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          c.subject?.toLowerCase().includes(searchQuery.toLowerCase()),
-      ),
-    [data.contacts, searchQuery],
-  );
-
   const filteredNews = useMemo(
     () =>
       data.news.filter((n) =>
@@ -284,18 +273,13 @@ export function AdminPage() {
             )}
 
             {activeTab === "donations" && (
-              <DonationsTab
-                donations={data.donations}
-                donationStats={data.donationStats}
-                loadingData={data.loadingData}
-              />
+              <DonationsTab onRetry={data.retry} />
             )}
 
             {activeTab === "beneficiaries" && (
               <BeneficiariesTab
-                stats={data.beneficiaryStats}
-                loadingData={data.loadingData}
                 onEdit={() => setShowBeneficiaryModal(true)}
+                onRetry={() => data.refetchBeneficiaryStats()}
               />
             )}
 
@@ -324,6 +308,8 @@ export function AdminPage() {
               <TransparencyTab
                 docs={data.transparencyDocs}
                 loadingData={data.loadingData}
+                error={data.error}
+                onRetry={data.retry}
                 onUpload={() => setShowTransparencyModal(true)}
                 onDelete={actions.handleTransparencyDelete}
               />
@@ -331,8 +317,6 @@ export function AdminPage() {
 
             {activeTab === "contacts" && (
               <ContactsTab
-                contacts={filteredContacts}
-                loadingData={data.loadingData}
                 onView={(contact) => {
                   setSelectedContact(contact);
                   setShowContactModal(true);
@@ -346,6 +330,8 @@ export function AdminPage() {
               <AdminsTab
                 admins={data.admins}
                 loadingData={data.loadingData}
+                error={data.error}
+                onRetry={data.retry}
                 onAdd={() => adminModal.openCreate()}
                 columns={adminColumns}
                 onRowClick={(item) => adminModal.openEdit(item)}
@@ -359,12 +345,13 @@ export function AdminPage() {
       <BeneficiaryModal
         isOpen={showBeneficiaryModal}
         onClose={() => setShowBeneficiaryModal(false)}
-        onSave={actions.handleBeneficiarySave}
+        updateStats={actions.handleBeneficiarySave}
         initialData={
           data.beneficiaryStats
             ? {
                 total_beneficiaries: data.beneficiaryStats.total_beneficiaries,
                 countries_count: data.beneficiaryStats.countries_count,
+                water_projects: data.beneficiaryStats.water_projects,
               }
             : undefined
         }

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import authAPI from "../services/api/authApi";
 // import toast from "react-hot-toast";
 
@@ -17,6 +17,10 @@ interface AdminAuthContextType {
   token: string | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  updatePassword: (
+    currentPassword: string,
+    newPassword: string,
+  ) => Promise<void>;
   loading: boolean;
 }
 
@@ -60,10 +64,22 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error: any) {
       console.error("Login failed:", error);
 
-      // Optional: show message
-      // toast.error(error.response?.data?.message || "Login failed");
-
       throw error; // important if you want UI to react
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updatePassword = async (
+    currentPassword: string,
+    newPassword: string,
+  ): Promise<void> => {
+    try {
+      setLoading(true);
+      await authAPI.updatePassword(currentPassword, newPassword);
+    } catch (error: any) {
+      console.error("Password update failed:", error);
+      throw error;
     } finally {
       setLoading(false);
     }
@@ -85,6 +101,7 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
         token,
         login,
         logout,
+        updatePassword,
         loading,
       }}
     >

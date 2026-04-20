@@ -124,15 +124,19 @@ export function NewsTab({ searchQuery = "", error, onRetry }: NewsTabProps) {
         await updateEmergency(editingId, form);
         showToast("success", "Emergency updated successfully!");
       } else {
-        await createEmergency({
+        const payload: EmergencyPayload = {
           title: form.title,
           description: form.description,
           location: form.location,
-          status:
-            (form.status as "ACTIVE" | "INACTIVE" | "RESOLVED") || "ACTIVE",
-          affected_count: form.affected_count,
-          image_url: form.image_url,
-        });
+          status: form.status as "ACTIVE" | "INACTIVE" | "RESOLVED",
+        };
+        if (form.affected_count !== undefined) {
+          payload.affected_count = form.affected_count;
+        }
+        if (form.image_url) {
+          payload.image_url = form.image_url;
+        }
+        await createEmergency(payload);
         showToast("success", "Emergency created successfully!");
       }
     } catch (e: any) {

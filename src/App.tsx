@@ -17,7 +17,9 @@ import { ToastProvider } from "./components/Toast";
 import { DonationProvider } from "./context/DonationContext";
 import { EmergencyProvider } from "./context/EmergencyContext";
 import { NewsProvider } from "./context/NewsContext";
+import { TransparencyProvider } from "./context/TransparencyContext";
 import { ContactProvider } from "./context/ContactContext";
+import { BeneficiaryStatsProvider } from "./context/BeneficiaryStatsContext";
 
 // Lazy load all page components for better performance
 const HomePage = lazy(() =>
@@ -128,91 +130,110 @@ export function App() {
             <DonationProvider>
               <EmergencyProvider>
                 <NewsProvider>
-                  <ContactProvider>
-                    <Router
-                      future={{
-                        v7_startTransition: true,
-                        v7_relativeSplatPath: true,
-                      }}
-                    >
-                      <ScrollToTop />
-                      <NavbarWrapper />
-                      <div className="flex flex-col min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] font-sans text-[#1a1a1a] dark:text-[#f0f0f0] transition-colors duration-300">
-                        <main className="flex-grow pt-20">
-                          <Suspense fallback={<PageLoader />}>
-                            <Routes>
-                              <Route path="/" element={<HomePage />} />
-                              <Route path="/about" element={<AboutPage />} />
-                              <Route
-                                path="/programs"
-                                element={<ProgramsPage />}
-                              />
-                              <Route path="/donate" element={<DonatePage />} />
-                              <Route
-                                path="/transparency"
-                                element={<TransparencyPage />}
-                              />
-                              <Route
-                                path="/contact"
-                                element={<ContactPage />}
-                              />
+                  <TransparencyProvider>
+                    <ContactProvider>
+                      <BeneficiaryStatsProvider>
+                        <Router
+                          future={{
+                            v7_startTransition: true,
+                            v7_relativeSplatPath: true,
+                          }}
+                        >
+                          <ScrollToTop />
+                          <NavbarWrapper />
+                          <div className="flex flex-col min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] font-sans text-[#1a1a1a] dark:text-[#f0f0f0] transition-colors duration-300">
+                            <main className="flex-grow pt-20">
+                              <Suspense fallback={<PageLoader />}>
+                                <Routes>
+                                  <Route path="/" element={<HomePage />} />
+                                  <Route
+                                    path="/about"
+                                    element={<AboutPage />}
+                                  />
+                                  <Route
+                                    path="/programs"
+                                    element={<ProgramsPage />}
+                                  />
+                                  <Route
+                                    path="/donate"
+                                    element={<DonatePage />}
+                                  />
+                                  <Route
+                                    path="/transparency"
+                                    element={<TransparencyPage />}
+                                  />
+                                  <Route
+                                    path="/contact"
+                                    element={<ContactPage />}
+                                  />
 
-                              {/* New Routes */}
-                              <Route
-                                path="/how-we-work"
-                                element={<HowWeWorkPage />}
-                              />
-                              <Route
-                                path="/emergencies"
-                                element={<EmergenciesPage />}
-                              />
-                              <Route path="/news" element={<NewsPage />} />
-                              <Route
-                                path="/partner"
-                                element={<PartnerPage />}
-                              />
-                              <Route
-                                path="/financial-accountability"
-                                element={<TransparencyPage />}
-                              />
+                                  {/* New Routes */}
+                                  <Route
+                                    path="/how-we-work"
+                                    element={<HowWeWorkPage />}
+                                  />
+                                  <Route
+                                    path="/emergencies"
+                                    element={<EmergenciesPage />}
+                                  />
+                                  <Route path="/news" element={<NewsPage />} />
+                                  <Route
+                                    path="/partner"
+                                    element={<PartnerPage />}
+                                  />
+                                  <Route
+                                    path="/financial-accountability"
+                                    element={<TransparencyPage />}
+                                  />
 
-                              <Route
-                                path="/advocacy"
-                                element={<AdvocacyPage />}
-                              />
-                              <Route
-                                path="/safeguarding"
-                                element={<SafeguardingPage />}
-                              />
-                              <Route
-                                path="/volunteer-internship"
-                                element={<VolunteerPage />}
-                              />
-                              <Route
-                                path="/legal-governance"
-                                element={<LegalPage />}
-                              />
-                              <Route path="/impact" element={<ImpactPage />} />
-                              <Route
-                                path="/past-projects"
-                                element={<PastProjectsPage />}
-                              />
-                              <Route path="/admin" element={<AdminGate />}>
-                                <Route
-                                  index
-                                  element={
-                                    <Navigate to="/admin/dashboard" replace />
-                                  }
-                                />
-                                <Route path=":tab" element={<AdminPage />} />
-                              </Route>
-                            </Routes>
-                          </Suspense>
-                        </main>
-                        <FooterWrapper />
-                      </div>
-                    </Router>
-                  </ContactProvider>
+                                  <Route
+                                    path="/advocacy"
+                                    element={<AdvocacyPage />}
+                                  />
+                                  <Route
+                                    path="/safeguarding"
+                                    element={<SafeguardingPage />}
+                                  />
+                                  <Route
+                                    path="/volunteer-internship"
+                                    element={<VolunteerPage />}
+                                  />
+                                  <Route
+                                    path="/legal-governance"
+                                    element={<LegalPage />}
+                                  />
+                                  <Route
+                                    path="/impact"
+                                    element={<ImpactPage />}
+                                  />
+                                  <Route
+                                    path="/past-projects"
+                                    element={<PastProjectsPage />}
+                                  />
+                                  <Route path="/admin" element={<AdminGate />}>
+                                    <Route
+                                      index
+                                      element={
+                                        <Navigate
+                                          to="/admin/dashboard"
+                                          replace
+                                        />
+                                      }
+                                    />
+                                    <Route
+                                      path=":tab"
+                                      element={<AdminPage />}
+                                    />
+                                  </Route>
+                                </Routes>
+                              </Suspense>
+                            </main>
+                            <FooterWrapper />
+                          </div>
+                        </Router>
+                      </BeneficiaryStatsProvider>
+                    </ContactProvider>
+                  </TransparencyProvider>
                 </NewsProvider>
               </EmergencyProvider>
             </DonationProvider>

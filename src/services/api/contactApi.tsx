@@ -13,7 +13,7 @@ interface ContactFormData {
     | "internship"
     | "partnership"
     | "feedback"
-    | "compliant"
+    | "complaint"
     | "press/media";
 }
 

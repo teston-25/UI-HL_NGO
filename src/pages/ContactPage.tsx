@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-// import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Facebook, Instagram } from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import { useLanguage } from "../context/LanguageContext";
+import { useContact } from "../context/ContactContext";
+import { useToast } from "../components/Toast";
 
 const YoutubeIcon = ({ className }: { className?: string }) => (
   <svg
@@ -47,17 +48,20 @@ L.Icon.Default.mergeOptions({
 });
 export function ContactPage() {
   const { t } = useLanguage();
+  const { submitContact, loading, error } = useContact();
+  const { showToast } = useToast();
   const [searchParams] = useSearchParams();
-  const defaultSubject = searchParams.get("subject") || "General Inquiry";
+  const defaultSubject = searchParams.get("subject") || "";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     subject: defaultSubject,
+    type: "general inquiry",
     message: "",
   });
-  const [selectedCountryCode, setSelectedCountryCode] = useState("+251"); // Default to Ethiopia
-  const [error, setError] = useState("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState("+251");
+  const [localError, setLocalError] = useState("");
 
   const countryCodes = [
     { code: "+251", country: "Ethiopia" },
@@ -67,7 +71,6 @@ export function ContactPage() {
     { code: "+33", country: "France" },
     { code: "+20", country: "Egypt" },
     { code: "+254", country: "Kenya" },
-    { code: "+251", country: "Ethiopia" },
     { code: "+252", country: "Somalia" },
     { code: "+249", country: "Sudan" },
     { code: "+211", country: "South Sudan" },
@@ -91,6 +94,45 @@ export function ContactPage() {
       document.head.appendChild(link);
     }
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.email && !formData.phone) {
+      setLocalError("Please provide either an email address or phone number");
+      return;
+    }
+    setLocalError("");
+
+    const phoneNumber = formData.phone
+      ? `${selectedCountryCode}${formData.phone}`
+      : undefined;
+
+    try {
+      await submitContact({
+        name: formData.name,
+        message: formData.message,
+        email: formData.email || undefined,
+        phone_number: phoneNumber,
+        subject: formData.subject || formData.type,
+        type: formData.type,
+      });
+      showToast(
+        "success",
+        "Thank you for your message! We will get back to you soon.",
+      );
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        type: "general inquiry",
+        message: "",
+      });
+    } catch (err) {
+      // Error is handled in context and displayed below the form
+    }
+  };
+
   const position: [number, number] = [9.032, 38.7469];
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
@@ -253,32 +295,7 @@ export function ContactPage() {
             <h3 className="font-serif text-2xl font-bold text-[#111111] dark:text-white mb-6">
               {t.contact_form_title}
             </h3>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                // Validate that either email or phone is provided
-                if (!formData.email && !formData.phone) {
-                  setError(
-                    "Please provide either an email address or phone number",
-                  );
-                  return;
-                }
-                setError("");
-                // Combine country code with phone number
-                const fullPhone = formData.phone
-                  ? `${selectedCountryCode} ${formData.phone}`
-                  : "";
-                // Here you would typically send the data to your backend
-                console.log("Form submitted:", {
-                  ...formData,
-                  phone: fullPhone,
-                });
-                alert(
-                  "Thank you for your message! We will get back to you soon.",
-                );
-              }}
-              className="space-y-6"
-            >
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -341,22 +358,39 @@ export function ContactPage() {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {t.contact_subject}
+                  {t.contact_type || "Inquiry Type"}
                 </label>
                 <select
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                  value={formData.type}
+                  onChange={(e) =>
+                    setFormData({ ...formData, type: e.target.value })
+                  }
+                >
+                  <option value="general inquiry">General Inquiry</option>
+                  <option value="volunteering">Volunteering</option>
+                  <option value="internship">Internship</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="donations">Donations</option>
+                  <option value="press/media">Press/Media</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="complaint">Complaint</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {t.contact_subject}
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                  placeholder="Partnership opportunity"
                   value={formData.subject}
                   onChange={(e) =>
                     setFormData({ ...formData, subject: e.target.value })
                   }
-                >
-                  <option>General Inquiry</option>
-                  <option>Volunteering</option>
-                  <option>Internship</option>
-                  <option>Partnership</option>
-                  <option>Donations</option>
-                  <option>Press/Media</option>
-                </select>
+                />
               </div>
 
               <div className="space-y-2">
@@ -375,13 +409,16 @@ export function ContactPage() {
                 ></textarea>
               </div>
 
-              {error && <p className="text-red-500 text-sm">{error}</p>}
+              {(localError || error) && (
+                <p className="text-red-500 text-sm">{localError || error}</p>
+              )}
 
               <button
                 type="submit"
-                className="w-full bg-[#B91C1C] text-white font-bold text-lg py-4 rounded-xl hover:bg-[#991B1B] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                disabled={loading}
+                className="w-full bg-[#B91C1C] text-white font-bold text-lg py-4 rounded-xl hover:bg-[#991B1B] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2"
               >
-                <span>{t.contact_send_btn}</span>
+                <span>{loading ? "Sending..." : t.contact_send_btn}</span>
                 <Send className="h-5 w-5" />
               </button>
             </form>

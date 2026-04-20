@@ -25,6 +25,18 @@ interface TransparencyUpdatePayload {
 }
 
 const transparencyAPI = {
+  // GET /api/v1/admin/transparency — get all transparency documents
+  getAll: async () => {
+    const response = await api.get("/v1/transparency");
+    return response.data;
+  },
+
+  // GET /api/v1/admin/transparency/:id — get single document details
+  getById: async (id: number) => {
+    const response = await api.get(`/v1/transparency/${id}`);
+    return response.data;
+  },
+
   // POST /api/v1/admin/transparency — upload PDF (multipart/form-data)
   upload: async (payload: TransparencyUploadPayload) => {
     const formData = new FormData();
