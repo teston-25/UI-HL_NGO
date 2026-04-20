@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { ArrowRight, Heart, Users, Globe, Droplets, Quote } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useBeneficiaryStats } from "../context/BeneficiaryStatsContext";
+import { useEmergency } from "../context/EmergencyContext";
+import { useNews } from "../context/NewsContext";
+import { Loader2 } from "lucide-react";
 export function HomePage() {
   const { t } = useLanguage();
+  const { stats, loading: statsLoading } = useBeneficiaryStats();
+  const { fetchAll } = useEmergency();
+  const { fetchNews } = useNews();
+
+  useEffect(() => {
+    fetchAll();
+    fetchNews();
+  }, [fetchAll, fetchNews]);
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -90,89 +104,101 @@ export function HomePage() {
       <section className="py-20 bg-[#F9F9F9] dark:bg-[#0f0f0f] transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.9,
-              }}
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.5,
-              }}
-              className="p-8 bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
-            >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 rounded-full mb-6">
-                <Users className="h-8 w-8 text-[#B91C1C] dark:text-[#F87171]" />
-              </div>
-              <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
-                10,000+
-              </h3>
-              <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
-                {t.home_stats_lives}
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.9,
-              }}
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: 0.1,
-              }}
-              className="p-8 bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
-            >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#111111]/10 dark:bg-white/10 rounded-full mb-6">
-                <Globe className="h-8 w-8 text-[#111111] dark:text-white" />
-              </div>
-              <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
-                15
-              </h3>
-              <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
-                {t.home_stats_countries}
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.9,
-              }}
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: 0.2,
-              }}
-              className="p-8 bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
-            >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 rounded-full mb-6">
-                <Droplets className="h-8 w-8 text-[#B91C1C] dark:text-[#F87171]" />
-              </div>
-              <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
-                500+
-              </h3>
-              <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
-                {t.home_stats_water}
-              </p>
-            </motion.div>
+            {statsLoading ? (
+              <Loader2 className="w-8 h-8 animate-spin text-[#B91C1C] mx-auto" />
+            ) : (
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.5,
+                }}
+                className="p-8 bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 rounded-full mb-6">
+                  <Users className="h-8 w-8 text-[#B91C1C] dark:text-[#F87171]" />
+                </div>
+                <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
+                  {stats?.total_beneficiaries?.toLocaleString() || "0"}
+                </h3>
+                <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
+                  {t.home_stats_lives}
+                </p>
+              </motion.div>
+            )}
+            {statsLoading ? (
+              <Loader2 className="w-8 h-8 animate-spin text-[#B91C1C] mx-auto" />
+            ) : (
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.1,
+                }}
+                className="p-8 bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#111111]/10 dark:bg-white/10 rounded-full mb-6">
+                  <Globe className="h-8 w-8 text-[#111111] dark:text-white" />
+                </div>
+                <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
+                  {stats?.countries_count?.toLocaleString() || "0"}
+                </h3>
+                <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
+                  {t.home_stats_countries}
+                </p>
+              </motion.div>
+            )}
+            {statsLoading ? (
+              <Loader2 className="w-8 h-8 animate-spin text-[#B91C1C]" />
+            ) : (
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.2,
+                }}
+                className="p-8 bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 rounded-full mb-6">
+                  <Droplets className="h-8 w-8 text-[#B91C1C] dark:text-[#F87171]" />
+                </div>
+                <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
+                  {stats?.water_projects?.toLocaleString() || "0"}
+                </h3>
+                <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
+                  {t.home_stats_water}
+                </p>
+              </motion.div>
+            )}
           </div>
         </div>
       </section>

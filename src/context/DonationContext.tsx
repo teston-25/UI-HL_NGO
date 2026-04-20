@@ -46,7 +46,10 @@ export function DonationProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       try {
         const res = await donationAPI.initializePayment(data);
-        return res.data;
+        if (!res || !res.checkout_url) {
+          throw new Error("Invalid response from payment API");
+        }
+        return res;
       } catch (e: any) {
         setError(e.response?.data?.message || "Payment initialization failed");
         throw e;

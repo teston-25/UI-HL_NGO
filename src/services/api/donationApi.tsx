@@ -33,7 +33,7 @@ export interface DonationStats {
 }
 
 interface InitPaymentData {
-  amount: number;
+  amount: string;
   email: string;
   first_name?: string;
   last_name?: string;

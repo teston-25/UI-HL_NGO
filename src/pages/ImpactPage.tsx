@@ -1,14 +1,29 @@
 import { motion } from "framer-motion";
-import { Users, Heart, BarChart3 } from "lucide-react";
+import { Users, Heart, BarChart3, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import { useBeneficiaryStats } from "../context/BeneficiaryStatsContext";
 
 export function ImpactPage() {
   const { t } = useLanguage();
-  const stats = [
-    { value: "10,000+", label: t.home_stats_lives, icon: Users },
-    { value: "15", label: t.home_stats_countries, icon: Heart },
-    { value: "500+", label: t.home_stats_water, icon: BarChart3 },
+  const { stats, loading } = useBeneficiaryStats();
+
+  const status = [
+    {
+      value: stats?.total_beneficiaries?.toLocaleString() || "0",
+      label: t.home_stats_lives,
+      icon: Users,
+    },
+    {
+      value: stats?.countries_count?.toLocaleString() || "0",
+      label: t.home_stats_countries,
+      icon: Heart,
+    },
+    {
+      value: stats?.water_projects?.toLocaleString() || "0",
+      label: t.home_stats_water,
+      icon: BarChart3,
+    },
   ];
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
@@ -33,25 +48,31 @@ export function ImpactPage() {
         </div>
 
         {/* Statistics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
-        >
-          {stats.map((s, i) => (
-            <div
-              key={i}
-              className="bg-white dark:bg-[#1a1a1a] p-10 rounded-2xl text-center shadow-sm border border-[#86efac]/30 dark:border-[#86efac]/20"
-            >
-              <s.icon className="h-12 w-12 text-[#86efac] mx-auto mb-4" />
-              <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2">
-                {s.value}
-              </h3>
-              <p className="text-[#1a1a1a]/70 dark:text-white/70">{s.label}</p>
-            </div>
-          ))}
-        </motion.div>
+        {loading ? (
+          <Loader2 className="animate-spin mx-auto" />
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+          >
+            {status.map((s, i) => (
+              <div
+                key={i}
+                className="bg-white dark:bg-[#1a1a1a] p-10 rounded-2xl text-center shadow-sm border border-[#86efac]/30 dark:border-[#86efac]/20"
+              >
+                <s.icon className="h-12 w-12 text-[#86efac] mx-auto mb-4" />
+                <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2">
+                  {s.value}
+                </h3>
+                <p className="text-[#1a1a1a]/70 dark:text-white/70">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        )}
 
         {/* Success Stories & Case Studies */}
         <motion.div

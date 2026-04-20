@@ -1,8 +1,26 @@
 import { motion } from "framer-motion";
-import { FileText, PieChart, ShieldCheck, Download } from "lucide-react";
+import { useEffect } from "react";
+import {
+  FileText,
+  PieChart,
+  ShieldCheck,
+  Download,
+  Loader2,
+} from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useTransparency } from "../context/TransparencyContext";
 export function TransparencyPage() {
   const { t } = useLanguage();
+  const {
+    docs,
+    loading: docsLoading,
+    fetchTransparencyDocs,
+  } = useTransparency();
+
+  useEffect(() => {
+    fetchTransparencyDocs();
+  }, [fetchTransparencyDocs]);
+
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -226,23 +244,7 @@ export function TransparencyPage() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                title: t.financial_annual_title,
-                desc: t.financial_annual_desc,
-                year: "2023",
-              },
-              {
-                title: t.financial_audited_title,
-                desc: t.financial_audited_desc,
-                year: "2023",
-              },
-              {
-                title: t.financial_filing_title,
-                desc: t.financial_filing_desc,
-                year: "2023",
-              },
-            ].map((doc, index) => (
+            {docs.map((doc, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -261,12 +263,17 @@ export function TransparencyPage() {
                   {doc.year}
                 </p>
                 <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-8 flex-1">
-                  {doc.desc}
+                  {doc.file_type.toUpperCase()}
                 </p>
-                <button className="w-full border-2 border-[#B91C1C] text-[#B91C1C] dark:text-[#F87171] dark:border-[#F87171] py-3 rounded-xl font-bold hover:bg-[#B91C1C] hover:text-white dark:hover:bg-[#F87171] dark:hover:text-white transition-all flex items-center justify-center">
+                <a
+                  href={doc.file_url}
+                  className="w-full border-2 border-[#B91C1C] text-[#B91C1C] dark:text-[#F87171] dark:border-[#F87171] py-3 rounded-xl font-bold hover:bg-[#B91C1C] hover:text-white dark:hover:bg-[#F87171] dark:hover:text-white transition-all flex items-center justify-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Download className="mr-2 h-5 w-5" />
                   {t.financial_download}
-                </button>
+                </a>
               </motion.div>
             ))}
           </div>

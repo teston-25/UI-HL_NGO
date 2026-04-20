@@ -8,21 +8,16 @@ import {
   MessageSquare,
   ChevronRight,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { StatCard } from "../../../components/admin/StatCard";
-import type {
-  AdminTab,
-  BeneficiaryStats,
-  DonationStats,
-  News,
-  Emergency,
-} from "../types/admin";
+import type { AdminTab, DonationStats } from "../types/admin";
 import { TabError } from "../../../components/admin/TabError";
+import { useBeneficiaryStats } from "../../../context/BeneficiaryStatsContext";
+import { useNews } from "../../../context/NewsContext";
+import { useEmergency } from "../../../context/EmergencyContext";
 
 interface DashboardTabProps {
   admin: { email: string; role: string } | null;
-  beneficiaryStats: BeneficiaryStats | null;
-  news: News[];
-  emergencies: Emergency[];
   donationStats: DonationStats | null;
   onNavigate: (tab: AdminTab) => void;
   error: string | null;
@@ -31,14 +26,35 @@ interface DashboardTabProps {
 
 export function DashboardTab({
   admin,
-  beneficiaryStats,
-  news,
-  emergencies,
   donationStats,
   onNavigate,
   error,
   onRetry,
 }: DashboardTabProps) {
+  const { stats, fetchStats } = useBeneficiaryStats();
+  const { news, fetchNews } = useNews();
+  const { activeEmergencies, fetchActive } = useEmergency();
+
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  // Fetch all data on mount
+  useEffect(() => {
+    const fetchAllData = async () => {
+      setIsRefreshing(true);
+      try {
+        await Promise.all([fetchStats(), fetchNews(), fetchActive()]);
+        setDataLoaded(true);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      } finally {
+        setIsRefreshing(false);
+      }
+    };
+
+    fetchAllData();
+  }, [fetchStats, fetchNews, fetchActive]);
+
   if (error) {
     return (
       <div className="space-y-8">
@@ -55,10 +71,10 @@ export function DashboardTab({
     );
   }
 
-  const stats = [
+  const status = [
     {
       label: "Total Beneficiaries",
-      value: beneficiaryStats?.total_beneficiaries?.toLocaleString() || "0",
+      value: stats?.total_beneficiaries?.toLocaleString() || "0",
       change: "+12%",
       icon: Users,
       color: "bg-[#B91C1C]",
@@ -72,7 +88,7 @@ export function DashboardTab({
     },
     {
       label: "Active Emergencies",
-      value: emergencies.filter((e) => e.is_active).length.toString(),
+      value: activeEmergencies.length.toString(),
       change: "-2",
       icon: Bell,
       color: "bg-[#f59e0b]",
@@ -131,7 +147,7 @@ export function DashboardTab({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat) => (
+        {status.map((stat) => (
           <StatCard key={stat.label} {...stat} />
         ))}
       </div>
