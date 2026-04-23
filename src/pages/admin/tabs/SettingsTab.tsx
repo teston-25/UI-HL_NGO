@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Save, Loader2 } from "lucide-react";
+import { Save, Loader2, Eye, EyeOff } from "lucide-react"; // Added Eye icons
 import { FormInput } from "../components/FormInput";
 import { useToast } from "../../../components/Toast";
 import { useAdminAuth } from "../../../context/AdminAuthContext";
@@ -14,6 +14,12 @@ export function SettingsTab({ admin }: SettingsTabProps) {
     newPassword: "",
     confirmPassword: "",
   });
+
+  // 1. Individual visibility states
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
   const { updatePassword } = useAdminAuth();
@@ -56,6 +62,7 @@ export function SettingsTab({ admin }: SettingsTabProps) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Profile Card */}
         <div className="bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-6">
           <h2 className="font-serif text-xl font-bold text-gray-900 dark:text-white mb-6">
             Profile Information
@@ -69,7 +76,9 @@ export function SettingsTab({ admin }: SettingsTabProps) {
                 <p className="font-medium text-gray-900 dark:text-white">
                   {admin?.email || "Admin User"}
                 </p>
-                <p className="text-sm text-gray-500">{admin?.role}</p>
+                <p className="text-sm text-gray-500 capitalize">
+                  {admin?.role}
+                </p>
               </div>
             </div>
             <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
@@ -80,52 +89,86 @@ export function SettingsTab({ admin }: SettingsTabProps) {
             </div>
             <div>
               <p className="text-sm text-gray-500">Role</p>
-              <p className="font-medium text-gray-900 dark:text-white">
+              <p className="font-medium text-gray-900 dark:text-white capitalize">
                 {admin?.role || "Not available"}
               </p>
             </div>
           </div>
         </div>
 
+        {/* Password Card */}
         <div className="bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-6">
           <h2 className="font-serif text-xl font-bold text-gray-900 dark:text-white mb-6">
             Change Password
           </h2>
           <div className="space-y-4">
-            <FormInput
-              label="Current Password"
-              type="password"
-              value={passwordForm.currentPassword}
-              onChange={(v) =>
-                setPasswordForm({ ...passwordForm, currentPassword: v })
-              }
-              placeholder="Enter current password"
-              required
-            />
-            <FormInput
-              label="New Password"
-              type="password"
-              value={passwordForm.newPassword}
-              onChange={(v) =>
-                setPasswordForm({ ...passwordForm, newPassword: v })
-              }
-              placeholder="Enter new password"
-              required
-            />
-            <FormInput
-              label="Confirm Password"
-              type="password"
-              value={passwordForm.confirmPassword}
-              onChange={(v) =>
-                setPasswordForm({ ...passwordForm, confirmPassword: v })
-              }
-              placeholder="Confirm new password"
-              required
-            />
+            {/* Current Password */}
+            <div className="relative">
+              <FormInput
+                label="Current Password"
+                type={showCurrent ? "text" : "password"}
+                value={passwordForm.currentPassword}
+                onChange={(v) =>
+                  setPasswordForm({ ...passwordForm, currentPassword: v })
+                }
+                placeholder="Enter current password"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowCurrent(!showCurrent)}
+                className="absolute right-3 top-[38px] text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              >
+                {showCurrent ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+
+            {/* New Password */}
+            <div className="relative">
+              <FormInput
+                label="New Password"
+                type={showNew ? "text" : "password"}
+                value={passwordForm.newPassword}
+                onChange={(v) =>
+                  setPasswordForm({ ...passwordForm, newPassword: v })
+                }
+                placeholder="Enter new password"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowNew(!showNew)}
+                className="absolute right-3 top-[38px] text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              >
+                {showNew ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+
+            {/* Confirm Password */}
+            <div className="relative">
+              <FormInput
+                label="Confirm Password"
+                type={showConfirm ? "text" : "password"}
+                value={passwordForm.confirmPassword}
+                onChange={(v) =>
+                  setPasswordForm({ ...passwordForm, confirmPassword: v })
+                }
+                placeholder="Confirm new password"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirm(!showConfirm)}
+                className="absolute right-3 top-[38px] text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              >
+                {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+
             <button
               onClick={handlePasswordSave}
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors disabled:opacity-50 mt-2"
             >
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

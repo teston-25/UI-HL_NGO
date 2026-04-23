@@ -272,9 +272,7 @@ export function AdminPage() {
               />
             )}
 
-            {activeTab === "donations" && (
-              <DonationsTab onRetry={data.retry} />
-            )}
+            {activeTab === "donations" && <DonationsTab onRetry={data.retry} />}
 
             {activeTab === "beneficiaries" && (
               <BeneficiariesTab

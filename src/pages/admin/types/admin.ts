@@ -18,6 +18,7 @@ export interface Tab {
   requiresSuperAdmin?: boolean;
 }
 
+
 export interface BeneficiaryForm {
   total_beneficiaries: number;
   countries_count: number;
@@ -28,6 +29,9 @@ export interface NewsForm {
   title: string;
   content: string;
   image_url: string;
+  excerpt: string;
+  category: string;
+  published_at: string;
 }
 
 export interface EmergencyForm {
@@ -41,6 +45,7 @@ export interface TransparencyForm {
   title: string;
   file_type: "annual_report" | "audit_report";
   file: File | null;
+  year: string;
 }
 
 export interface AdminFormData {

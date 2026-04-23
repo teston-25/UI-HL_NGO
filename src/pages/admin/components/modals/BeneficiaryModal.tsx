@@ -14,6 +14,9 @@ interface BeneficiaryModalProps {
 export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
   const { stats, updateStats, loading } = useBeneficiaryStats();
   const { showToast } = useToast();
+
+  // 1. Error state to track which field is negative
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState<BeneficiaryForm>({
     total_beneficiaries: 0,
     countries_count: 0,
@@ -27,16 +30,51 @@ export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
         countries_count: stats.countries_count,
         water_projects: stats.water_projects,
       });
+      setFieldErrors({});
     }
   }, [stats, isOpen]);
 
   const handleSave = async () => {
+    const newErrors: Record<string, string> = {};
+
+    if (form.total_beneficiaries < 0)
+      newErrors.total_beneficiaries = "Value cannot be negative";
+    if (form.countries_count < 0)
+      newErrors.countries_count = "Value cannot be negative";
+    if (form.water_projects < 0)
+      newErrors.water_projects = "Value cannot be negative";
+
+    if (Object.keys(newErrors).length > 0) {
+      setFieldErrors(newErrors);
+      showToast("error", "Please ensure all values are 0 or positive.");
+      return;
+    }
+
     try {
+      setFieldErrors({});
       await updateStats(form);
       showToast("success", "Beneficiary stats updated successfully!");
       onClose();
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error updating stats:", err);
+
+      if (err.response?.status === 400) {
+        setFieldErrors(err.response.data.errors || {});
+        showToast("error", err.response.data.message || "Invalid input data");
+      } else {
+        showToast("error", "Failed to update statistics");
+      }
+    }
+  };
+
+  const handleNumberChange = (field: keyof BeneficiaryForm, value: string) => {
+    const num = Number(value);
+    setForm({ ...form, [field]: num });
+
+    if (num >= 0 && fieldErrors[field]) {
+      const updatedErrors = { ...fieldErrors };
+      delete updatedErrors[field];
+      setFieldErrors(updatedErrors);
     }
   };
 
@@ -47,7 +85,7 @@ export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
           label="Total Beneficiaries"
           type="number"
           value={form.total_beneficiaries}
-          onChange={(v) => setForm({ ...form, total_beneficiaries: Number(v) })}
+          onChange={(v) => handleNumberChange("total_beneficiaries", v)}
           placeholder="Enter total beneficiaries"
           required
         />
@@ -55,7 +93,7 @@ export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
           label="Countries Count"
           type="number"
           value={form.countries_count}
-          onChange={(v) => setForm({ ...form, countries_count: Number(v) })}
+          onChange={(v) => handleNumberChange("countries_count", v)}
           placeholder="Enter countries count"
           required
         />
@@ -63,7 +101,7 @@ export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
           label="Water Projects"
           type="number"
           value={form.water_projects}
-          onChange={(v) => setForm({ ...form, water_projects: Number(v) })}
+          onChange={(v) => handleNumberChange("water_projects", v)}
           placeholder="Enter water projects count"
           required
         />
