@@ -45,11 +45,11 @@ export function ContactDetailModal({
               {contact.email}
             </p>
           </div>
-          {contact.phone && (
+          {contact.phone_number && (
             <div>
               <p className="text-sm text-gray-500">Phone</p>
               <p className="font-medium text-gray-900 dark:text-white">
-                {contact.phone}
+                {contact.phone_number}
               </p>
             </div>
           )}

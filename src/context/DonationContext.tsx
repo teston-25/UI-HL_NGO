@@ -11,7 +11,7 @@ interface DonationContextType {
   error: string | null;
   // Public
   initializePayment: (data: {
-    amount: number;
+    amount: string;
     email: string;
     first_name?: string;
     last_name?: string;
@@ -41,7 +41,15 @@ export function DonationProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   const initializePayment = useCallback(
-    async (data: Parameters<typeof donationAPI.initializePayment>[0]) => {
+    async (data: {
+      amount: string;
+      email: string;
+      first_name?: string;
+      last_name?: string;
+      phone_number?: string;
+      title?: string;
+      description?: string;
+    }) => {
       setLoading(true);
       setError(null);
       try {

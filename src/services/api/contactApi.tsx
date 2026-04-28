@@ -2,8 +2,8 @@ import api from "../axios";
 
 interface ContactFormData {
   name: string;
-  email?: string;
-  phone_number?: string;
+  email?: string | null;
+  phone_number?: string | null;
   subject?: string;
   message: string;
   type?:
@@ -20,7 +20,8 @@ interface ContactFormData {
 export interface Contact extends ContactFormData {
   id: number;
   created_at: string;
-  phone?: string;
+  email?: string | null;
+  phone_number?: string | null;
 }
 
 interface PaginatedContacts {

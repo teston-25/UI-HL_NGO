@@ -4,6 +4,16 @@ import { AdminTable } from "../../../components/admin/AdminTable";
 import { useDonation } from "../../../context/DonationContext";
 import { TabError } from "../../../components/admin/TabError";
 
+type InitPaymentData = {
+  amount: string;
+  email: string;
+  first_name?: string;
+  last_name?: string;
+  phone_number?: string;
+  title?: string;
+  description?: string;
+};
+
 interface DonationsTabProps {
   onRetry: () => void;
 }
@@ -11,7 +21,7 @@ interface DonationsTabProps {
 export function DonationsTab({ onRetry }: DonationsTabProps) {
   const {
     donations,
-    donationStats,
+    stats,
     loading,
     error,
     fetchDonations,
@@ -61,7 +71,7 @@ export function DonationsTab({ onRetry }: DonationsTabProps) {
             </span>
           </div>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-            ${donationStats?.totalAmount?.toLocaleString() || "0"}
+            ${stats?.totalAmount?.toLocaleString() || "0"}
           </h3>
           <p className="text-gray-500 text-sm">Total Donations</p>
         </div>
@@ -69,11 +79,11 @@ export function DonationsTab({ onRetry }: DonationsTabProps) {
           <div className="flex items-center justify-between mb-4">
             <Users className="w-8 h-8 text-[#7c3aed]" />
             <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
-              {donationStats?.totalDonors || 0} Donors
+              {stats?.totalDonors || 0} Donors
             </span>
           </div>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {donationStats?.totalDonors || 0}
+            {stats?.totalDonors || 0}
           </h3>
           <p className="text-gray-500 text-sm">Total Donors</p>
         </div>
@@ -82,7 +92,7 @@ export function DonationsTab({ onRetry }: DonationsTabProps) {
             <BarChart3 className="w-8 h-8 text-[#B91C1C]" />
           </div>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-            ${donationStats?.averageDonation?.toFixed(2) || "0.00"}
+            ${stats?.averageDonation?.toFixed(2) || "0.00"}
           </h3>
           <p className="text-gray-500 text-sm">Average Donation</p>
         </div>

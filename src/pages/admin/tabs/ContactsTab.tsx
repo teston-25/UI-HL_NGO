@@ -120,6 +120,10 @@ export function ContactsTab({ onView }: ContactsTabProps) {
                       <span className="w-2 h-2 bg-[#B91C1C] rounded-full"></span>
                     </p>
                     <p className="text-sm text-gray-500">{msg.subject}</p>
+
+                    <p className="text-sm text-gray-400">
+                      {msg.email || msg.phone_number || "No contact info"}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
