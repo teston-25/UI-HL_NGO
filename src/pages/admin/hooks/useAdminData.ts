@@ -16,6 +16,7 @@ import type {
 } from "../types/admin";
 import adminAPI from "../../../services/api/adminApi";
 import transparencyAPI from "../../../services/api/transparencyApi";
+import auditLogAPI, { type AuditLog } from "../../../services/api/auditLogApi";
 
 export interface AdminData {
   contacts: Contact[];
@@ -25,6 +26,7 @@ export interface AdminData {
   admins: Admin[];
   beneficiaryStats: BeneficiaryStats | null;
   donations: Donation[];
+  auditLogs: AuditLog[];
   donationStats: DonationStats | null;
   loadingData: boolean;
   error: string | null;
@@ -38,6 +40,7 @@ export interface RefetchFunctions {
   refetchAdmins: () => Promise<void>;
   refetchBeneficiaryStats: () => Promise<void>;
   refetchDonations: () => Promise<void>;
+  refetchAuditLogs: () => Promise<void>;
   retry: () => void;
 }
 
@@ -61,6 +64,7 @@ export function useAdminData(
   const [loadingData, setLoadingData] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
 
   const refetchContacts = useCallback(async () => {
     const res = await apiClient.get("/v1/admin/contacts");
@@ -102,6 +106,11 @@ export function useAdminData(
     setDonationStats(donationStatsRes.data.data || null);
   }, []);
 
+  const refetchAuditLogs = useCallback(async () => {
+    const res = await auditLogAPI.getAll({ page: 1, limit: 50 });
+    setAuditLogs(res.data?.logs || res.data?.data || res.data || []);
+  }, []);
+
   const retry = useCallback(() => {
     setRetryCount((c) => c + 1);
   }, []);
@@ -128,9 +137,11 @@ export function useAdminData(
             await refetchBeneficiaryStats();
             break;
           case "donations":
-          case "audit":
           case "dashboard":
             await refetchDonations();
+            break;
+          case "audit":
+            await refetchAuditLogs();
             break;
         }
       } catch (err: unknown) {
@@ -160,6 +171,7 @@ export function useAdminData(
     refetchAdmins,
     refetchBeneficiaryStats,
     refetchDonations,
+    refetchAuditLogs,
   ]);
 
   return {
@@ -171,6 +183,7 @@ export function useAdminData(
     beneficiaryStats,
     donations,
     donationStats,
+    auditLogs,
     loadingData,
     error,
     refetchContacts,
@@ -180,6 +193,7 @@ export function useAdminData(
     refetchAdmins,
     refetchBeneficiaryStats,
     refetchDonations,
+    refetchAuditLogs,
     retry,
   };
 }

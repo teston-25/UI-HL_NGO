@@ -137,9 +137,9 @@ export function AdminPage() {
       { id: "donations", label: "Donations", icon: DollarSign },
       { id: "beneficiaries", label: "Beneficiaries", icon: Users },
       { id: "news", label: "News & Emergencies", icon: FileText },
-      { id: "audit", label: "Financial Audit", icon: BarChart3 },
       { id: "transparency", label: "Transparency", icon: Upload },
       { id: "contacts", label: "Contacts", icon: Bell },
+      { id: "audit", label: "Audit Log", icon: BarChart3 },
       { id: "settings", label: "Settings", icon: Settings },
       ...(isSuperAdmin
         ? [

@@ -64,7 +64,7 @@ export function ImpactPage() {
               >
                 <s.icon className="h-12 w-12 text-[#86efac] mx-auto mb-4" />
                 <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2">
-                  {s.value}
+                  {s.value}+
                 </h3>
                 <p className="text-[#1a1a1a]/70 dark:text-white/70">
                   {s.label}

@@ -128,10 +128,10 @@ export function HomePage() {
                   <Users className="h-8 w-8 text-[#B91C1C] dark:text-[#F87171]" />
                 </div>
                 <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
-                  {stats?.total_beneficiaries?.toLocaleString() || "0"}
+                  {stats?.total_beneficiaries?.toLocaleString() || "0"}+
                 </h3>
                 <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
-                  {t.home_stats_lives}
+                  {t.home_stats_lives}+
                 </p>
               </motion.div>
             )}
@@ -160,10 +160,10 @@ export function HomePage() {
                   <Globe className="h-8 w-8 text-[#111111] dark:text-white" />
                 </div>
                 <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
-                  {stats?.countries_count?.toLocaleString() || "0"}
+                  {stats?.countries_count?.toLocaleString() || "0"}+
                 </h3>
                 <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
-                  {t.home_stats_countries}
+                  {t.home_stats_countries}+
                 </p>
               </motion.div>
             )}
@@ -192,10 +192,10 @@ export function HomePage() {
                   <Droplets className="h-8 w-8 text-[#B91C1C] dark:text-[#F87171]" />
                 </div>
                 <h3 className="text-4xl font-bold text-[#111111] dark:text-white mb-2 font-serif">
-                  {stats?.water_projects?.toLocaleString() || "0"}
+                  {stats?.water_projects?.toLocaleString() || "0"}+
                 </h3>
                 <p className="text-[#1a1a1a]/70 dark:text-white/70 text-lg">
-                  {t.home_stats_water}
+                  {t.home_stats_water}+
                 </p>
               </motion.div>
             )}

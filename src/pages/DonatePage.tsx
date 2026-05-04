@@ -5,7 +5,7 @@ import { useLanguage } from "../context/LanguageContext";
 import donateImage from "../svg/QR_code.jpg";
 import { useDonation } from "../context/DonationContext";
 import { Loader2 } from "lucide-react";
-import { title } from "framer-motion/client";
+// import { title } from "framer-motion/client";
 
 export function DonatePage() {
   const { t } = useLanguage();

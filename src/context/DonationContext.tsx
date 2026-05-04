@@ -1,12 +1,14 @@
 import { createContext, useContext, useState, useCallback } from "react";
 import donationAPI, {
   type Donation,
-  type DonationStats,
+  type DonationPagination,
+  type DonationSummary,
 } from "../services/api/donationApi";
 
 interface DonationContextType {
   donations: Donation[];
-  stats: DonationStats | null;
+  pagination: DonationPagination | null;
+  summary: DonationSummary | null;
   loading: boolean;
   error: string | null;
   // Public
@@ -27,7 +29,6 @@ interface DonationContextType {
     limit?: number,
     status?: string,
   ) => Promise<void>;
-  fetchDonationStats: () => Promise<void>;
 }
 
 const DonationContext = createContext<DonationContextType | undefined>(
@@ -36,7 +37,8 @@ const DonationContext = createContext<DonationContextType | undefined>(
 
 export function DonationProvider({ children }: { children: React.ReactNode }) {
   const [donations, setDonations] = useState<Donation[]>([]);
-  const [stats, setStats] = useState<DonationStats | null>(null);
+  const [pagination, setPagination] = useState<DonationPagination | null>(null);
+  const [summary, setSummary] = useState<DonationSummary | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -84,7 +86,10 @@ export function DonationProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       try {
         const res = await donationAPI.getAllDonations(page, limit, status);
-        setDonations(res.data.donations || res.data.data || []);
+        const { donations, pagination, summary } = res.data;
+        setDonations(donations || []);
+        setPagination(pagination || null);
+        setSummary(summary || null);
       } catch (e: any) {
         setError(e.response?.data?.message || "Failed to fetch donations");
       } finally {
@@ -94,31 +99,18 @@ export function DonationProvider({ children }: { children: React.ReactNode }) {
     [],
   );
 
-  const fetchDonationStats = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await donationAPI.getDonationStats();
-      setStats(res.data.data || res.data);
-    } catch (e: any) {
-      setError(e.response?.data?.message || "Failed to fetch donation stats");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   return (
     <DonationContext.Provider
       value={{
         donations,
-        stats,
+        pagination,
+        summary,
         loading,
         error,
         initializePayment,
         verifyPayment,
         getTransactionStatus,
         fetchDonations,
-        fetchDonationStats,
       }}
     >
       {children}
