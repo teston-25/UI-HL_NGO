@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useCallback } from "react";
-import transparencyAPI, {
-  type TransparencyDoc,
-  type TransparencyUploadPayload,
+import transparencyAPI from "../services/api/transparencyApi";
+import type {
+  TransparencyDoc,
+  TransparencyUploadPayload,
 } from "../services/api/transparencyApi";
 
 interface TransparencyContextType {
@@ -31,10 +32,18 @@ export function TransparencyProvider({
     setError(null);
     try {
       const res = await transparencyAPI.getAll();
-      setDocs(res.data.data || res.data);
-    } catch (e: any) {
+      const payload = res?.data ?? res;
+      const docsArray = Array.isArray(payload?.data)
+        ? payload.data
+        : Array.isArray(payload)
+        ? payload
+        : [];
+      setDocs(docsArray);
+    } catch (e: unknown) {
+      // Fixed: Changed 'any' to 'unknown' to fix ESLint rule
+      const err = e as { response?: { data?: { message?: string } } };
       setError(
-        e.response?.data?.message || "Failed to fetch transparency documents",
+        err.response?.data?.message || "Failed to fetch transparency documents",
       );
     } finally {
       setLoading(false);
@@ -48,8 +57,10 @@ export function TransparencyProvider({
       try {
         await transparencyAPI.upload(form);
         await fetchTransparencyDocs();
-      } catch (e: any) {
-        setError(e.response?.data?.message || "Failed to upload document");
+      } catch (e: unknown) {
+        // Fixed: Changed 'any' to 'unknown'
+        const err = e as { response?: { data?: { message?: string } } };
+        setError(err.response?.data?.message || "Failed to upload document");
         throw e;
       } finally {
         setLoading(false);
@@ -58,19 +69,24 @@ export function TransparencyProvider({
     [fetchTransparencyDocs],
   );
 
-  const deleteDocument = useCallback(async (id: number) => {
-    setLoading(true);
-    setError(null);
-    try {
-      await transparencyAPI.delete(id);
-      await fetchTransparencyDocs();
-    } catch (e: any) {
-      setError(e.response?.data?.message || "Failed to delete document");
-      throw e;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const deleteDocument = useCallback(
+    async (id: number) => {
+      setLoading(true);
+      setError(null);
+      try {
+        await transparencyAPI.delete(id);
+        await fetchTransparencyDocs();
+      } catch (e: unknown) {
+        // Fixed: Changed 'any' to 'unknown'
+        const err = e as { response?: { data?: { message?: string } } };
+        setError(err.response?.data?.message || "Failed to delete document");
+        throw e;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [fetchTransparencyDocs],
+  ); // Fixed: Added missing dependency to the array
 
   return (
     <TransparencyContext.Provider
@@ -90,7 +106,10 @@ export function TransparencyProvider({
 
 export function useTransparency() {
   const ctx = useContext(TransparencyContext);
-  if (!ctx)
-    throw new Error("useTransparency must be used within TransparencyProvider");
+  if (!ctx) {
+    throw new Error(
+      "useTransparency must be used within a TransparencyProvider",
+    );
+  }
   return ctx;
 }

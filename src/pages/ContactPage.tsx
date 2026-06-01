@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Facebook, Instagram } from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+
+type LeafletIconDefaultPrototype = {
+  _getIconUrl?: unknown;
+};
 import { useLanguage } from "../context/LanguageContext";
 import { useContact } from "../context/ContactContext";
 import { useToast } from "../components/Toast";
@@ -38,8 +42,8 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 
 // Load Leaflet CSS from CDN to avoid bundler image resolution issues
 const leafletCSSUrl = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-// Fix for default marker icon in React Leaflet
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+delete (L.Icon.Default.prototype as LeafletIconDefaultPrototype)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
@@ -51,6 +55,22 @@ export function ContactPage() {
   const { submitContact, loading, error } = useContact();
   const { showToast } = useToast();
   const [searchParams] = useSearchParams();
+
+  const getErrorMessage = (error: unknown) => {
+    if (error instanceof Error) return error.message;
+    if (typeof error === "object" && error !== null) {
+      const errObj = error as {
+        response?: { data?: { message?: string } };
+        message?: string;
+      };
+      return (
+        // errObj.response?.data?.message || errObj.message ||
+        "Failed to send message."
+      );
+    }
+    return String(error || "Failed to send message.");
+  };
+
   const defaultSubject = searchParams.get("subject") || "";
   const [formData, setFormData] = useState({
     name: "",
@@ -85,7 +105,6 @@ export function ContactPage() {
     { code: "+225", country: "Ivory Coast" },
   ];
   useEffect(() => {
-    // Inject Leaflet CSS via CDN link tag if not already present
     if (!document.getElementById("leaflet-css")) {
       const link = document.createElement("link");
       link.id = "leaflet-css";
@@ -98,7 +117,10 @@ export function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.email && !formData.phone) {
-      setLocalError("Please provide either an email address or phone number");
+      const validationMessage =
+        "Please provide either an email address or phone number.";
+      setLocalError(validationMessage);
+      showToast("error", validationMessage);
       return;
     }
     setLocalError("");
@@ -129,7 +151,9 @@ export function ContactPage() {
         message: "",
       });
     } catch (err) {
-      // Error is handled in context and displayed below the form
+      const message = getErrorMessage(err);
+      setLocalError(message);
+      showToast("error", message);
     }
   };
 
@@ -358,7 +382,7 @@ export function ContactPage() {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {t.contact_type || "Inquiry Type"}
+                  Inquiry Type
                 </label>
                 <select
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"

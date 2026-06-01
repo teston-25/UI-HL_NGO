@@ -38,7 +38,7 @@ export interface DonationsResponse {
 }
 
 interface InitPaymentData {
-  amount: string;
+  amount: string | number;
   email: string;
   first_name?: string;
   last_name?: string;

@@ -15,6 +15,7 @@ export function TransparencyPage() {
   const {
     docs,
     loading: docsLoading,
+    error,
     fetchTransparencyDocs,
   } = useTransparency();
 
@@ -30,7 +31,7 @@ export function TransparencyPage() {
     );
   }
 
-  const hasDocs = docs && docs.length > 0;
+  const hasDocs = Array.isArray(docs) && docs.length > 0;
 
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
@@ -76,8 +77,8 @@ export function TransparencyPage() {
                 </div>
                 <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
                   <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "85%" }}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "85%" }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="bg-[#86efac] h-full rounded-full"
                   />
@@ -95,8 +96,8 @@ export function TransparencyPage() {
                 </div>
                 <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
                   <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "10%" }}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "10%" }}
                     transition={{ duration: 1, delay: 0.2 }}
                     className="bg-[#B91C1C] h-full rounded-full"
                   />
@@ -114,8 +115,8 @@ export function TransparencyPage() {
                 </div>
                 <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
                   <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "5%" }}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "5%" }}
                     transition={{ duration: 1, delay: 0.4 }}
                     className="bg-gray-400 h-full rounded-full"
                   />
@@ -161,7 +162,11 @@ export function TransparencyPage() {
             </p>
           </motion.div>
 
-          {hasDocs ? (
+          {error ? (
+            <p className="text-center py-12 text-red-700 dark:text-red-400">
+              {error}
+            </p>
+          ) : hasDocs ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {docs.map((doc, index) => (
                 <motion.div

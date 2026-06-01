@@ -13,7 +13,7 @@ interface DonationContextType {
   error: string | null;
   // Public
   initializePayment: (data: {
-    amount: string;
+    amount: string | number;
     email: string;
     first_name?: string;
     last_name?: string;
@@ -44,7 +44,7 @@ export function DonationProvider({ children }: { children: React.ReactNode }) {
 
   const initializePayment = useCallback(
     async (data: {
-      amount: string;
+      amount: string | number;
       email: string;
       first_name?: string;
       last_name?: string;

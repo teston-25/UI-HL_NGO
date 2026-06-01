@@ -143,24 +143,49 @@ export function ImpactPage() {
           <h2 className="font-serif text-3xl font-bold text-[#111111] dark:text-white mb-8 text-center">
             Photos & Short Descriptive Videos
           </h2>
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-              "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-              "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            ].map((src, i) => (
+              {
+                type: "image",
+                src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "Impact 1",
+              },
+              {
+                type: "image",
+                src: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                alt: "Impact 2",
+              },
+              {
+                type: "video",
+                src: "https://www.youtube.com/embed/5jocea5BFAA?si=SXCOEFTT2ELBAZd3",
+                title: "YouTube video player",
+              },
+            ].map((item, i) => (
               <div
                 key={i}
                 className="rounded-xl overflow-hidden shadow-md aspect-video"
               >
-                <img
-                  src={src}
-                  alt={`Impact ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform"
-                />
+                {item.type === "image" ? (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform"
+                  />
+                ) : (
+                  <iframe
+                    className="w-full h-full"
+                    src={item.src}
+                    title={item.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                )}
               </div>
             ))}
           </div>
+
           <p className="text-center text-[#1a1a1a]/60 dark:text-white/60 mt-4 text-sm">
             Photos and short videos from the field. Video content can be
             embedded here.

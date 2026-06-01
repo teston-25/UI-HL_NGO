@@ -5,11 +5,31 @@ import { useLanguage } from "../context/LanguageContext";
 import donateImage from "../svg/QR_code.jpg";
 import { useDonation } from "../context/DonationContext";
 import { Loader2 } from "lucide-react";
+import { useToast } from "../components/Toast";
 // import { title } from "framer-motion/client";
 
 export function DonatePage() {
   const { t } = useLanguage();
   const { initializePayment, loading, error } = useDonation();
+  const { showToast } = useToast();
+
+  type ApiError = {
+    response?: { data?: { message?: string } };
+    message?: string;
+  };
+
+  const getErrorMessage = (error: unknown) => {
+    if (error instanceof Error) return error.message;
+    if (typeof error === "object" && error !== null) {
+      const errObj = error as ApiError;
+      return (
+        errObj.response?.data?.message || errObj.message ||
+        "Payment initialization failed."
+      );
+    }
+    return String(error || "Payment initialization failed.");
+  };
+
   const [form, setForm] = useState({
     amount: "",
     first_name: "",
@@ -30,7 +50,7 @@ export function DonatePage() {
       !form.email ||
       Number(form.amount) <= 0
     ) {
-      console.error("Please fill in all required fields");
+      showToast("error", "Please fill in all required fields.");
       return;
     }
 
@@ -42,10 +62,11 @@ export function DonatePage() {
         email: form.email,
         phone_number: form.phone_number,
       });
-      console.log("Payment initialized:", res.checkout_url);
       window.location.href = res.checkout_url;
     } catch (error) {
-      console.error("Payment initialization failed:", error);
+      const message = getErrorMessage(error);
+      console.log("Payment initialization error:", message);
+      showToast("error", message);
     }
   };
 
