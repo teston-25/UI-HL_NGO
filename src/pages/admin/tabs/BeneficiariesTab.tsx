@@ -33,7 +33,7 @@ export function BeneficiariesTab({ onEdit, onRetry }: BeneficiariesTabProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="font-serif text-3xl font-bold text-gray-900 dark:text-white">
             Beneficiaries Management
@@ -44,7 +44,7 @@ export function BeneficiariesTab({ onEdit, onRetry }: BeneficiariesTabProps) {
         </div>
         <button
           onClick={onEdit}
-          className="flex items-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors shadow-lg shadow-[#B91C1C]/25"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors shadow-lg shadow-[#B91C1C]/25"
         >
           <Edit className="w-5 h-5" />
           Update Stats

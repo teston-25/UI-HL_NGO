@@ -27,7 +27,7 @@ export function AdminSidebar({
         />
       )}
       <aside
-        className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-white dark:bg-[#1a1a1a] border-r border-gray-200 dark:border-gray-800 p-4 overflow-y-auto z-40 transform transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-72 sm:w-64 bg-white dark:bg-[#1a1a1a] border-r border-gray-200 dark:border-gray-800 p-4 overflow-y-auto z-40 transform transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
