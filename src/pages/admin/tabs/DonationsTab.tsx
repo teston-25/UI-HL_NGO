@@ -196,7 +196,7 @@ export function DonationsTab({ onRetry }: DonationsTabProps) {
         </div>
 
         {/* Mobile Cards */}
-        <div className="md:hidden p-4 space-y-3">
+        <div className="md:hidden p-4 space-y-3 overflow-y-auto max-h-[540px] scroll-smooth">
           {loading ? (
             <p className="text-center text-gray-500">Loading donations...</p>
           ) : donations.length === 0 ? (

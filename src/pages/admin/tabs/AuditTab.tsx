@@ -6,23 +6,8 @@ import {
   ChevronRight,
   Loader2,
 } from "lucide-react";
-import auditLogAPI from "../../../services/api/auditLogApi";
+import auditLogAPI, { type AuditLog } from "../../../services/api/auditLogApi";
 import { TabError } from "../../../components/admin/TabError";
-
-interface AuditLogEntry {
-  id: number;
-  adminId: number;
-  action: "LOGIN" | "CREATE" | "UPDATE" | "DELETE";
-  entity: string;
-  entityId: number;
-  details: string;
-  createdAt: string;
-  admin: {
-    id: number;
-    email: string;
-    role: string;
-  };
-}
 
 interface PaginationData {
   total: number;
@@ -34,7 +19,7 @@ interface PaginationData {
 }
 
 export function AuditTab() {
-  const [logs, setLogs] = useState<AuditLogEntry[]>([]);
+  const [logs, setLogs] = useState<AuditLog[]>([]);
   const [pagination, setPagination] = useState<PaginationData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -141,17 +126,17 @@ export function AuditTab() {
                   <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 opacity-70" />
-                      {new Date(log.createdAt).toLocaleString()}
+                      {new Date(log.created_at).toLocaleString()}
                     </div>
                   </td>
 
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
-                        {log.admin.email}
+                        {log.admin_email || "Unknown"}
                       </span>
                       <span className="text-[10px] uppercase tracking-wider text-gray-500">
-                        {log.admin.role}
+                        {log.admin_role || "Admin"}
                       </span>
                     </div>
                   </td>
@@ -189,7 +174,7 @@ export function AuditTab() {
         </div>
 
         {/* Mobile Cards */}
-        <div className="md:hidden p-4 space-y-3">
+        <div className="md:hidden p-4 space-y-3 overflow-y-auto max-h-[580px] scroll-smooth">
           {logs.map((log) => (
             <div
               key={log.id}
@@ -199,11 +184,11 @@ export function AuditTab() {
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="font-semibold text-sm text-gray-900 dark:text-white truncate">
-                    {log.admin.email}
+                    {log.admin_email || "Unknown"}
                   </p>
 
                   <p className="text-[11px] uppercase text-gray-500">
-                    {log.admin.role}
+                    {log.admin_role || "Admin"}
                   </p>
                 </div>
 
@@ -234,7 +219,7 @@ export function AuditTab() {
                 <div className="flex justify-between">
                   <span className="text-gray-500">Date</span>
                   <span className="text-gray-900 dark:text-white text-right">
-                    {new Date(log.createdAt).toLocaleDateString()}
+                    {new Date(log.created_at).toLocaleDateString()}
                   </span>
                 </div>
 

@@ -94,25 +94,6 @@ export function AdminPage() {
   const data = useAdminData(activeTab, isSuperAdmin);
   const actions = useAdminActions(data);
 
-  // Search
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filteredNews = useMemo(
-    () =>
-      data.news.filter((n) =>
-        n.title.toLowerCase().includes(searchQuery.toLowerCase()),
-      ),
-    [data.news, searchQuery],
-  );
-
-  const filteredEmergencies = useMemo(
-    () =>
-      data.emergencies.filter((e) =>
-        e.title.toLowerCase().includes(searchQuery.toLowerCase()),
-      ),
-    [data.emergencies, searchQuery],
-  );
-
   // Layout state
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -237,8 +218,6 @@ export function AdminPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#0a0a0a] dark:to-[#1a1a1a]">
       <AdminHeader
         admin={admin}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
         onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
       />
 
@@ -264,11 +243,11 @@ export function AdminPage() {
             {activeTab === "dashboard" && (
               <DashboardTab
                 admin={admin}
-                beneficiaryStats={data.beneficiaryStats}
-                news={data.news}
-                emergencies={data.emergencies}
                 donationStats={data.donationStats}
+                auditLogs={data.auditLogs}
                 onNavigate={setActiveTab}
+                error={data.error}
+                onRetry={data.retry}
               />
             )}
 
@@ -283,8 +262,6 @@ export function AdminPage() {
 
             {activeTab === "news" && (
               <NewsTab
-                news={filteredNews}
-                emergencies={filteredEmergencies}
                 loadingData={data.loadingData}
                 onAddNews={() => openNewsModal()}
                 onEditNews={(item) => openNewsModal(item)}

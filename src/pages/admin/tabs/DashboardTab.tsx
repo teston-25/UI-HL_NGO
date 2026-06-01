@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { StatCard } from "../../../components/admin/StatCard";
 import type { AdminTab, DonationStats } from "../types/admin";
+import type { AuditLog } from "../../../services/api/auditLogApi";
 import { TabError } from "../../../components/admin/TabError";
 import { useBeneficiaryStats } from "../../../context/BeneficiaryStatsContext";
 import { useNews } from "../../../context/NewsContext";
@@ -19,6 +20,7 @@ import { useEmergency } from "../../../context/EmergencyContext";
 interface DashboardTabProps {
   admin: { email: string; role: string } | null;
   donationStats: DonationStats | null;
+  auditLogs: AuditLog[];
   onNavigate: (tab: AdminTab) => void;
   error: string | null;
   onRetry: () => void;
@@ -27,6 +29,7 @@ interface DashboardTabProps {
 export function DashboardTab({
   admin,
   donationStats,
+  auditLogs,
   onNavigate,
   error,
   onRetry,
@@ -71,6 +74,79 @@ export function DashboardTab({
     );
   }
 
+  const formatRelativeTime = (timestamp: string) => {
+    if (!timestamp) return "unknown time";
+
+    const date = new Date(timestamp);
+
+    // Check if the date is valid
+    if (isNaN(date.getTime())) {
+      return "unknown time";
+    }
+
+    const diff = Date.now() - date.getTime();
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+
+    if (minutes < 1) return "just now";
+    if (minutes < 60) return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+    if (hours < 24) return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+    if (days === 0) return "today";
+    if (days === 1) return "yesterday";
+    return `${days} days ago`;
+  };
+
+  const getEntityLabel = (entity: string) => {
+    return (
+      {
+        AUTH: "authentication",
+        ADMIN: "admin account",
+        NEWS: "news item",
+        EMERGENCY: "emergency",
+        CONTACT: "contact message",
+        TRANSPARENCY: "transparency document",
+        BENEFICIARY_STATS: "beneficiary stats",
+        DONATION: "donation",
+      }[entity] || entity.toLowerCase()
+    );
+  };
+
+  const getActivityLabel = (log: AuditLog) => {
+    if (log.action === "LOGIN") {
+      return log.details || `${log.admin_email || "Admin"} logged in`;
+    }
+
+    const actionLabels: Record<string, string> = {
+      CREATE: "Created",
+      UPDATE: "Updated",
+      DELETE: "Deleted",
+    };
+
+    const entityLabel = getEntityLabel(log.entity);
+    const actionText = actionLabels[log.action] || log.action;
+    return log.details || `${actionText} ${entityLabel}`;
+  };
+
+  const recentActivities = auditLogs
+    .slice()
+    .sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+    )
+    .slice(0, 5)
+    .map((log) => ({
+      id: log.id,
+      action: getActivityLabel(log),
+      time: formatRelativeTime(log.created_at),
+      type:
+        log.action === "DELETE"
+          ? "warning"
+          : log.action === "LOGIN"
+          ? "info"
+          : "success",
+    }));
+
   const status = [
     {
       label: "Total Beneficiaries",
@@ -99,39 +175,6 @@ export function DashboardTab({
       change: "+23%",
       icon: DollarSign,
       color: "bg-[#7c3aed]",
-    },
-  ];
-
-  const recentActivities = [
-    {
-      id: 1,
-      action: "New beneficiary registered",
-      time: "2 minutes ago",
-      type: "success" as const,
-    },
-    {
-      id: 2,
-      action: "News article published",
-      time: "1 hour ago",
-      type: "info" as const,
-    },
-    {
-      id: 3,
-      action: "Emergency update added",
-      time: "3 hours ago",
-      type: "warning" as const,
-    },
-    {
-      id: 4,
-      action: "New volunteer application",
-      time: "5 hours ago",
-      type: "success" as const,
-    },
-    {
-      id: 5,
-      action: "Transparency report uploaded",
-      time: "1 day ago",
-      type: "info" as const,
     },
   ];
 
@@ -199,7 +242,7 @@ export function DashboardTab({
               className="w-full flex items-center gap-3 p-4 rounded-xl bg-[#B91C1C]/10 hover:bg-[#B91C1C] text-[#B91C1C] hover:text-white transition-colors"
             >
               <Plus className="w-5 h-5" />
-              Add New Beneficiary
+              Update Beneficiary
             </button>
             <button
               onClick={() => onNavigate("news")}

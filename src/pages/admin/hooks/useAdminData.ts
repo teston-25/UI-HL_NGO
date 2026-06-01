@@ -108,7 +108,7 @@ export function useAdminData(
 
   const refetchAuditLogs = useCallback(async () => {
     const res = await auditLogAPI.getAll({ page: 1, limit: 50 });
-    setAuditLogs(res.data?.logs || res.data?.data || res.data || []);
+    setAuditLogs(res.data?.logs || []);
   }, []);
 
   const retry = useCallback(() => {
@@ -137,8 +137,10 @@ export function useAdminData(
             await refetchBeneficiaryStats();
             break;
           case "donations":
-          case "dashboard":
             await refetchDonations();
+            break;
+          case "dashboard":
+            await Promise.all([refetchDonations(), refetchAuditLogs()]);
             break;
           case "audit":
             await refetchAuditLogs();

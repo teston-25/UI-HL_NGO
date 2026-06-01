@@ -22,6 +22,17 @@ export function NewsPage() {
   };
 
   useEffect(() => {
+    if (openModal) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+    return undefined;
+  }, [openModal]);
+
+  useEffect(() => {
     fetchNews();
   }, [fetchNews]);
 
@@ -161,45 +172,45 @@ export function NewsPage() {
                 </motion.div>
               ))}
             </div>
-            {openModal && selectedNews && (
-              <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4">
-                <div className="bg-white dark:bg-[#1a1a1a] max-w-3xl w-full rounded-2xl shadow-xl overflow-hidden relative">
-                  {/* Close button */}
-                  <button
-                    onClick={closeModal}
-                    className="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl"
-                  >
-                    ✕
-                  </button>
-
-                  {/* Image */}
-                  <img
-                    src={
-                      selectedNews.image_url ||
-                      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c"
-                    }
-                    className="w-full h-64 object-cover"
-                  />
-
-                  {/* Content */}
-                  <div className="p-6 space-y-4">
-                    <h2 className="text-2xl font-bold text-[#111] dark:text-white">
-                      {selectedNews.title}
-                    </h2>
-
-                    <p className="text-sm text-gray-500">
-                      {selectedNews.category} •{" "}
-                      {selectedNews.published_at?.split("T")[0]}
-                    </p>
-
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                      {selectedNews.content || selectedNews.excerpt}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
           </>
+        )}
+        {openModal && selectedNews && (
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4">
+            <div className="bg-white dark:bg-[#1a1a1a] max-w-3xl w-full rounded-2xl shadow-xl overflow-hidden relative">
+              {/* Close button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-xl"
+              >
+                ✕
+              </button>
+
+              {/* Image */}
+              <img
+                src={
+                  selectedNews.image_url ||
+                  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c"
+                }
+                className="w-full h-64 object-cover"
+              />
+
+              {/* Content */}
+              <div className="p-6 space-y-4">
+                <h2 className="text-2xl font-bold text-[#111] dark:text-white">
+                  {selectedNews.title}
+                </h2>
+
+                <p className="text-sm text-gray-500">
+                  {selectedNews.category} •{" "}
+                  {selectedNews.published_at?.split("T")[0]}
+                </p>
+
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {selectedNews.content || selectedNews.excerpt}
+                </p>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
