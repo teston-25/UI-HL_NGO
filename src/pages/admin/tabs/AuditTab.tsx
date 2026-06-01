@@ -109,7 +109,8 @@ export function AuditTab() {
       </div>
 
       <div className="bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 dark:bg-gray-800/50">
               <tr>
@@ -130,12 +131,8 @@ export function AuditTab() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 dark:divide-gray-800 relative">
-              {/* Table Loading Overlay */}
-              {isLoading && (
-                <div className="absolute inset-0 bg-white/50 dark:bg-black/20 backdrop-blur-[1px] flex items-center justify-center z-10" />
-              )}
 
+            <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
               {logs.map((log) => (
                 <tr
                   key={log.id}
@@ -147,6 +144,7 @@ export function AuditTab() {
                       {new Date(log.createdAt).toLocaleString()}
                     </div>
                   </td>
+
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
@@ -157,27 +155,30 @@ export function AuditTab() {
                       </span>
                     </div>
                   </td>
+
                   <td className="px-6 py-4">
                     <span
-                      className={`px-2 py-1 rounded text-[10px] font-bold tracking-tighter ${
+                      className={`px-2 py-1 rounded text-[10px] font-bold ${
                         log.action === "DELETE"
-                          ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                          ? "bg-red-100 text-red-700"
                           : log.action === "CREATE"
-                          ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                          ? "bg-green-100 text-green-700"
                           : log.action === "UPDATE"
-                          ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
-                          : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                          ? "bg-amber-100 text-amber-700"
+                          : "bg-blue-100 text-blue-700"
                       }`}
                     >
                       {log.action}
                     </span>
                   </td>
+
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                       <Database className="w-4 h-4 opacity-60" />
                       <span className="font-mono text-xs">{log.entity}</span>
                     </div>
                   </td>
+
                   <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">
                     {log.details}
                   </td>
@@ -185,6 +186,67 @@ export function AuditTab() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Cards */}
+        <div className="md:hidden p-4 space-y-3">
+          {logs.map((log) => (
+            <div
+              key={log.id}
+              className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#111] p-4 shadow-sm"
+            >
+              {/* Top Row */}
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white truncate">
+                    {log.admin.email}
+                  </p>
+
+                  <p className="text-[11px] uppercase text-gray-500">
+                    {log.admin.role}
+                  </p>
+                </div>
+
+                <span
+                  className={`px-2 py-1 text-[10px] rounded-full font-medium whitespace-nowrap ${
+                    log.action === "DELETE"
+                      ? "bg-red-100 text-red-700"
+                      : log.action === "CREATE"
+                      ? "bg-green-100 text-green-700"
+                      : log.action === "UPDATE"
+                      ? "bg-amber-100 text-amber-700"
+                      : "bg-blue-100 text-blue-700"
+                  }`}
+                >
+                  {log.action}
+                </span>
+              </div>
+
+              {/* Details */}
+              <div className="mt-3 space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Entity</span>
+                  <span className="font-mono text-gray-900 dark:text-white">
+                    {log.entity}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Date</span>
+                  <span className="text-gray-900 dark:text-white text-right">
+                    {new Date(log.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+
+                <div>
+                  <p className="text-gray-500 mb-1">Details</p>
+                  <p className="text-gray-700 dark:text-gray-300 text-xs break-words">
+                    {log.details}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Pagination */}

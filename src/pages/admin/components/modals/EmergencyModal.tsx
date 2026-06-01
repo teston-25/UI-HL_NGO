@@ -146,7 +146,7 @@ export function EmergencyModal({
           required
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Status
@@ -171,7 +171,7 @@ export function EmergencyModal({
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormInput
             label="Goal Amount"
             value={form.goal_amount}
@@ -186,7 +186,7 @@ export function EmergencyModal({
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormInput
             label="Aid Deployed"
             value={form.aid_deployed}

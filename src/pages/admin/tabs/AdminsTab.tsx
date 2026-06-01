@@ -39,7 +39,7 @@ export function AdminsTab({
   }
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="font-serif text-3xl font-bold text-gray-900 dark:text-white">
             Admin Management
@@ -50,7 +50,7 @@ export function AdminsTab({
         </div>
         <button
           onClick={onAdd}
-          className="flex items-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors"
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors w-full md:w-auto"
         >
           <Plus className="w-5 h-5" />
           Add Admin

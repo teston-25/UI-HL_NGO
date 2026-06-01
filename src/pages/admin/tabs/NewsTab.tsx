@@ -164,7 +164,7 @@ export function NewsTab({ searchQuery = "", error, onRetry }: NewsTabProps) {
   if (error) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="font-serif text-3xl font-bold text-gray-900 dark:text-white">
               News & Emergencies
@@ -181,7 +181,7 @@ export function NewsTab({ searchQuery = "", error, onRetry }: NewsTabProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="font-serif text-3xl font-bold text-gray-900 dark:text-white">
             News & Emergencies
@@ -190,13 +190,13 @@ export function NewsTab({ searchQuery = "", error, onRetry }: NewsTabProps) {
             Manage news articles and emergency updates
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
           <button
             onClick={() => {
               setEditingNews(null);
               setShowNewsModal(true);
             }}
-            className="flex items-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#B91C1C] text-white rounded-xl font-medium hover:bg-[#991B1B] transition-colors"
           >
             <Plus className="w-5 h-5" />
             Add News
@@ -206,7 +206,7 @@ export function NewsTab({ searchQuery = "", error, onRetry }: NewsTabProps) {
               setEditingEmergency(null);
               setShowEmergencyModal(true);
             }}
-            className="flex items-center gap-2 px-6 py-3 bg-[#f59e0b] text-white rounded-xl font-medium hover:bg-[#d97706] transition-colors"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#f59e0b] text-white rounded-xl font-medium hover:bg-[#d97706] transition-colors"
           >
             <Bell className="w-5 h-5" />
             Add Emergency

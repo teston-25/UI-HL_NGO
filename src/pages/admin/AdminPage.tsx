@@ -251,7 +251,7 @@ export function AdminPage() {
         onLogout={logout}
       />
 
-      <main className="md:ml-64 pt-16 p-4 md:p-6 lg:p-8">
+      <main className="lg:ml-64 pt-16 p-4 md:p-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -259,7 +259,7 @@ export function AdminPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="w-full max-w-full"
+            className="max-w-7xl"
           >
             {activeTab === "dashboard" && (
               <DashboardTab
