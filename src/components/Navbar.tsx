@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Sun, Moon, Globe, ChevronDown } from "lucide-react";
+import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import logo from "../svg/logo.png";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
-  const { theme, toggleTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "am" : "en");
@@ -41,6 +39,10 @@ export function Navbar() {
         {
           name: t.nav_programs,
           path: "/programs",
+        },
+        {
+          name: "Target Areas",
+          path: "/target-areas",
         },
         {
           name: t.nav_emergencies,
@@ -191,18 +193,6 @@ export function Navbar() {
 
             <div className="flex items-center space-x-2 border-l border-gray-200 dark:border-gray-700 pl-4">
               <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-[#1a1a1a] dark:text-white"
-                aria-label="Toggle theme"
-              >
-                {theme === "light" ? (
-                  <Moon className="h-5 w-5" />
-                ) : (
-                  <Sun className="h-5 w-5" />
-                )}
-              </button>
-
-              <button
                 onClick={toggleLanguage}
                 className="flex items-center space-x-1 px-3 py-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-sm font-medium text-[#1a1a1a] dark:text-white"
               >
@@ -226,16 +216,6 @@ export function Navbar() {
               className="flex items-center space-x-1 px-2 py-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-sm font-medium text-[#1a1a1a] dark:text-white"
             >
               <span>{language === "en" ? "EN" : "አማ"}</span>
-            </button>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors text-[#1a1a1a] dark:text-white"
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}

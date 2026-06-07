@@ -20,6 +20,7 @@ import { NewsProvider } from "./context/NewsContext";
 import { TransparencyProvider } from "./context/TransparencyContext";
 import { ContactProvider } from "./context/ContactContext";
 import { BeneficiaryStatsProvider } from "./context/BeneficiaryStatsContext";
+import { TargetAreasPage } from "./pages/TargetAreasPage";
 
 // Lazy load all page components for better performance
 const HomePage = lazy(() =>
@@ -209,6 +210,10 @@ export function App() {
                                   <Route
                                     path="/past-projects"
                                     element={<PastProjectsPage />}
+                                  />
+                                  <Route
+                                    path="/target-areas"
+                                    element={<TargetAreasPage />}
                                   />
                                   <Route path="/admin" element={<AdminGate />}>
                                     <Route

@@ -23,7 +23,8 @@ export function DonatePage() {
     if (typeof error === "object" && error !== null) {
       const errObj = error as ApiError;
       return (
-        errObj.response?.data?.message || errObj.message ||
+        errObj.response?.data?.message ||
+        errObj.message ||
         "Payment initialization failed."
       );
     }
@@ -76,7 +77,7 @@ export function DonatePage() {
         <div className="text-center mb-12">
           <Link
             to="/transparency"
-            className="text-sm text-[#B91C1C] dark:text-[#86efac] font-bold hover:underline mb-4 block"
+            className="text-sm text-[#15803d] dark:text-[#86efac] font-bold hover:underline mb-4 block"
           >
             See how we use your donations →
           </Link>
@@ -276,7 +277,7 @@ export function DonatePage() {
             className="flex-1 flex flex-col items-center justify-center w-full lg:pt-0 pt-8 border-l-2 border-[#B91C1C]/30 dark:border-[#86efac]/30 lg:pl-8"
           >
             <div className="relative">
-              <h3 className="text-[#15803d]">Scan me to make a payment</h3>{" "}
+              <h2 className="text-[#15803d]">Or Scan me to make a payment</h2>{" "}
               <br />
               <img
                 src={donateImage}

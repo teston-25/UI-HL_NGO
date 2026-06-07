@@ -36,8 +36,14 @@ export function BeneficiaryStatsProvider({
       setLoading(true);
       setError(null);
 
-      const res = await beneficiaryStatsAPI.getStats();
-      const statsData = res?.data.stats ?? res;
+      const response = await beneficiaryStatsAPI.getStats();
+
+      const statsData =
+        response?.data?.data?.stats || response?.data?.data || response?.data;
+
+      if (!statsData) {
+        throw new Error("Invalid response format: no stats data found");
+      }
 
       setStats(statsData);
     } catch (err: any) {

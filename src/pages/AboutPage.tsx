@@ -88,18 +88,22 @@ export function AboutPage() {
       </section>
 
       {/* Mission & Values */}
-      <section className="bg-[#111111] dark:bg-[#050505] text-[#86efac] white py-24 mb-24 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 my-14 bg-[#F4F4F2] dark:bg-[#0d0d0d] text-[#111111] dark:text-white relative overflow-hidden transition-colors duration-300">
+        {/* Elegant blurred brand brand glow layers */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#B91C1C]/5 dark:bg-[#B91C1C]/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#15803d]/5 dark:bg-[#15803d]/10 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl font-bold mb-4">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
               {t.about_mission_title}
             </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-zinc-400 max-w-2xl mx-auto">
               {t.about_mission_subtitle}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 title: t.about_value_integrity,
@@ -116,19 +120,21 @@ export function AboutPage() {
             ].map((value, index) => (
               <div
                 key={index}
-                className="bg-white/5 p-8 rounded-xl border border-white/10"
+                className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl border border-gray-200/60 dark:border-zinc-800 shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <h3 className="font-serif text-2xl font-bold text-[#B91C1C] mb-4">
+                <h3 className="font-serif text-2xl font-bold text-[#B91C1C] dark:text-[#F87171] mb-4">
                   {value.title}
                 </h3>
-                {value.desc.includes("•") ? (
-                  <ul className="text-white/80 leading-relaxed list-disc list-inside space-y-1">
+                {value.desc?.includes("•") ? (
+                  <ul className="text-gray-600 dark:text-zinc-300 leading-relaxed list-disc list-inside space-y-2">
                     {value.desc.split("\n").map((line, i) => (
                       <li key={i}>{line.replace("• ", "")}</li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-white/80 leading-relaxed">{value.desc}</p>
+                  <p className="text-gray-600 dark:text-zinc-300 leading-relaxed">
+                    {value.desc}
+                  </p>
                 )}
               </div>
             ))}

@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import { BookOpen, Droplets, Stethoscope, ArrowRight } from "lucide-react";
+import {
+  Building2,
+  HeartHandshake,
+  Stethoscope,
+  ArrowRight,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import ourProImage from "../svg/Our_Pro.png";
@@ -7,35 +12,42 @@ export function ProgramsPage() {
   const { t } = useLanguage();
   const programs = [
     {
-      id: "education",
-      title: t.programs_edu_title,
-      icon: BookOpen,
-      image:
-        "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80",
-      description: t.programs_edu_desc,
-      impact: t.programs_edu_impact,
-      supportMessage: t.programs_support_message,
-    },
-    {
-      id: "water",
-      title: t.programs_water_title,
-      icon: Droplets,
-      image:
-        "https://images.unsplash.com/photo-1538300342682-cf57afb97285?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      description: t.programs_water_desc,
-      impact: t.programs_water_impact,
-      supportMessage:
-        "Together, we are building healthier, happier futures for",
-    },
-    {
-      id: "health",
-      title: t.programs_health_title,
+      id: "healthcare-services",
+      title: "Comprehensive Healthcare Services",
       icon: Stethoscope,
-      image: ourProImage,
-      description: t.programs_health_desc,
-      impact: t.programs_health_impact,
+      image:
+        "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=2070&q=80",
+      description:
+        "Integrating specialized medical treatments to address critical public health concerns. This includes a primary 10-machine hemodialysis unit for chronic kidney disease patients, dedicated maternal and child health wings, full diagnostic laboratories (CT scan, X-Ray, Ultrasound), and outpatient emergency service structures.",
+      impact:
+        "Providing life-saving medical procedures and diagnostics for more than 5,000 disadvantaged patients every single year who cannot afford private care.",
       supportMessage:
-        "We are proud to stand with our community in the fight against hunger. Every",
+        "Your support directly funds medical equipment, dialysis consumables, and subsidized clinical care for vulnerable families.",
+    },
+    {
+      id: "hospital-project",
+      title: "Community Hospital Construction",
+      icon: Building2,
+      image: ourProImage,
+      description:
+        "The phase-one infrastructure deployment of a three-story community hospital built on 4 hectares of land secured from the Oromia Regional State in Sheger City, Lege Tafo Sub City. The project is completely implementation-ready with architectural and engineering designs finalized.",
+      impact:
+        "Establishing a permanent, sustainable 24-month construction infrastructure that bridges major medical accessibility gaps for three regional states.",
+      supportMessage:
+        "Every contribution safeguards human dignity by funding structural work, utility installation, and long-term healthcare infrastructure development.",
+    },
+    {
+      id: "medical-assistance-track",
+      title: "Patient Medical Assistance Track",
+      icon: HeartHandshake,
+      image:
+        "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=2070&q=80",
+      description:
+        "Continuing the founding legacy of our organization by covering medical treatment costs for vulnerable individuals suffering from chronic conditions. This track handles patient identification, verification with local social affairs departments, and referral networks for advanced care.",
+      impact:
+        "Building upon our proven track record of covering life-saving medical costs for over 125 vulnerable patients, including enabling 23 patients to successfully access specialized treatment abroad.",
+      supportMessage:
+        "Transforming donations directly into direct medical interventions, overseas referrals, and immediate patient aid.",
     },
   ];
 
@@ -163,47 +175,24 @@ export function ProgramsPage() {
           viewport={{ once: true }}
           className="mt-24"
         >
-          <div className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl border border-[#86efac]/30 dark:border-[#86efac]/20">
-            <h3 className="font-serif text-2xl font-bold text-[#111111] dark:text-white mb-6 text-center">
-              Target Areas (Beneficiaries)
+          <div className="bg-white dark:bg-[#1a1a1a] p-8 md:p-12 rounded-2xl border border-[#86efac]/30 dark:border-[#86efac]/20 text-center">
+            <h3 className="font-serif text-3xl font-bold text-[#111111] dark:text-white mb-4">
+              Target Areas & Beneficiaries
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "Rural Communities",
-                  desc: "Rural and underserved communities",
-                  icon: "🏡",
-                },
-                {
-                  title: "Children & Youth",
-                  desc: "Children and youth",
-                  icon: "👶",
-                },
-                {
-                  title: "Women & Mothers",
-                  desc: "Women and mothers",
-                  icon: "🤱",
-                },
-                {
-                  title: "Families in Crisis",
-                  desc: "Families affected by drought/disaster",
-                  icon: "❤️",
-                },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center text-center p-4 rounded-xl bg-[#F9F9F9] dark:bg-[#0f0f0f] hover:shadow-md transition-shadow"
-                >
-                  <span className="text-4xl mb-3">{item.icon}</span>
-                  <h4 className="font-bold text-[#111111] dark:text-white mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-sm text-[#1a1a1a]/70 dark:text-white/70">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
+
+            <p className="text-[#1a1a1a]/70 dark:text-white/70 max-w-2xl mx-auto mb-8">
+              Learn more about the communities we serve, including rural
+              communities, children and youth, women and mothers, and families
+              affected by crisis and displacement.
+            </p>
+
+            <Link
+              to="/target-areas"
+              className="inline-flex items-center bg-[#B91C1C] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#15803d] transition-colors"
+            >
+              Explore Target Areas
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
           </div>
         </motion.div>
       </div>

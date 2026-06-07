@@ -45,6 +45,8 @@ type Translations = {
   home_stats_lives: string;
   home_stats_countries: string;
   home_stats_water: string;
+  home_stats_referrals: string;
+  home_stats_capacity: string;
   home_mission_quote: string;
   home_mission_text: string;
   home_who_we_are: string;
@@ -54,12 +56,10 @@ type Translations = {
   home_read_story: string;
   home_programs_title: string;
   home_programs_subtitle: string;
-  home_program_edu_title: string;
-  home_program_edu_desc: string;
-  home_program_water_title: string;
-  home_program_water_desc: string;
-  home_program_health_title: string;
-  home_program_health_desc: string;
+  home_program_healthcare_title: string;
+  home_program_healthcare_desc: string;
+  home_program_hospital_title: string;
+  home_program_hospital_desc: string;
   home_learn_more: string;
   home_testimonials_title: string;
   home_testimonials_subtitle: string;
@@ -282,7 +282,7 @@ const translations: Record<Language, Translations> = {
     nav_legal_governance: "Legal & Governance",
     nav_impact_results: "Impact & Results",
     footer_desc:
-      "Dedicated to creating lasting change in communities around the world through education, healthcare, and sustainable development.",
+      "Securing permanent public infrastructure and institutional frameworks to deliver specialized, life-saving healthcare and chronic disease treatment pipelines across regional and global networks.",
     footer_quick_links: "Quick Links",
     footer_financials: "Financials & Impact",
     footer_ways_to_give: "Ways to Give",
@@ -301,33 +301,32 @@ const translations: Record<Language, Translations> = {
       "We believe in a world where every child has access to education, healthcare, and a safe environment to grow.",
     home_hero_programs_btn: "Our Programs",
     home_stats_lives: "Lives Changed",
-    home_stats_countries: "Countries Served",
-    home_stats_water: "Clean Water Projects",
+    home_stats_referrals: "Advanced Global Referrals",
+    home_stats_capacity: "Projected Annual Patient Capacity",
     home_mission_quote:
-      '"We don\'t just provide aid; we build partnerships that empower communities to thrive on their own terms."',
+      "Bridging institutional backing with permanent, life-saving infrastructure to serve marginalized communities.",
     home_mission_text:
-      "Founded on the belief that dignity is a human right, we work hand-in-hand with local leaders to create sustainable solutions for poverty, hunger, and disease.",
+      "Hibret Lebego operates at the intersection of regulatory compliance, government advocacy, and strategic development to systematically transition severe health and infrastructure crises into manageable public assets.",
     home_who_we_are:
-      "Hibret Lebego is a registered NGO dedicated to community empowerment and sustainable development.",
+      "A dedicated charitable association focusing on scaling permanent public infrastructure and complex healthcare networks to establish sustainable, implementation-ready solutions.",
     home_what_we_solve:
-      "We address poverty, hunger, lack of education and healthcare, and water scarcity in underserved communities.",
+      "Bridging structural healthcare gaps by clearing critical engineering milestones, securing municipal healthcare payroll agreements, and completely managing financial processing burdens for patients.",
     home_who_we_help:
-      "We help vulnerable families, children, women, and rural communities across Ethiopia and the Horn of Africa.",
+      "Disadvantaged and severe-case chronic kidney and cardiac disease patients requiring specialized domestic medical treatments or complex international referral track management.",
     home_our_vision:
-      "Our long-term vision is a world where every community has the tools and opportunities to thrive independently.",
+      "Completing modern 3-story healthcare infrastructure designs, establishing 10-machine clinical dialysis suites, and serving over 5,000 vulnerable individuals annually across multiple regions.",
     home_read_story: "Read Our Story",
     home_programs_title: "Our Core Programs",
     home_programs_subtitle:
-      "Focused interventions where we can make the biggest difference.",
-    home_program_edu_title: "Education",
-    home_program_edu_desc:
-      "Building schools and training teachers to unlock potential.",
-    home_program_water_title: "Clean Water",
-    home_program_water_desc:
-      "Providing sustainable access to safe drinking water.",
-    home_program_health_title: "Healthcare",
-    home_program_health_desc:
-      "Mobile clinics and maternal health support for rural areas.",
+      "Structural focus areas where we deliver measurable, lasting impact.",
+
+    home_program_healthcare_title: "Comprehensive Healthcare Services",
+    home_program_healthcare_desc:
+      "Integrating specialized medical treatments under one roof, including a 10-machine kidney dialysis unit for chronic kidney disease patients, maternal and child healthcare, full diagnostic laboratories, and 24/7 outpatient emergency services.",
+
+    home_program_hospital_title: "The Community Hospital Project",
+    home_program_hospital_desc:
+      "The phase-one construction of a modern three-story medical facility on 4 hectares of land in Lege Tafo, Sheger City. Built entirely to establish sustainable, implementation-ready infrastructure designed to serve over 5,000 disadvantaged people annually across three regions.",
     home_learn_more: "Learn More",
     home_testimonials_title: "TESTIMONIALS",
     home_testimonials_subtitle:
@@ -463,7 +462,7 @@ const translations: Record<Language, Translations> = {
     emergency_affected_num: "50,000+",
     emergency_deployed: "Aid Unit",
     emergency_deployed_num: "10 Tons",
-    emergency_raised: "Goal Amount",
+    emergency_raised: "Raised Amount",
     emergency_raised_num: "$125,000",
     emergency_action_title: "Our Action on the Ground",
     emergency_action_desc:
@@ -581,6 +580,8 @@ const translations: Record<Language, Translations> = {
       "We have a confidential, safe, and accessible process for anyone to report concerns or violations. All reports are taken seriously and investigated thoroughly.",
     safeguarding_download_btn: "Download Policy (PDF)",
     safeguarding_contact_label: "Report a Concern",
+    home_stats_countries: "",
+    home_stats_water: "",
   },
   am: {
     nav_story: "ታሪካችን",
@@ -606,7 +607,7 @@ const translations: Record<Language, Translations> = {
     nav_legal_governance: "ህጋዊ እና አስተዳደር",
     nav_impact_results: "ተጽዕኖ እና ውጤቶች",
     footer_desc:
-      "በትምህርት፣ በጤና እና በዘላቂ ልማት በዓለም ዙሪያ ባሉ ማህበረሰቦች ውስጥ ዘላቂ ለውጥ ለማምጣት ቁርጠኛ ነው።",
+      "በክልላዊና ዓለም አቀፋዊ ትስስሮች አማካኝነት ልዩና ሕይወት አድን የሆኑ የሕክምና አገልግሎቶችን እንዲሁም የረጅም ጊዜ ሕመሞች ሕክምና መስመሮችን ለማቅረብ፤ ቋሚ የሕዝብ መሠረተ ልማቶችንና ተቋማዊ አሠራሮችን ለማረጋገጥ በትጋት ይሠራል::",
     footer_quick_links: "ፈጣን አገናኞች",
     footer_financials: "ፋይናንስ እና ተጽዕኖ",
     footer_ways_to_give: "የመለገስ መንገዶች",
@@ -626,26 +627,31 @@ const translations: Record<Language, Translations> = {
     home_stats_lives: "የተቀየሩ ህይወቶች",
     home_stats_countries: "የሚያገለግሉ አገሮች",
     home_stats_water: "ንጹህ ውሃ ፕሮጀክቶች",
+    home_stats_referrals: "የዓለም ሁሉ ጅምር ማሳያ",
+    home_stats_capacity: "የታቀደ ዓመታዊ ታካሚ አቅም",
     home_mission_quote:
-      '"እርዳታ ብቻ አንሰጥም፤ ማህበረሰቦች በራሳቸው ሁኔታ ለማደግ የሚያስችሏቸው አጋርነቶችን እንገነባለን።"',
+      "ለተገለሉ የማኅበረሰብ ክፍሎች ሕይወት አድንና ቋሚ የሆኑ መሠረተ ልማቶችን ለማቅረብ፤ ከተቋማዊ ድጋፎች ጋር ድልድይ መፍጠር።",
     home_mission_text:
-      "ክብር የሰው መብት ነው ብለን እናምናለን፣ ከድህነት፣ ከረሃብ እና ከበሽታ ዘላቂ መፍትሄዎችን ለመፍጠር ከአካባቢው መሪዎች ጋር አብረን እንሰራለን።",
-    home_who_we_are: "ህብረት ለብጉ የተመዘገበ ኤንጂኦ ነው፣ ማህበረሰብ ማብቃት እና ዘላቂ ልማት ላይ ያተኮረ።",
+      "ሕብረት ለበጎ በሕግ ተገዥነት፣ በነፃ የጥበቃና የጥቅምና መብት ማስከበር (advocacy) እንዲሁም በስትራቴጂካዊ ልማት መስኮች ላይ በመሰማራት፤ አስቸጋሪ የጤና እና የመሠረተ ልማት ቀውሶችን ወደሚተዳደሩ የሕዝብ ሀብቶች በስልት ለመለወጥ ይሠራል።",
+    home_who_we_are:
+      "ዘላቂና ለአፈጻጸም ዝግጁ የሆኑ መፍትሔዎችን ለመዘርጋት፤ ቋሚ የሕዝብ መሠረተ ልማቶችን እና ውስብስብ የሕክምና ትስስሮችን በማስፋፋት ላይ ትኩረት አድርጎ የሚንቀሳቀስ ታማኝ የበጎ አድራጎት ማኅበር።",
     home_what_we_solve:
-      "በቂ አገልግሎት በማያገኙ ማህበረሰቦች ውስጥ ድህነት፣ ረሃብ፣ ትምህርት እና ጤና እጥረት፣ እና የውሃ እጥረትን እንይዛለን።",
+      "ወሳኝ የኢንጂነሪንግ ምዕራፎችን በማጽዳት፣ የማዘጋጃ ቤት የጤና ባለሙያዎች የደመወዝ ክፍያ ስምምነቶችን በማረጋገጥ እና የታካሚዎችን የሕክምና ፋይናንስ ሂደት ሸክም ሙሉ በሙሉ በመሸፈን መዋቅራዊ የጤና ክፍተቶችን መሙላት።",
     home_who_we_help:
-      "በኢትዮጵያ እና በቀይ ባህር አካባቢ ያሉ ተጋላጭ ቤተሰቦች፣ ልጆች፣ ሴቶች እና ገጠር ማህበረሰቦችን እንረዳለን።",
+      "ልዩ የአገር ውስጥ ሕክምናዎችን ወይም ውስብስብ የዓለም አቀፍ የሪፈራል ሂደቶችን ለሚፈልጉ፣ አቅም ለሌላቸውና በከባድ የኩላሊት እንዲሁም የልብ ሕመም ለተጠቁ ታካሚዎች እርዳታ ማድረግ።",
     home_our_vision:
-      "የረጅም ጊዜ እምነታችን እያንዳንዱ ማህበረሰብ በራሱ የማደግ መሳሪያዎችን እና ዕድሎችን ያለው ዓለም ነው።",
+      "ዘመናዊ ባለ 3 ፎቅ የጤና መሠረተ ልማት ንድፎችን ማጠናቀቅ፣ ባለ 10 ማሽን የኩላሊት እጥበት (dialysis) ክሊኒክ ክፍሎችን ማቋቋም እና በተለያዩ ክልሎች በዓመት ከ5,000 በላይ ተጋላጭ የሆኑ ሰዎችን ተጠቃሚ ማድረግ።",
     home_read_story: "ታሪካችንን ያንብቡ",
     home_programs_title: "ዋና ፕሮግራሞቻችን",
-    home_programs_subtitle: "ትልቁን ለውጥ ማምጣት የምንችልባቸው ትኩረቶች።",
-    home_program_edu_title: "ትምህርት",
-    home_program_edu_desc: "ትምህርት ቤቶችን መገንባት እና መምህራንን ማሰልጠን አቅምን ለመክፈት።",
-    home_program_water_title: "ንጹህ ውሃ",
-    home_program_water_desc: "ለደህንነቱ የተጠበቀ የመጠጥ ውሃ ዘላቂ መዳረሻ መስጠት።",
-    home_program_health_title: "ጤና አጠባበቅ",
-    home_program_health_desc: "ለገጠር አካባቢዎች የሞባይል ክሊኒኮች እና የእናቶች ጤና ድጋፍ።",
+    home_programs_subtitle: "ዘላቂና ተጨባጭ ለውጥ የምናመጣባቸው መዋቅራዊ የትኩረት መስኮች::",
+
+    home_program_healthcare_title: "ሁሉን አቀፍ የሕክምና አገልግሎቶች",
+    home_program_healthcare_desc:
+      "ለረጅም ጊዜ የኩላሊት ሕመምተኞች የሚሆን ባለ 10 ማሽን የኩላሊት እጥበት (dialysis) ክፍልን፣ የእናቶችና ሕፃናት ጤና አጠባበቅን፣ የተሟሉ የምርመራ ላቦራቶሪዎችን እና የ24/7 የድንገተኛ ጊዜ አገልግሎቶችን በአንድ ጣሪያ ስር ማቀናጀት::",
+
+    home_program_hospital_title: "የማኅበረሰብ ሆስፒታል ፕሮጀክት",
+    home_program_hospital_desc:
+      "በሸገር ከተማ ለገጣፎ ንዑስ ክፍለ ከተማ በ4 ሄክታር መሬት ላይ የሚገነባው ዘመናዊ ባለ 3 ፎቅ የሕክምና ተቋም የመጀመሪያ ምዕራፍ ግንባታ:: በየዓመቱ በሦስት ክልሎች ውስጥ ከ5,000 በላይ አቅም የሌላቸውን ሰዎች ለማገልገል ታስቦ ለአፈጻጸም ዝግጁ ሆኖ የተነደፈ መሠረተ ልማት::",
     home_learn_more: "ተጨማሪ ይወቁ",
     home_testimonials_title: "ምስክርነቶች",
     home_testimonials_subtitle: "ለጋስነትዎ ህይወታቸው ከተቀየሩ ሰዎች ይስሙ።",

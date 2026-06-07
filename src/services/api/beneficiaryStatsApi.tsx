@@ -3,15 +3,15 @@ import api from "../axios";
 export interface BeneficiaryStats {
   id: number;
   total_beneficiaries: number;
-  countries_count: number;
-  water_projects: number;
+  international_referrals: number;
+  annual_target: number;
   updated_at: string;
 }
 
 interface UpdatePayload {
   total_beneficiaries?: number;
-  countries_count?: number;
-  water_projects?: number;
+  international_referrals?: number;
+  annual_target?: number;
 }
 
 const beneficiaryStatsAPI = {
@@ -19,7 +19,8 @@ const beneficiaryStatsAPI = {
   // Auto-creates a record with zeros if none exists
   getStats: async () => {
     const response = await api.get("/v1/beneficiary-stats");
-    return response.data;
+    // Return the full response so caller can handle extraction
+    return response;
   },
 
   // PUT /api/v1/admin/beneficiary-stats — protected (ADMIN + SUPER_ADMIN)

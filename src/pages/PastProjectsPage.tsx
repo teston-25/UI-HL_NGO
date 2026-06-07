@@ -3,44 +3,42 @@ import { BookOpen, Droplets, Heart, GraduationCap } from "lucide-react";
 
 const pastProjects = [
   {
-    region: "Oromia",
-    projects: "15 school builds, 8 water projects",
+    region: "Lege Tafo (Sheger City)",
+    projects: "Community Hospital Infrastructure • Sustainable Construction",
     description:
-      "Focused on education infrastructure and clean water access for rural communities.",
+      "A long-term healthcare foundation is taking shape through the construction of a modern three-story hospital on 4 hectares of land. This project is designed to permanently strengthen local healthcare access and reduce dependency on distant facilities for critical care.",
     icon: BookOpen,
-    // Swap colors out for high-quality background images
     bgImage:
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    region: "Tigray",
-    projects: "Emergency relief, water trucking",
+    region: "Specialized Medical Units",
+    projects: "Dialysis Center • Chronic Care Support Systems",
     description:
-      "Provided urgent humanitarian aid during conflict and displacement crises.",
+      "Advanced medical units have been introduced to address life-threatening chronic conditions, including a high-capacity 10-machine dialysis center. These facilities are built to ensure continuous, life-sustaining treatment for vulnerable patients with kidney disease and related complications.",
     icon: Droplets,
     bgImage:
       "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    region: "SNNPR",
-    projects: "Health clinics, maternal care",
+    region: "Maternal & Outpatient Care",
+    projects: "24/7 Emergency Response • Maternal Health Programs",
     description:
-      "Established healthcare facilities and maternal health programs.",
+      "Continuous care systems now operate around the clock to support mothers, children, and emergency patients. Integrated maternal health pathways and outpatient services ensure that urgent medical needs are addressed without delay across surrounding communities.",
     icon: Heart,
     bgImage:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    region: "Amhara",
-    projects: "Education & water initiatives",
+    region: "International Network Placements",
+    projects: "Global Referrals • Medical Partnerships",
     description:
-      "Implemented literacy programs and sustainable water solutions.",
+      "For critical cases requiring advanced intervention, structured referral pathways connect patients to international medical networks. This system ensures access to specialized treatment beyond local capacity, while maintaining coordinated care and patient support throughout the process.",
     icon: GraduationCap,
     bgImage:
       "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
 ];
-
 export function PastProjectsPage() {
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
@@ -114,32 +112,36 @@ export function PastProjectsPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Synchronized Metrics Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-[#111111] to-[#1a1a1a] dark:from-[#050505] dark:to-[#111111] rounded-2xl p-8 md:p-12"
+          className="bg-gradient-to-r from-[#F9F9F9] to-[#F4F4F2] dark:from-[#050505] dark:to-[#111111] rounded-2xl p-8 md:p-12"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="space-y-2">
               <div className="text-4xl md:text-5xl font-bold text-[#86efac]">
-                4
+                4+
               </div>
               <div className="text-white/70 text-lg">Regions Covered</div>
             </div>
             <div className="space-y-2">
               <div className="text-4xl md:text-5xl font-bold text-[#86efac]">
-                15+
+                23+
               </div>
-              <div className="text-white/70 text-lg">Schools Built</div>
+              <div className="text-white/70 text-lg">
+                International Placements
+              </div>
             </div>
             <div className="space-y-2">
               <div className="text-4xl md:text-5xl font-bold text-[#86efac]">
-                8+
+                10
               </div>
-              <div className="text-white/70 text-lg">Water Projects</div>
+              <div className="text-white/70 text-lg">
+                Dialysis Machine Stations
+              </div>
             </div>
           </div>
         </motion.div>
