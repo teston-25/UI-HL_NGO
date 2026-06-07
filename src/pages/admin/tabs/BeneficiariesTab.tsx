@@ -68,16 +68,18 @@ export function BeneficiariesTab({ onEdit, onRetry }: BeneficiariesTabProps) {
             </div>
             <div className="p-6 rounded-2xl bg-gradient-to-br from-[#15803d]/10 to-[#15803d]/5 border border-[#15803d]/20">
               <h3 className="text-4xl font-bold text-[#15803d]">
-                {stats?.countries_count || 0}
+                {stats?.international_referrals || 0}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">Countries</p>
+              <p className="text-gray-600 dark:text-gray-400 mt-1">
+                International Referrals
+              </p>
             </div>
             <div className="p-6 rounded-2xl bg-gradient-to-br from-[#7c3aed]/10 to-[#7c3aed]/5 border border-[#7c3aed]/20">
               <h3 className="text-4xl font-bold text-[#7c3aed]">
-                {stats?.water_projects?.toLocaleString() || "0"}
+                {stats?.annual_target?.toLocaleString() || "0"}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mt-1">
-                Water Projects
+                Annual Target
               </p>
             </div>
           </div>

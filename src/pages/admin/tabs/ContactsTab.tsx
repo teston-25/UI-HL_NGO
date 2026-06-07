@@ -103,7 +103,7 @@ export function ContactsTab({ onView }: ContactsTabProps) {
             No contacts found
           </div>
         ) : (
-          <div className="divide-y divide-gray-100 dark:divide-gray-800 overflow-y-auto max-h-[620px] scroll-smooth">
+          <div className="divide-y divide-gray-100 dark:divide-gray-800 overflow-y-auto max-h-[540px] scroll-smooth">
             {contacts.map((msg) => (
               <div
                 key={msg.id}

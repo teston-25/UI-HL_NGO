@@ -17,6 +17,7 @@ import type {
 import adminAPI from "../../../services/api/adminApi";
 import transparencyAPI from "../../../services/api/transparencyApi";
 import auditLogAPI, { type AuditLog } from "../../../services/api/auditLogApi";
+import donationAPI from "../../../services/api/donationApi";
 
 export interface AdminData {
   contacts: Contact[];
@@ -98,12 +99,8 @@ export function useAdminData(
   }, []);
 
   const refetchDonations = useCallback(async () => {
-    const [donationsRes, donationStatsRes] = await Promise.all([
-      apiClient.get("/v1/admin/donations"),
-      apiClient.get("/v1/admin/donations/stats"),
-    ]);
-    setDonations(donationsRes.data.data || []);
-    setDonationStats(donationStatsRes.data.data || null);
+    const res = await donationAPI.getAllDonations(1, 10);
+    setDonations(res.data?.donations || []);
   }, []);
 
   const refetchAuditLogs = useCallback(async () => {

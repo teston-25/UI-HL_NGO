@@ -38,7 +38,7 @@ export interface DonationsResponse {
 }
 
 interface InitPaymentData {
-  amount: string | number;
+  amount: number;
   email: string;
   first_name?: string;
   last_name?: string;
@@ -50,7 +50,7 @@ interface InitPaymentData {
 const donationAPI = {
   initializePayment: async (data: InitPaymentData) => {
     const response = await api.post("/v1/donation/initialize-payment", data);
-    return response.data;
+    return response.data?.data || response.data;
   },
 
   verifyPayment: async (txRef: string) => {

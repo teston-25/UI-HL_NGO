@@ -6,7 +6,6 @@ import donateImage from "../svg/QR_code.jpg";
 import { useDonation } from "../context/DonationContext";
 import { Loader2 } from "lucide-react";
 import { useToast } from "../components/Toast";
-// import { title } from "framer-motion/client";
 
 export function DonatePage() {
   const { t } = useLanguage();

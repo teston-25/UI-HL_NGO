@@ -5,6 +5,18 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { useEmergency } from "../context/EmergencyContext";
 
+const formatCompactCurrency = (value: number) => {
+  if (value >= 1000) {
+    const compact = value / 1000;
+    const rounded = Number.isInteger(compact)
+      ? compact.toString()
+      : compact.toFixed(1).replace(/\.0$/, "");
+    return `$${rounded}k`;
+  }
+
+  return `$${value.toLocaleString()}`;
+};
+
 export function EmergenciesPage() {
   const { t } = useLanguage();
   const { activeEmergencies, loading, error, fetchActive } = useEmergency();
@@ -127,7 +139,7 @@ export function EmergenciesPage() {
                     <div className="text-center p-4 bg-[#F9F9F9] dark:bg-[#2a2a2a] rounded-xl">
                       <div className="text-2xl font-bold text-[#B91C1C] dark:text-[#F87171] mb-1">
                         {emergency.raised_amount != null
-                          ? `$${emergency.raised_amount.toLocaleString()}`
+                          ? formatCompactCurrency(emergency.raised_amount)
                           : "—"}
                       </div>
                       <div className="text-xs text-gray-500 uppercase font-semibold">
@@ -141,7 +153,7 @@ export function EmergenciesPage() {
                       <div className="flex justify-between text-sm text-gray-500 mb-1">
                         <span>Raised</span>
                         <span>
-                          Goal: ${emergency.goal_amount.toLocaleString()}
+                          Goal: {formatCompactCurrency(emergency.goal_amount)}
                         </span>
                       </div>
                       <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">

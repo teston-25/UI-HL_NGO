@@ -13,7 +13,7 @@ interface DonationContextType {
   error: string | null;
   // Public
   initializePayment: (data: {
-    amount: string | number;
+    amount: number;
     email: string;
     first_name?: string;
     last_name?: string;

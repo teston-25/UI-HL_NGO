@@ -18,11 +18,10 @@ export interface Tab {
   requiresSuperAdmin?: boolean;
 }
 
-
 export interface BeneficiaryForm {
   total_beneficiaries: number;
-  countries_count: number;
-  water_projects: number;
+  international_referrals: number;
+  annual_target: number;
 }
 
 export interface NewsForm {

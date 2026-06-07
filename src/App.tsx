@@ -8,8 +8,6 @@ import {
 } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
-import { AdminGate } from "./components/AdminGate";
-import { AdminPage } from "./pages/admin/AdminPage";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -20,9 +18,19 @@ import { NewsProvider } from "./context/NewsContext";
 import { TransparencyProvider } from "./context/TransparencyContext";
 import { ContactProvider } from "./context/ContactContext";
 import { BeneficiaryStatsProvider } from "./context/BeneficiaryStatsContext";
-import { TargetAreasPage } from "./pages/TargetAreasPage";
 
 // Lazy load all page components for better performance
+const AdminGate = lazy(() =>
+  import("./components/AdminGate").then((m) => ({ default: m.AdminGate })),
+);
+const AdminPage = lazy(() =>
+  import("./pages/admin/AdminPage").then((m) => ({ default: m.AdminPage })),
+);
+const TargetAreasPage = lazy(() =>
+  import("./pages/TargetAreasPage").then((m) => ({
+    default: m.TargetAreasPage,
+  })),
+);
 const HomePage = lazy(() =>
   import("./pages/HomePage").then((m) => ({ default: m.HomePage })),
 );

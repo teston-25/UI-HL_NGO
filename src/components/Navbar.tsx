@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import logo from "../svg/logo.png";
@@ -103,6 +103,14 @@ export function Navbar() {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F9F9F9]/90 dark:bg-[#0f0f0f]/90 backdrop-blur-md border-b border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,6 +118,7 @@ export function Navbar() {
           {/* Logo */}
           <Link
             to="/"
+            onClick={() => setIsOpen(false)}
             className="flex items-center space-x-2 group flex-shrink-0"
           >
             <img

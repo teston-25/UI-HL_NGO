@@ -174,7 +174,7 @@ export function AuditTab() {
         </div>
 
         {/* Mobile Cards */}
-        <div className="md:hidden p-4 space-y-3 overflow-y-auto max-h-[580px] scroll-smooth">
+        <div className="md:hidden p-4 space-y-3 overflow-y-auto max-h-[460px] scroll-smooth">
           {logs.map((log) => (
             <div
               key={log.id}

@@ -9,6 +9,7 @@ import { useBeneficiaryStats } from "../context/BeneficiaryStatsContext";
 import { useEmergency } from "../context/EmergencyContext";
 import { useNews } from "../context/NewsContext";
 import ourProImage from "../svg/Our_Pro.png";
+import heroImage from "../assets/HomePage-Pic.png";
 
 export function HomePage() {
   const { t } = useLanguage();
@@ -92,7 +93,7 @@ export function HomePage() {
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="src/assets/HomePage-Pic.png"
+            src={heroImage}
             alt="HomePage"
             className="w-full h-full object-cover"
           />

@@ -1,9 +1,9 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useState,
   useCallback,
+  useEffect,
 } from "react";
 import beneficiaryStatsAPI, {
   BeneficiaryStats,
@@ -68,7 +68,6 @@ export function BeneficiaryStatsProvider({
     }
   };
 
-  // Auto-fetch on mount
   useEffect(() => {
     fetchStats();
   }, [fetchStats]);

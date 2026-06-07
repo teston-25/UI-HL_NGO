@@ -272,12 +272,7 @@ export function AdminPage() {
               />
             )}
 
-            {activeTab === "audit" && (
-              <AuditTab
-                donations={data.donations}
-                donationStats={data.donationStats}
-              />
-            )}
+            {activeTab === "audit" && <AuditTab onRetry={data.retry} />}
 
             {activeTab === "transparency" && (
               <TransparencyTab

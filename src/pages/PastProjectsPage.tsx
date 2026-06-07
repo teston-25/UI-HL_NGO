@@ -118,28 +118,35 @@ export function PastProjectsPage() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-[#F9F9F9] to-[#F4F4F2] dark:from-[#050505] dark:to-[#111111] rounded-2xl p-8 md:p-12"
+          className="bg-gradient-to-br from-[#FAF9F6] to-[#F4F4F2] dark:from-[#111111] dark:to-[#0d0d0d] rounded-2xl p-8 md:p-12 border border-gray-200/50 dark:border-zinc-800/60 shadow-sm transition-colors duration-300"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-[#86efac]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-zinc-800">
+            {/* Metric 1 */}
+            <div className="space-y-2 pt-6 md:pt-0">
+              <div className="text-4xl md:text-5xl font-bold font-serif text-[#15803d] dark:text-[#4ade80]">
                 4+
               </div>
-              <div className="text-white/70 text-lg">Regions Covered</div>
+              <div className="text-gray-600 dark:text-zinc-400 font-medium text-lg">
+                Regions Covered
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-[#86efac]">
+
+            {/* Metric 2 */}
+            <div className="space-y-2 pt-6 md:pt-0">
+              <div className="text-4xl md:text-5xl font-bold font-serif text-[#B91C1C] dark:text-[#f87171]">
                 23+
               </div>
-              <div className="text-white/70 text-lg">
+              <div className="text-gray-600 dark:text-zinc-400 font-medium text-lg">
                 International Placements
               </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-[#86efac]">
+
+            {/* Metric 3 */}
+            <div className="space-y-2 pt-6 md:pt-0">
+              <div className="text-4xl md:text-5xl font-bold font-serif text-[#15803d] dark:text-[#4ade80]">
                 10
               </div>
-              <div className="text-white/70 text-lg">
+              <div className="text-gray-600 dark:text-zinc-400 font-medium text-lg">
                 Dialysis Machine Stations
               </div>
             </div>

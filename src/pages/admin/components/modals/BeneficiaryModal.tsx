@@ -19,16 +19,16 @@ export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState<BeneficiaryForm>({
     total_beneficiaries: 0,
-    countries_count: 0,
-    water_projects: 0,
+    international_referrals: 0,
+    annual_target: 0,
   });
 
   useEffect(() => {
     if (stats && isOpen) {
       setForm({
         total_beneficiaries: stats.total_beneficiaries,
-        countries_count: stats.countries_count,
-        water_projects: stats.water_projects,
+        international_referrals: stats.international_referrals,
+        annual_target: stats.annual_target,
       });
       setFieldErrors({});
     }
@@ -39,10 +39,10 @@ export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
 
     if (form.total_beneficiaries < 0)
       newErrors.total_beneficiaries = "Value cannot be negative";
-    if (form.countries_count < 0)
-      newErrors.countries_count = "Value cannot be negative";
-    if (form.water_projects < 0)
-      newErrors.water_projects = "Value cannot be negative";
+    if (form.international_referrals < 0)
+      newErrors.international_referrals = "Value cannot be negative";
+    if (form.annual_target < 0)
+      newErrors.annual_target = "Value cannot be negative";
 
     if (Object.keys(newErrors).length > 0) {
       setFieldErrors(newErrors);
@@ -90,19 +90,19 @@ export function BeneficiaryModal({ isOpen, onClose }: BeneficiaryModalProps) {
           required
         />
         <FormInput
-          label="Countries Count"
+          label="International Referrals"
           type="number"
-          value={form.countries_count}
-          onChange={(v) => handleNumberChange("countries_count", v)}
-          placeholder="Enter countries count"
+          value={form.international_referrals}
+          onChange={(v) => handleNumberChange("international_referrals", v)}
+          placeholder="Enter international referrals count"
           required
         />
         <FormInput
-          label="Water Projects"
+          label="Annual Target"
           type="number"
-          value={form.water_projects}
-          onChange={(v) => handleNumberChange("water_projects", v)}
-          placeholder="Enter water projects count"
+          value={form.annual_target}
+          onChange={(v) => handleNumberChange("annual_target", v)}
+          placeholder="Enter annual target count"
           required
         />
         <button

@@ -21,7 +21,7 @@ const YoutubeIcon = ({ className }: { className?: string }) => (
     fill="currentColor"
     className={className}
   >
-    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93 Spoon.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
   </svg>
 );
 
@@ -50,6 +50,7 @@ L.Icon.Default.mergeOptions({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
+
 export function ContactPage() {
   const { t } = useLanguage();
   const { submitContact, loading, error } = useContact();
@@ -63,10 +64,7 @@ export function ContactPage() {
         response?: { data?: { message?: string } };
         message?: string;
       };
-      return (
-        // errObj.response?.data?.message || errObj.message ||
-        "Failed to send message."
-      );
+      return "Failed to send message.";
     }
     return String(error || "Failed to send message.");
   };
@@ -104,6 +102,7 @@ export function ContactPage() {
     { code: "+233", country: "Ghana" },
     { code: "+225", country: "Ivory Coast" },
   ];
+
   useEffect(() => {
     if (!document.getElementById("leaflet-css")) {
       const link = document.createElement("link");
@@ -158,142 +157,133 @@ export function ContactPage() {
   };
 
   const position: [number, number] = [9.032, 38.7469];
+
   return (
-    <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
+    <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-6 sm:pt-12 pb-16 sm:pb-24 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <motion.h1
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            className="font-serif text-5xl font-bold text-[#B91C1C] mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#B91C1C] mb-4 sm:mb-6"
           >
             {t.contact_title}
           </motion.h1>
-          <p className="text-xl text-[#1a1a1a]/70 dark:text-white/70 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[#1a1a1a]/70 dark:text-white/70 max-w-2xl mx-auto">
             {t.contact_subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 sm:mb-16">
           {/* Contact Info */}
           <motion.div
-            initial={{
-              opacity: 0,
-              x: -30,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              delay: 0.2,
-            }}
-            className="space-y-8"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="space-y-6 sm:space-y-8"
           >
-            <div className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300">
-              <h3 className="font-serif text-2xl font-bold text-[#111111] dark:text-white mb-6">
+            <div className="bg-white dark:bg-[#1a1a1a] p-5 sm:p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#111111] dark:text-white mb-6">
                 {t.contact_info_title}
               </h3>
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 p-3 rounded-full">
-                    <Mail className="h-6 w-6 text-[#B91C1C] dark:text-[#F87171]" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 p-2.5 sm:p-3 rounded-full shrink-0">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-[#B91C1C] dark:text-[#F87171]" />
                   </div>
-                  <div>
-                    <p className="font-semibold text-[#111111] dark:text-white">
+                  <div className="min-w-0 flex-1">
+                    <p className="font-semibold text-sm sm:text-base text-[#111111] dark:text-white">
                       {t.contact_general} (Public)
                     </p>
                     <a
                       href="mailto:info@hibretlebego.org"
-                      className="text-[#1a1a1a]/70 dark:text-white/70 hover:text-[#B91C1C] dark:hover:text-[#F87171]"
+                      className="text-sm sm:text-base text-[#1a1a1a]/70 dark:text-white/70 hover:text-[#B91C1C] dark:hover:text-[#F87171] break-all sm:break-normal"
                     >
                       info@hibretlebego.org
                     </a>
-                    <p className="font-semibold text-[#111111] dark:text-white mt-4">
+                    <p className="font-semibold text-sm sm:text-base text-[#111111] dark:text-white mt-4">
                       {t.contact_donations}
                     </p>
                     <a
                       href="mailto:donations@hibretlebego.org"
-                      className="text-[#1a1a1a]/70 dark:text-white/70 hover:text-[#B91C1C] dark:hover:text-[#F87171]"
+                      className="text-sm sm:text-base text-[#1a1a1a]/70 dark:text-white/70 hover:text-[#B91C1C] dark:hover:text-[#F87171] break-all sm:break-normal"
                     >
                       donations@hibretlebego.org
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 p-3 rounded-full">
-                    <Phone className="h-6 w-6 text-[#B91C1C] dark:text-[#F87171]" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 p-2.5 sm:p-3 rounded-full shrink-0">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-[#B91C1C] dark:text-[#F87171]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#111111] dark:text-white">
+                    <p className="font-semibold text-sm sm:text-base text-[#111111] dark:text-white">
                       {t.contact_phone}
                     </p>
-                    <p className="text-[#1a1a1a]/70 dark:text-white/70">
+                    <p className="text-sm sm:text-base text-[#1a1a1a]/70 dark:text-white/70">
                       +251 XX XXX XXXX
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
                       Mon-Fri, 9am - 5pm EST
                     </p>
                   </div>
                 </div>
 
-                <p className="font-semibold text-[#111111] dark:text-white mt-4">
-                  Social Media
-                </p>
-                <div className="flex items-center flex-wrap gap-2">
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20"
-                  >
-                    <Facebook className="h-5 w-5 text-[#B91C1C]" />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20"
-                  >
-                    <Instagram className="h-5 w-5 text-[#B91C1C]" />
-                  </a>
-                  <a
-                    href="https://youtube.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20"
-                  >
-                    <YoutubeIcon className="h-5 w-5 text-[#B91C1C]" />
-                  </a>
-                  <a
-                    href="https://tiktok.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20"
-                  >
-                    <TikTokIcon className="h-5 w-5 text-[#B91C1C]" />
-                  </a>
+                <div>
+                  <p className="font-semibold text-sm sm:text-base text-[#111111] dark:text-white mb-2">
+                    Social Media
+                  </p>
+                  <div className="flex items-center flex-wrap gap-2">
+                    <a
+                      href="https://facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20 transition-colors"
+                    >
+                      <Facebook className="h-5 w-5 text-[#B91C1C]" />
+                    </a>
+                    <a
+                      href="https://instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20 transition-colors"
+                    >
+                      <Instagram className="h-5 w-5 text-[#B91C1C]" />
+                    </a>
+                    <a
+                      href="https://youtube.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20 transition-colors"
+                    >
+                      <YoutubeIcon className="h-5 w-5 text-[#B91C1C]" />
+                    </a>
+                    <a
+                      href="https://tiktok.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20 transition-colors"
+                    >
+                      <TikTokIcon className="h-5 w-5 text-[#B91C1C]" />
+                    </a>
+                  </div>
                 </div>
 
-                <div className="flex items-start space-x-4 mt-6">
-                  <div className="bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 p-3 rounded-full">
-                    <MapPin className="h-6 w-6 text-[#B91C1C] dark:text-[#F87171]" />
+                <div className="flex items-start space-x-3 sm:space-x-4 pt-2">
+                  <div className="bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 p-2.5 sm:p-3 rounded-full shrink-0">
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-[#B91C1C] dark:text-[#F87171]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#111111] dark:text-white">
+                    <p className="font-semibold text-sm sm:text-base text-[#111111] dark:text-white">
                       {t.contact_hq}
                     </p>
-                    <p className="text-[#1a1a1a]/70 dark:text-white/70">
+                    <p className="text-sm sm:text-base text-[#1a1a1a]/70 dark:text-white/70">
                       Addis Ababa, Ethiopia
                       <br />
-                      (Update with full address)
+                      <span className="text-xs text-gray-400 italic">
+                        (Update with full address)
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -303,31 +293,23 @@ export function ContactPage() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              delay: 0.2,
-            }}
-            className="bg-white dark:bg-[#1a1a1a] p-8 md:p-10 rounded-2xl shadow-lg border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-white dark:bg-[#1a1a1a] p-5 sm:p-8 md:p-10 rounded-2xl shadow-lg border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 transition-colors duration-300"
           >
-            <h3 className="font-serif text-2xl font-bold text-[#111111] dark:text-white mb-6">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#111111] dark:text-white mb-6">
               {t.contact_form_title}
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-1.5">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t.contact_name}
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                    className="w-full px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all text-sm sm:text-base"
                     placeholder="Your name"
                     required
                     value={formData.name}
@@ -336,13 +318,13 @@ export function ContactPage() {
                     }
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     {t.contact_email}
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                    className="w-full px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all text-sm sm:text-base"
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={(e) =>
@@ -352,13 +334,14 @@ export function ContactPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              {/* Responsive Phone Number Layout Fixed */}
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {t.contact_phone_number}
                 </label>
-                <div className="flex space-x-2">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
                   <select
-                    className="w-32 px-3 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                    className="w-full sm:w-36 px-3 py-2.5 sm:py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all text-sm sm:text-base"
                     value={selectedCountryCode}
                     onChange={(e) => setSelectedCountryCode(e.target.value)}
                   >
@@ -370,7 +353,7 @@ export function ContactPage() {
                   </select>
                   <input
                     type="tel"
-                    className="flex-1 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                    className="flex-1 w-full px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all text-sm sm:text-base"
                     placeholder="XX XXX XXXX"
                     value={formData.phone}
                     onChange={(e) =>
@@ -380,12 +363,12 @@ export function ContactPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Inquiry Type
                 </label>
                 <select
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all text-sm sm:text-base"
                   value={formData.type}
                   onChange={(e) =>
                     setFormData({ ...formData, type: e.target.value })
@@ -402,13 +385,13 @@ export function ContactPage() {
                 </select>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {t.contact_subject}
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all text-sm sm:text-base"
                   placeholder="Partnership opportunity"
                   value={formData.subject}
                   onChange={(e) =>
@@ -417,13 +400,13 @@ export function ContactPage() {
                 />
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {t.contact_message}
                 </label>
                 <textarea
                   rows={5}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all"
+                  className="w-full px-4 py-2.5 sm:py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-[#1a1a1a] dark:text-white focus:border-[#B91C1C] focus:ring-2 focus:ring-[#B91C1C]/20 outline-none transition-all text-sm sm:text-base"
                   placeholder="How can we help?"
                   required
                   value={formData.message}
@@ -440,7 +423,7 @@ export function ContactPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#B91C1C] text-white font-bold text-lg py-4 rounded-xl hover:bg-[#991B1B] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                className="w-full bg-[#B91C1C] text-white font-bold text-base sm:text-lg py-3.5 sm:py-4 rounded-xl hover:bg-[#991B1B] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2"
               >
                 <span>{loading ? "Sending..." : t.contact_send_btn}</span>
                 <Send className="h-5 w-5" />
@@ -449,20 +432,12 @@ export function ContactPage() {
           </motion.div>
         </div>
 
-        {/* Map Section */}
+        {/* Map Section Dynamic Height Fixed */}
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          className="w-full h-[400px] rounded-2xl overflow-hidden shadow-lg border border-[#B91C1C]/10 dark:border-[#B91C1C]/20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="w-full h-[280px] sm:h-[350px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg border border-[#B91C1C]/10 dark:border-[#B91C1C]/20"
         >
           <MapContainer
             center={position}
@@ -477,7 +452,6 @@ export function ContactPage() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-
             <Marker position={position}>
               <Popup>
                 Hibret Lebego <br /> Addis Ababa, Ethiopia
