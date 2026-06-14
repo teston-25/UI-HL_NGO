@@ -39,7 +39,13 @@ export function AdminLoginPage() {
             </p>
           </div>
 
-          <div className="space-y-5 sm:space-y-6">
+          <form
+            className="space-y-5 sm:space-y-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}
+          >
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Email
@@ -67,14 +73,14 @@ export function AdminLoginPage() {
               />
             </div>
             <button
-              onClick={handleLogin}
+              type="submit"
               disabled={loading}
               className="w-full bg-[#B91C1C] text-white font-bold py-3 rounded-lg hover:bg-[#991B1B] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 text-sm sm:text-base"
             >
               <LogIn className="h-5 w-5" />
               {loading ? "Signing In..." : "Sign In"}
             </button>
-          </div>
+          </form>
         </div>
       </motion.div>
     </div>

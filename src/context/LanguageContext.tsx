@@ -39,7 +39,6 @@ type Translations = {
   footer_rights: string;
   // Home Page
   home_hero_title_1: string;
-  home_hero_title_2: string;
   home_hero_subtitle: string;
   home_hero_programs_btn: string;
   home_stats_lives: string;
@@ -295,8 +294,7 @@ const translations: Record<Language, Translations> = {
     footer_privacy: "Privacy Policy",
     footer_terms: "Terms of Service",
     footer_rights: "All rights reserved.",
-    home_hero_title_1: "Empowering Communities,",
-    home_hero_title_2: "Transforming Lives",
+    home_hero_title_1: "Kindness Pays!",
     home_hero_subtitle:
       "We believe in a world where every child has access to education, healthcare, and a safe environment to grow.",
     home_hero_programs_btn: "Our Programs",
@@ -545,15 +543,16 @@ const translations: Record<Language, Translations> = {
     advocacy_title: "Advocacy & Policy",
     advocacy_subtitle:
       "We don't just treat symptoms; we fight the root causes of poverty by advocating for systemic change.",
-    advocacy_campaign_1_title: "Education Budget Allocation",
+    advocacy_campaign_1_title: "Medical Equipment & Supply Chain Equity",
     advocacy_campaign_1_desc:
-      "Campaigning for the government to increase the budget allocation for rural primary schools to ensure every child has a desk and a teacher.",
-    advocacy_campaign_2_title: "Clean Water Access Rights",
+      "Lobbying for policy frameworks that eliminate import duties and bottlenecks on life-saving medical machinery, ensuring rural public hospitals are equipped with functional diagnostics.",
+
+    advocacy_campaign_2_title: "Universal Clean Water for Clinical Safety",
     advocacy_campaign_2_desc:
-      "Working with local authorities to legally guarantee access to clean water sources for remote communities.",
-    advocacy_campaign_3_title: "Healthcare Policy Reform",
+      "Partnering with regional authorities to mandate and install advanced water purification systems in healthcare facilities, a critical requirement for safe clinical operations and dialysis procedures.",
+    advocacy_campaign_3_title: "Subsidized Dialysis Access & Healthcare Reform",
     advocacy_campaign_3_desc:
-      "Advocating for policies that incentivize medical professionals to work in underserved rural areas.",
+      "Advocating for critical healthcare policy reforms and sustainable funding to build specialized dialysis centers, providing free or heavily subsidized treatment for low-income patients in underserved rural areas.",
     advocacy_why_title: "Why Advocacy Matters",
     advocacy_why_desc:
       "Changing a single policy can help millions of people. It creates sustainable, long-term improvement that charity alone cannot achieve.",
@@ -619,8 +618,7 @@ const translations: Record<Language, Translations> = {
     footer_privacy: "የግላዊነት ፖሊሲ",
     footer_terms: "የአገልግሎት ውሎች",
     footer_rights: "መብቱ በሕግ የተጠበቀ ነው።",
-    home_hero_title_1: "ማህበረሰቦችን ማብቃት፣",
-    home_hero_title_2: "ህይወትን መለወጥ",
+    home_hero_title_1: "በጎነት ለራስ ነው።",
     home_hero_subtitle:
       "ለእያንዳንዱ ልጅ ትምህርት፣ ጤና አጠባበቅ እና ደህንነቱ የተጠበቀ አካባቢ ያለበት ዓለም እናምናለን።",
     home_hero_programs_btn: "ፕሮግራሞቻችን",
@@ -859,15 +857,16 @@ const translations: Record<Language, Translations> = {
     advocacy_title: "ጥብቅና እና ፖሊሲ",
     advocacy_subtitle:
       "እኛ ምልክቶችን ብቻ አናክምም፤ ለስርዓታዊ ለውጥ በመሟገት የድህነትን መሰረታዊ መንስኤዎች እንታገላለን።",
-    advocacy_campaign_1_title: "የትምህርት በጀት ምደባ",
+    advocacy_campaign_1_title: "የህክምና መሳሪያዎች እና የአቅርቦት ሰንሰለት እኩልነት",
     advocacy_campaign_1_desc:
-      "እያንዳንዱ ልጅ ጠረጴዛ እና መምህር እንዳለው ለማረጋገጥ መንግስት ለገጠር የመጀመሪያ ደረጃ ትምህርት ቤቶች የበጀት ምደባን እንዲጨምር ዘመቻ ማድረግ።",
-    advocacy_campaign_2_title: "የንጹህ ውሃ ተደራሽነት መብቶች",
+      "ህይወት አድናኝ በሆኑ የህክምና መሳሪያዎች ላይ የሚጣሉ የኤክስፖርት እና የገቢ ቀረጦችን እንዲሁም የአቅርቦት እቅንቅፋቶችን የሚያስቀሩ የፖሊሲ ማዕቀፎች እንዲዘረጉ መሟገት፤ ይህም የገጠር ህዝብ ሆስፒታሎች በተሟላ የላቦራቶሪ እና የህክምና መሳሪያዎች እንዲደራጁ ለማድረግ ነው።",
+
+    advocacy_campaign_2_title: "ለህክምና ደህንነት አስተማማኝ የንጹህ ውሃ አቅርቦት",
     advocacy_campaign_2_desc:
-      "ለርቀት ማህበረሰቦች የንጹህ ውሃ ምንጮች ተደራሽነትን በህግ ለማረጋገጥ ከአካባቢ ባለስልጣናት ጋር መስራት።",
-    advocacy_campaign_3_title: "የጤና ፖሊሲ ማሻሻያ",
+      "ለደህንነቱ የተጠበቀ የህክምና አገልግሎት እና ለዲያሊሲስ ሂደቶች ወሳኝ ቅድመ-ሁኔታ የሆነውን የላቀ የውሃ ማጣሪያ ቴክኖሎጂዎችን በጤና ተቋማት ውስጥ ለመዘርጋት እና ህጋዊ ግዴታ ለማድረግ ከአካባቢው ባለስልጣናት ጋር በትብብር መስራት።",
+    advocacy_campaign_3_title: "የደህንነትና የዲያሊሲስ ህክምና ማእከል ግንባታ ፖሊሲ ማሻሻያ",
     advocacy_campaign_3_desc:
-      "የህክምና ባለሙያዎች በቂ አገልግሎት በማያገኙ የገጠር አካባቢዎች እንዲሰሩ የሚያበረታቱ ፖሊሲዎችን መደገፍ።",
+      "ዝቅተኛ ገቢ ያላቸው ወገኖች በነጻ ወይም በከፍተኛ ሁኔታ በተደጎመ ዋጋ የዲያሊሲስ ህክምና ማግኘት እንዲችሉ፣ በቂ የህክምና አገልግሎት በማያገኙ የገጠር አካባቢዎች የዲያሊሲስ ማእከላትን ለመገንባት የሚያስችሉ የፖሊሲ ማሻሻያዎችን እና ዘላቂ የፋይናንስ ድጋፎች እንዲቀረጹ መሟገት።",
     advocacy_why_title: "ጥብቅና ለምን ያስፈልጋል",
     advocacy_why_desc:
       "አንድን ፖሊሲ መቀየር በሚሊዮን የሚቆጠሩ ሰዎችን ሊረዳ ይችላል። የበጎ አድራጎት ስራ ብቻውን ሊያሳካው የማይችለውን ዘላቂ እና የረጅም ጊዜ መሻሻል ይፈጥራል።",

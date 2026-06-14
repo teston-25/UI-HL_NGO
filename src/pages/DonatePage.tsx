@@ -54,6 +54,13 @@ export function DonatePage() {
       return;
     }
 
+    const amountNum = Number(form.amount);
+
+    if (isNaN(amountNum) || amountNum < 100) {
+      showToast("error", "Minimum donation amount is Br 100.");
+      return;
+    }
+
     try {
       const res = await initializePayment({
         amount: Number(form.amount),

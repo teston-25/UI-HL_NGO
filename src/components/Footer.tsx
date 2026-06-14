@@ -100,7 +100,7 @@ export function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@HibretLebego"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 p-2 rounded-full hover:bg-[#B91C1C] transition-colors"
@@ -250,7 +250,7 @@ export function Footer() {
               </li>
               <li className="flex items-center space-x-3 text-white/80">
                 <Phone className="h-5 w-5 text-[#86efac] flex-shrink-0" />
-                <span>+251 XX XXX XXXX</span>
+                <span>251118634800</span>
               </li>
               <li className="flex items-center space-x-3 text-white/80">
                 <Mail className="h-5 w-5 text-[#86efac] flex-shrink-0" />

@@ -34,8 +34,7 @@ export function TransparencyModal({
     try {
       // Use the onUpload prop passed from the parent component
       await onUpload(form);
-      showToast("success", "Document uploaded successfully");
-      handleClose(); // Reset and close
+      handleClose();
     } catch (error) {
       showToast("error", "Failed to upload document");
     } finally {
@@ -83,7 +82,8 @@ export function TransparencyModal({
             className="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border-0 focus:ring-2 focus:ring-[#B91C1C]/20 text-gray-900 dark:text-white"
           >
             <option value="annual_report">Annual Report</option>
-            <option value="audit_report">Audit Report</option>
+            <option value="audit">Audit Report</option>
+            <option value="financial_statement">Financial Statement</option>
           </select>
         </div>
 
@@ -106,7 +106,7 @@ export function TransparencyModal({
           value={form.year}
           onChange={(v) => setForm({ ...form, year: v })}
           placeholder="e.g. 2024"
-          type="text" // Kept as text to match the string state, but input will behave like a number
+          type="text"
           required
         />
 

@@ -42,9 +42,14 @@ export function LegalPage() {
               Hibret Lebego is a legally registered NGO. Our registration
               certificate and legal status are available for verification.
             </p>
-            <button className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline">
+            <a
+              href="/NGO-Certificate.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
+            >
               <Download className="h-4 w-4 mr-2" /> View Certificate
-            </button>
+            </a>
           </motion.div>
 
           <motion.div
@@ -56,15 +61,22 @@ export function LegalPage() {
           >
             <Shield className="h-12 w-12 text-[#86efac] mb-6" />
             <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
-              Governance Structure
+              Financial Accountability & Controls
             </h3>
             <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-4">
-              Our governance includes a Board of Directors, executive
-              leadership, and transparent decision-making processes.
+              Our operations adhere strictly to an institutional Financial
+              Policies and Procedures Manual, establishing rigorous standards
+              for internal controls, fund segregation, and transparent
+              procurement workflows.
             </p>
-            <button className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline">
+            <a
+              href="/HLB FINANCIAL MANUAL.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
+            >
               <Download className="h-4 w-4 mr-2" /> View Structure
-            </button>
+            </a>
           </motion.div>
 
           <motion.div
@@ -105,10 +117,6 @@ export function LegalPage() {
               Hibret Lebego is registered as a non-governmental organization in
               accordance with applicable laws. For verification of our legal
               status or to request official documentation, please contact us.
-            </p>
-            <p>
-              All financial reports and audit representations (past, current,
-              and future) are available on our Financial Accountability page.
             </p>
           </div>
         </motion.div>

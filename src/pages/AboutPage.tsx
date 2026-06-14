@@ -1,8 +1,36 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
+import founderPic from "../../public/pic_aboutUs_1.jpg";
 export function AboutPage() {
   const { t } = useLanguage();
+  const dataPeople = [
+    {
+      name: "Sarah Mitchell",
+      role: "Founder & CEO",
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      name: "David Chen",
+      role: "Director of Programs",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      name: "Elena Rodriguez",
+      role: "Head of Operations",
+      image:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      name: "James Okonjo",
+      role: "Field Coordinator",
+      image:
+        "https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
       {/* Header */}
@@ -57,7 +85,7 @@ export function AboutPage() {
           >
             <div className="absolute -top-4 -left-4 w-full h-full bg-[#B91C1C]/10 dark:bg-[#B91C1C]/20 rounded-2xl" />
             <img
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1288&q=80"
+              src={founderPic}
               alt="Founder Portrait"
               className="relative rounded-2xl shadow-lg w-full object-cover h-[600px]"
             />
@@ -154,32 +182,7 @@ export function AboutPage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            {
-              name: "Sarah Mitchell",
-              role: "Founder & CEO",
-              image:
-                "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            },
-            {
-              name: "David Chen",
-              role: "Director of Programs",
-              image:
-                "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            },
-            {
-              name: "Elena Rodriguez",
-              role: "Head of Operations",
-              image:
-                "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            },
-            {
-              name: "James Okonjo",
-              role: "Field Coordinator",
-              image:
-                "https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            },
-          ].map((member, index) => (
+          {dataPeople.map((member, index) => (
             <motion.div
               key={index}
               initial={{

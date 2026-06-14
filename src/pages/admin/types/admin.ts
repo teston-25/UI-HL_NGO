@@ -42,7 +42,7 @@ export interface EmergencyForm {
 
 export interface TransparencyForm {
   title: string;
-  file_type: "annual_report" | "audit_report";
+  file_type: "annual_report" | "audit" | "financial_statement";
   file: File | null;
   year: string;
 }

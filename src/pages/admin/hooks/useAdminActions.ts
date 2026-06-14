@@ -9,13 +9,16 @@ import type {
   AdminFormData,
 } from "../types/admin";
 import type { RefetchFunctions } from "./useAdminData";
- 
+
 export interface AdminActions {
   loading: boolean;
   handleBeneficiarySave: (form: BeneficiaryForm) => Promise<void>;
   handleNewsSave: (form: NewsForm, editingId?: number) => Promise<void>;
   handleNewsDelete: (id: number) => Promise<void>;
-  handleEmergencySave: (form: EmergencyForm, editingId?: number) => Promise<void>;
+  handleEmergencySave: (
+    form: EmergencyForm,
+    editingId?: number,
+  ) => Promise<void>;
   handleEmergencyDelete: (id: number) => Promise<void>;
   handleContactDelete: (id: number) => Promise<void>;
   handleTransparencyUpload: (form: TransparencyForm) => Promise<void>;
@@ -27,11 +30,11 @@ export interface AdminActions {
   ) => Promise<void>;
   handleAdminDelete: (id: number) => Promise<void>;
 }
- 
+
 export function useAdminActions(refetch: RefetchFunctions): AdminActions {
   const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
- 
+
   const handleBeneficiarySave = async (form: BeneficiaryForm) => {
     setLoading(true);
     try {
@@ -49,7 +52,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   const handleNewsSave = async (form: NewsForm, editingId?: number) => {
     setLoading(true);
     try {
@@ -63,16 +66,13 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       await refetch.refetchNews();
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
-      showToast(
-        "error",
-        err.response?.data?.message || "Failed to save news",
-      );
+      showToast("error", err.response?.data?.message || "Failed to save news");
       throw error;
     } finally {
       setLoading(false);
     }
   };
- 
+
   const handleNewsDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this news?")) return;
     setLoading(true);
@@ -90,7 +90,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   const handleEmergencySave = async (
     form: EmergencyForm,
     editingId?: number,
@@ -116,7 +116,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   const handleEmergencyDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this emergency?")) return;
     setLoading(true);
@@ -134,7 +134,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   const handleContactDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this contact?")) return;
     setLoading(true);
@@ -152,7 +152,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   const handleTransparencyUpload = async (form: TransparencyForm) => {
     if (!form.file || !form.title) {
       showToast("error", "Please fill in all required fields");
@@ -164,9 +164,8 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       formData.append("file", form.file);
       formData.append("title", form.title);
       formData.append("file_type", form.file_type);
-      await apiClient.post("/v1/admin/transparency", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      formData.append("year", form.year);
+      await apiClient.post("/v1/admin/transparency", formData);
       await refetch.refetchTransparency();
       showToast("success", "Document uploaded successfully!");
     } catch (error: unknown) {
@@ -180,7 +179,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   const handleTransparencyDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this document?")) return;
     setLoading(true);
@@ -198,7 +197,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   const handleAdminSave = async (
     data: AdminFormData,
     mode: "create" | "edit",
@@ -223,16 +222,13 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       await refetch.refetchAdmins();
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
-      showToast(
-        "error",
-        err.response?.data?.message || "Failed to save admin",
-      );
+      showToast("error", err.response?.data?.message || "Failed to save admin");
       throw error;
     } finally {
       setLoading(false);
     }
   };
- 
+
   const handleAdminDelete = async (id: number) => {
     setLoading(true);
     try {
@@ -249,7 +245,7 @@ export function useAdminActions(refetch: RefetchFunctions): AdminActions {
       setLoading(false);
     }
   };
- 
+
   return {
     loading,
     handleBeneficiarySave,

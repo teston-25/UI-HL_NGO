@@ -222,7 +222,10 @@ export function ContactPage() {
                       {t.contact_phone}
                     </p>
                     <p className="text-sm sm:text-base text-[#1a1a1a]/70 dark:text-white/70">
-                      +251 XX XXX XXXX
+                      +251 118634800
+                    </p>
+                    <p className="text-sm sm:text-base text-[#1a1a1a]/70 dark:text-white/70">
+                      +251 911247098
                     </p>
                     <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
                       Mon-Fri, 9am - 5pm EST
@@ -252,7 +255,7 @@ export function ContactPage() {
                       <Instagram className="h-5 w-5 text-[#B91C1C]" />
                     </a>
                     <a
-                      href="https://youtube.com"
+                      href="https://www.youtube.com/@HibretLebego"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-full bg-[#B91C1C]/10 hover:bg-[#B91C1C]/20 transition-colors"

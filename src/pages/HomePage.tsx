@@ -109,7 +109,6 @@ export function HomePage() {
           >
             {t.home_hero_title_1}
             <br />
-            <span className="text-[#B91C1C]">{t.home_hero_title_2}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
