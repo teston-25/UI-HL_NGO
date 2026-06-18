@@ -207,7 +207,7 @@ export function TestimonialsSection() {
                 <div className="flex items-center gap-3 p-4 border-b bg-white sticky top-0 z-10">
                   <img
                     src={selected.image}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-14 h-14 md:w-16 md:h-16 object-cover border border-gray-100 flex-shrink-0 shadow-sm"
                   />
                   <div>
                     <h4 className="font-bold">{selected.author}</h4>

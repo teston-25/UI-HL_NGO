@@ -39,6 +39,41 @@ export function HomePage() {
     },
   ];
 
+  const missionData = [
+    {
+      title: "Who We Are",
+      text:
+        t.home_who_we_are ||
+        "A dedicated charitable association focusing on scaling permanent public infrastructure and complex healthcare networks to establish sustainable, implementation-ready solutions.",
+      color:
+        "border-[#B91C1C]/20 hover:border-[#B91C1C]/50 bg-white dark:bg-[#1a1a1a]",
+    },
+    {
+      title: "What Problems We Solve",
+      text:
+        t.home_what_we_solve ||
+        "Bridging structural healthcare gaps by clearing critical engineering milestones, securing municipal healthcare payroll agreements, and completely managing financial processing burdens for patients.",
+      color:
+        "border-[#15803d]/20 hover:border-[#15803d]/50 bg-white dark:bg-[#1a1a1a]",
+    },
+    {
+      title: "Who We Help",
+      text:
+        t.home_who_we_help ||
+        "Disadvantaged and severe-case chronic kidney and cardiac disease patients requiring specialized domestic medical treatments or complex international referral track management.",
+      color:
+        "border-[#B91C1C]/20 hover:border-[#B91C1C]/50 bg-white dark:bg-[#1a1a1a]",
+    },
+    {
+      title: "Our Long-Term Vision",
+      text:
+        t.home_our_vision ||
+        "Completing modern 3-story healthcare infrastructure designs, establishing 10-machine clinical dialysis suites, and serving over 5,000 vulnerable individuals annually across multiple regions.",
+      color:
+        "border-[#15803d]/20 hover:border-[#15803d]/50 bg-white dark:bg-[#1a1a1a]",
+    },
+  ];
+
   useEffect(() => {
     fetchAll();
     fetchNews();
@@ -246,40 +281,7 @@ export function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            {[
-              {
-                title: "Who We Are",
-                text:
-                  t.home_who_we_are ||
-                  "A dedicated charitable association focusing on scaling permanent public infrastructure and complex healthcare networks to establish sustainable, implementation-ready solutions.",
-                color:
-                  "border-[#B91C1C]/20 hover:border-[#B91C1C]/50 bg-white dark:bg-[#1a1a1a]",
-              },
-              {
-                title: "What Problems We Solve",
-                text:
-                  t.home_what_we_solve ||
-                  "Bridging structural healthcare gaps by clearing critical engineering milestones, securing municipal healthcare payroll agreements, and completely managing financial processing burdens for patients.",
-                color:
-                  "border-[#15803d]/20 hover:border-[#15803d]/50 bg-white dark:bg-[#1a1a1a]",
-              },
-              {
-                title: "Who We Help",
-                text:
-                  t.home_who_we_help ||
-                  "Disadvantaged and severe-case chronic kidney and cardiac disease patients requiring specialized domestic medical treatments or complex international referral track management.",
-                color:
-                  "border-[#B91C1C]/20 hover:border-[#B91C1C]/50 bg-white dark:bg-[#1a1a1a]",
-              },
-              {
-                title: "Our Long-Term Vision",
-                text:
-                  t.home_our_vision ||
-                  "Completing modern 3-story healthcare infrastructure designs, establishing 10-machine clinical dialysis suites, and serving over 5,000 vulnerable individuals annually across multiple regions.",
-                color:
-                  "border-[#15803d]/20 hover:border-[#15803d]/50 bg-white dark:bg-[#1a1a1a]",
-              },
-            ].map((item, i) => (
+            {missionData.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}

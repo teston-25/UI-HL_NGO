@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Megaphone, FileCheck, Shield, BookOpen, Download } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { Link } from "react-router-dom";
 export function AdvocacyPage() {
   const { t } = useLanguage();
   const campaigns = [
@@ -172,14 +173,12 @@ export function AdvocacyPage() {
               Child safeguarding, PSEA, financial accountability, and other
               organizational policies are documented and enforced.
             </p>
-            <a
-              href="/safeguarding.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
+            <Link
+              to="/safeguarding"
+              className="text-[#B91C1C] dark:text-[#F87171] font-semibold hover:underline"
             >
-              <Download className="h-4 w-4 mr-2" /> View Policies
-            </a>
+              View Policies
+            </Link>
           </motion.div>
         </div>
 
