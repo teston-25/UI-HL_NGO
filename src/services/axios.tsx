@@ -1,24 +1,11 @@
 import axios from "axios";
 
-// Dynamically handle environment routing
-const getBaseURL = () => {
-  // Using standard process.env check or a fallback type cast
-  if (process.env.NODE_ENV === "development" || (import.meta.env as any).DEV) {
-    return "/api";
-  }
-  return "https://prms-backend-rrdo.onrender.com/api";
-};
-
 const api = axios.create({
-  baseURL: getBaseURL(),
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
-  withCredentials: false,
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 10000,
 });
 
+// Attach JWT token to every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("hibret_admin_token");
   if (token) {
@@ -27,21 +14,17 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle responses and edge-case errors
+// Handle responses and errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (
-      !error.response ||
-      error.code === "ERR_NETWORK" ||
-      error.response?.status === 0
-    ) {
-      console.error(
-        "Network/CORS Error: Unable to connect to the server. Please check if the backend is running and CORS is properly configured.",
-      );
+    // Network error (backend down, CORS blocked, etc.)
+    if (!error.response) {
+      console.error("Network error: backend may be unreachable.");
       return Promise.reject(error);
     }
 
+    // Token expired or invalid — clear auth and redirect to login
     if (error.response.status === 401) {
       localStorage.removeItem("hibret_admin_token");
       localStorage.removeItem("hibret_admin_data");
