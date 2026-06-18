@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
@@ -18,14 +17,6 @@ export default defineConfig({
         },
       },
     },
-    // // Minify options
-    // minify: "terser",
-    // terserOptions: {
-    //   compress: {
-    //     drop_console: true,
-    //     drop_debugger: true,
-    //   },
-    // },
     // Chunk size warning limit
     chunkSizeWarningLimit: 500,
   },
@@ -46,7 +37,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         // target: "http://127.0.0.1:5000",
-        target: "https://backend-hl-org.onrender.com/",
+        target: "https://backend-hl-org.onrender.com",
         changeOrigin: true,
         secure: false,
       },
