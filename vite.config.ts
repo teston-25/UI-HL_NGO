@@ -18,14 +18,14 @@ export default defineConfig({
         },
       },
     },
-    // Minify options
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    // // Minify options
+    // minify: "terser",
+    // terserOptions: {
+    //   compress: {
+    //     drop_console: true,
+    //     drop_debugger: true,
+    //   },
+    // },
     // Chunk size warning limit
     chunkSizeWarningLimit: 500,
   },
