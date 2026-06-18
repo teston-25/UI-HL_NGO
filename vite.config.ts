@@ -34,14 +34,6 @@ export default defineConfig({
   server: {
     port: 3000,
     strictPort: false,
-    proxy: {
-      "/api": {
-        // target: "http://127.0.0.1:5000",
-        target: "https://backend-hl-org.onrender.com",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
   },
   // Preview configuration
   preview: {
