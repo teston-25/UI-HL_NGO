@@ -84,7 +84,7 @@ export function TestimonialsSection() {
   const visibleItems = testimonials.slice(start, start + visible);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4">
         {/* TITLE */}
         <div className="text-center mb-12">
@@ -99,14 +99,14 @@ export function TestimonialsSection() {
           onMouseLeave={() => setPaused(false)}
           onTouchStart={isTouch ? handleTouchStart : undefined}
           onTouchEnd={isTouch ? handleTouchEnd : undefined}
-          className="relative"
+          className="relative w-full overflow-hidden touch-pan-y"
         >
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
               initial={{
                 opacity: 0,
-                x: direction === 1 ? 80 : -80,
+                x: direction === 1 ? "10%" : "-10%",
               }}
               animate={{
                 opacity: 1,
@@ -117,13 +117,13 @@ export function TestimonialsSection() {
                 x: direction === 1 ? -80 : 80,
               }}
               transition={{ duration: 0.6 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="flex w-full gap-6"
             >
               {visibleItems.map((t, i) => (
                 <div
                   key={i}
+                  className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] cursor-pointer bg-white p-6 rounded-2xl shadow border hover:shadow-xl transition"
                   onClick={() => setSelected(t)}
-                  className="cursor-pointer bg-white p-6 rounded-2xl shadow border hover:shadow-xl transition"
                 >
                   <Quote className="text-[#B91C1C]/30 mb-4" />
 

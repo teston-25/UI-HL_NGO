@@ -23,13 +23,10 @@ export function NewsPage() {
 
   useEffect(() => {
     if (openModal) {
-      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = originalOverflow;
-      };
+    } else {
+      document.body.style.overflow = "auto";
     }
-    return undefined;
   }, [openModal]);
 
   useEffect(() => {
@@ -175,8 +172,14 @@ export function NewsPage() {
           </>
         )}
         {openModal && selectedNews && (
-          <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4">
-            <div className="bg-white dark:bg-[#1a1a1a] max-w-3xl w-full rounded-2xl shadow-xl overflow-hidden relative">
+          <div
+            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4"
+            onClick={closeModal}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white dark:bg-[#1a1a1a] max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl relative"
+            >
               {/* Close button */}
               <button
                 onClick={closeModal}

@@ -2,32 +2,26 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import founderPic from "../../public/pic_aboutUs_1.jpg";
+import founderBoardPic from "../assets/pc-1.jpg";
+import programPic from "../assets/pc-2.jpg";
+import projectPic from "../assets/pc-3.png";
 export function AboutPage() {
   const { t } = useLanguage();
   const dataPeople = [
     {
-      name: "Sarah Mitchell",
+      name: "Solomon Bogale",
       role: "Founder & CEO",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: founderBoardPic,
     },
     {
-      name: "David Chen",
-      role: "Director of Programs",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      name: "Dereje Araya ",
+      role: "Program Manager",
+      image: programPic,
     },
     {
-      name: "Elena Rodriguez",
-      role: "Head of Operations",
-      image:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      name: "James Okonjo",
-      role: "Field Coordinator",
-      image:
-        "https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      name: "Habtamu Dejene",
+      role: "project Manager",
+      image: projectPic,
     },
   ];
 
@@ -181,7 +175,7 @@ export function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {dataPeople.map((member, index) => (
             <motion.div
               key={index}
