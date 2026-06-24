@@ -85,7 +85,7 @@ export function TestimonialsSection() {
 
   return (
     <section className="py-24 bg-white overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-8">
         {/* TITLE */}
         <div className="text-center mb-12">
           <h2 className="font-serif text-4xl font-bold text-[#B91C1C]">
@@ -122,7 +122,8 @@ export function TestimonialsSection() {
               {visibleItems.map((t, i) => (
                 <div
                   key={i}
-                  className="min-w-full md:min-w-[50%] lg:min-w-[33.333%] cursor-pointer bg-white p-6 rounded-2xl shadow border hover:shadow-xl transition"
+                  /* FIXED MIN-WIDTHS USING CALC TO ACCOUNT FOR THE GAP-6 */
+                  className="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] cursor-pointer bg-white p-6 rounded-2xl shadow border hover:shadow-xl transition"
                   onClick={() => setSelected(t)}
                 >
                   <Quote className="text-[#B91C1C]/30 mb-4" />
@@ -141,6 +142,7 @@ export function TestimonialsSection() {
                     <img
                       src={t.image}
                       className="w-10 h-10 rounded-full object-cover"
+                      alt={t.author}
                     />
                     <div>
                       <h4 className="font-bold">{t.author}</h4>
@@ -203,11 +205,12 @@ export function TestimonialsSection() {
                   <X size={18} />
                 </button>
 
-                {/* STICKY HEADER (DOES NOT SCROLL) */}
+                {/* STICKY HEADER */}
                 <div className="flex items-center gap-3 p-4 border-b bg-white sticky top-0 z-10">
                   <img
                     src={selected.image}
                     className="w-14 h-14 md:w-16 md:h-16 object-cover border border-gray-100 flex-shrink-0 shadow-sm"
+                    alt={selected.author}
                   />
                   <div>
                     <h4 className="font-bold">{selected.author}</h4>

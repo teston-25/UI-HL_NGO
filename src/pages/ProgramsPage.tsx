@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import ourProImage from "../svg/Our_Pro.png";
+import hospImg from "../../public/pic_proj.png";
 export function ProgramsPage() {
   const { t } = useLanguage();
   const programs = [
@@ -16,6 +17,7 @@ export function ProgramsPage() {
       title: "Comprehensive Healthcare Services",
       icon: Stethoscope,
       image:
+        hospImg ||
         "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=2070&q=80",
       description:
         "Integrating specialized medical treatments to address critical public health concerns. This includes a primary 10-machine hemodialysis unit for chronic kidney disease patients, dedicated maternal and child health wings, full diagnostic laboratories (CT scan, X-Ray, Ultrasound), and outpatient emergency service structures.",

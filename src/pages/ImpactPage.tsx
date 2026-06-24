@@ -14,6 +14,10 @@ import {
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { useBeneficiaryStats } from "../context/BeneficiaryStatsContext";
+import sucSto from "../../public/sucSto.jpg";
+import hospPro from "../../public/medicalH-1.png";
+import { title } from "framer-motion/client";
+import pic1 from "../../public/gal-0.jpg";
 
 export function ImpactPage() {
   const { t } = useLanguage();
@@ -120,7 +124,7 @@ export function ImpactPage() {
             <div>
               <div className="h-64 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  src={sucSto}
                   alt="Success story"
                   className="w-full h-full object-cover"
                 />
@@ -151,7 +155,7 @@ export function ImpactPage() {
             <div>
               <div className="h-64 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  src={hospPro}
                   alt="Case study"
                   className="w-full h-full object-cover"
                 />
@@ -191,13 +195,13 @@ export function ImpactPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               {
-                type: "image",
-                src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
-                alt: "Patient Medical Care Track",
+                type: "video",
+                src: "https://www.youtube.com/embed/EOBzJ2XfpaU?si=0pkuPQyedXa4vgip",
+                title: "Hibret lebego program",
               },
               {
                 type: "image",
-                src: "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=800&q=80",
+                src: pic1,
                 alt: "Lege Tafo Site Allocation Location",
               },
               {

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { BookOpen, Droplets, Heart, GraduationCap } from "lucide-react";
+import firstPro from "../../public/medicalH.png";
+import secPro from "../../public/pic_proj.png";
 
 const pastProjects = [
   {
@@ -9,6 +11,7 @@ const pastProjects = [
       "A long-term healthcare foundation is taking shape through the construction of a modern three-story hospital on 4 hectares of land. This project is designed to permanently strengthen local healthcare access and reduce dependency on distant facilities for critical care.",
     icon: BookOpen,
     bgImage:
+      firstPro ||
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -18,6 +21,7 @@ const pastProjects = [
       "Advanced medical units have been introduced to address life-threatening chronic conditions, including a high-capacity 10-machine dialysis center. These facilities are built to ensure continuous, life-sustaining treatment for vulnerable patients with kidney disease and related complications.",
     icon: Droplets,
     bgImage:
+      secPro ||
       "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {

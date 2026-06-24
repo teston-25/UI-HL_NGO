@@ -233,79 +233,81 @@ export const testimonials = [
 
       The treatment transformed her life and gave her a second chance to live in good health. Today, Kedist is recovering well and living in stable condition, serving as a reminder that timely medical support and compassion can restore hope and save lives.`,
   },
-  // {
-  //   // testimonial 13
-  //   quote:
-  //     "The farming training taught us drought-resistant techniques. Our harvest doubled this year.",
-  //   author: "Joseph",
-  //   location: "Zimbabwe",
-  //   image:
-  //     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  // },
-  // {
-  //   // testimonial 14
-  //   quote:
-  //     "I was able to get eyeglasses through the mobile clinic. Now I can see clearly and return to work.",
-  //   author: "Margaret",
-  //   location: "Ghana",
-  //   image:
-  //     "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  // },
-  // {
-  //   // testimonial 15
-  //   quote:
-  //     "The peace-building workshop brought our communities together. We are learning to live without conflict.",
-  //   author: "Paul",
-  //   location: "South Sudan",
-  //   image:
-  //     "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  // },
-  // {
-  //   // testimonial 16
-  //   quote:
-  //     "My daughter received life-saving surgery thanks to your medical fund. She is healthy and happy now.",
-  //   author: "Aisha",
-  //   location: "Tanzania",
-  //   image:
-  //     "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  // },
-  // {
-  //   // testimonial 17
-  //   quote:
-  //     "The solar lights mean we can study at night. My grades have improved so much!",
-  //   author: "Patrick, 15",
-  //   location: "Uganda",
-  //   image:
-  //     "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  // },
-  // {
-  //   // testimonial 18
-  //   quote:
-  //     "The elderly support program brings me food and company every week. I no longer feel forgotten.",
-  //   author: "Mama Rose",
-  //   location: "Kenya",
-  //   image:
-  //     "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  // },
-  // {
-  //   // testimonial 19
-  //   quote:
-  //     "The borehole we built serves three villages. No more fighting over water at the river.",
-  //   author: "Chief Mbeki",
-  //   location: "Malawi",
-  //   image:
-  //     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-
-  // },
-  // {
-  //   // testimonial 20
-  //   quote:
-  //     "Your disaster relief team arrived with medicine just when we had given up hope. You saved so many lives.",
-  //   author: "Dr. Kemal",
-  //   location: "Ethiopia",
-  //   image:
-  //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  // },
-
-  //
+  // testimonial 13
+  {
+    quote:
+      "The association spent 73,000 Birr to cover his transportation and travel expenses, enabling him to travel to India and receive the treatment he urgently needed.",
+    author: "Yonas Getachew",
+    location: "Addis Ababa",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    story:
+      "Yonas Getachew is a well-known Ethiopian actor living in Addis Ababa who dedicated many years of his life to the country’s entertainment industry. Through his acting career, he earned the respect and admiration of audiences and made a meaningful contribution to Ethiopian art and culture. However, his life took a tragic turn after he was involved in a serious accident involving machetes, which caused severe injuries and breathing complications. The accident not only threatened his health but also placed his future as an actor in danger, making it difficult for him to continue the career he had pursued for many years. Although he was given the opportunity to travel to India for specialized medical treatment, Yonas faced another major challenge. He did not have the financial means to cover travel expenses required for the journey. Without assistance, he risked losing access to the treatment that could help save his health and career. After reviewing his request, the board carefully considered his condition, his years of service to the country as an artist, and the possibility that he might no longer be able to continue acting if he did not receive urgent treatment. Moved by his situation, the board approved financial support to help him travel abroad for medical care.",
+  },
+  // testimonial 14
+  {
+    quote:
+      "In 2023, the association spent 800,000 Birr to send Dawit to Dubai, where he received specialized treatment for one month. The support provided gave him an opportunity to access the medical care he urgently needed.",
+    author: "Dawit Fikadu",
+    location: "Addis Ababa",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    story:
+      "Dawit Fikadu was a young man from Addis Ababa who had been suffering from epilepsy for many years. The illness greatly affected his daily life and education, causing him to miss school frequently and making it difficult for him to continue his studies consistently. At a stage in life when he should have been focused on learning and building his future, Dawit instead faced constant health challenges and uncertainty. His mother was an unemployed housewife, while his father had dedicated much of his life to helping others as one of the founders of the association. Through his commitment and service, Dawit’s father had played a major role in building the association and supporting vulnerable people in need. Despite this contribution, the family did not have the financial means to cover the enormous cost of sending their son abroad for specialized medical treatment. Recognizing the seriousness of Dawit’s condition and the impact the illness had on his future hopes and education, the board carefully reviewed the family’s situation. Taking into account the father’s years of dedication and kindness toward others, as well as the urgent need to help the young man regain his health and continue his education, the board approved support for his treatment.",
+  },
+  // testimonial 15
+  {
+    quote:
+      "Today, she is living a more peaceful and stable life, serving as an example of how compassion and timely medical support can restore dignity and hope.",
+    author: "Yeworkuha",
+    location: "Addis Ababa",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    story:
+      "Yeworkuha is a 65-year-old woman from Addis Ababa who suffered from chronic kidney disease for many years. As her illness progressed, she endured constant pain and serious health complications that made daily life increasingly difficult. Without close family support or financial resources to assist her, she faced her illness alone and struggled to access the medical care she urgently needed. Recognizing the severity of her condition and her vulnerable situation, the association stepped in to provide assistance. In 2017, the association arranged and fully covered her continuous medical treatment at Black Lion Hospital, ensuring that she received the care and attention necessary to manage her illness. At a time when she was suffering greatly and had no one to support her treatment expenses, the association took responsibility for covering all of her medical costs. Through this support and the treatment she received, Yeworkuha was able to recover her strength and improve her health condition.",
+  },
+  // testimonial 16
+  {
+    quote:
+      "The association spent 22,000 Birr to arrange specialized care for Helen at Alert Hospital. Through the treatment and care she received, Helen gradually recovered from her illness.",
+    author: "Helen Abraha",
+    location: "Addis Ababa",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    story:
+      "Helen Abraha was a 26-year-old woman living in Addis Ababa whose life became extremely difficult after she developed a severe skin disease that affected nearly her entire body. The illness caused serious physical pain and visible skin damage, leaving her in urgent need of medical attention and emotional support. Helen was a single mother raising her child alone without the support of a father. Living with her family under difficult financial circumstances, she was unable to afford the medical treatment required for her condition. To seek help, Helen submitted medical evidence along with photographs showing the extent of the deterioration of her skin. She also provided a support letter from her district administration confirming her financial need. Staff members prepared a report and submitted it to the board, which approved support for her treatment. Throughout her recovery, the association's staff closely monitored her condition and provided continuous support.",
+  },
+  // testimonial 17
+  {
+    quote:
+      "Through this partnership and collective effort, many patients who otherwise would not have been able to continue treatment were given access to life-sustaining dialysis care.",
+    author: "Tewodros and 10 other patients",
+    location: "Addis Ababa",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    story:
+      "Tewodros and ten other men and women between the ages of 25 and 40 were all residents of Addis Ababa struggling with severe kidney disease. For each of them, survival depended on regular dialysis treatment. However, the high cost of dialysis made it almost impossible for many of the patients to continue receiving the care they urgently needed. Most of the patients were living under serious financial hardship. Staff members from the association personally visited each family’s home to assess their living conditions and financial capacity. After reviewing the situation, the association initiated discussions with Tom Dialysis Center in Addis Ababa. Through cooperation with the center’s owner, Dr. Thomas, an agreement was reached to provide dialysis treatment for the patients at a significantly reduced fee. The board approved the decision to provide all dialysis treatments at half price.",
+  },
+  // testimonial 18
+  {
+    quote:
+      "These forms of assistance significantly improved their quality of life and restored a sense of independence and dignity.",
+    author: "Tesfaye, Ge/Hana, Mohamed, Awash, and Berhanu",
+    location: "Addis Ababa",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    story:
+      "Tesfaye, Ge/Hana, Mohamed, Awash, and Berhanu were men between the ages of 25 and 40 who had been living with different physical disabilities and health challenges for many years. Among the five patients, three were living with serious physical disabilities, one was deaf, and another had undergone amputation of both arms and legs. Two of them were university students, one worked as a journalist, another was a government servant, and the remaining were self-employed. Due to their difficult financial situations, they spent many years without essential medical and mobility support. Recognizing their hardship, the association provided three of the disabled patients with motorized mobility support, hearing aids for the deaf patient, and a wheelchair for the patient who had lost both arms and legs. Through the support they received, the patients were able to improve their daily living conditions.",
+  },
+  // testimonial 19
+  {
+    quote:
+      "Through the support he received, Mesfin was able to access the critical medical care he urgently needed to save his life.",
+    author: "Mesfin Lemma",
+    location: "Addis Ababa",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    story:
+      "Mesfin Lemma was a 40-year-old man from Addis Ababa who suffered from severe gangrene in his leg. What began as a small wound gradually developed into a serious and life-threatening condition. Mesfin worked as a carpenter and depended on physical labor to support himself. However, as his condition worsened, he was forced to stop working, leaving him without income. Medical professionals determined that the infection had become too severe and that amputation up to the knee was necessary to stop the spread of the gangrene. Faced with this painful reality and unable to afford treatment, Mesfin repeatedly visited the association seeking help. Deeply concerned by his condition, the board decided to intervene. In 2017, the association arranged for Mesfin to receive treatment at the Ethiopian Armed Forces Hospital, where doctors successfully performed the surgery.",
+  },
 ];

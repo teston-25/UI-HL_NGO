@@ -296,7 +296,7 @@ const translations: Record<Language, Translations> = {
     footer_rights: "All rights reserved.",
     home_hero_title_1: "Kindness Pays!",
     home_hero_subtitle:
-      "We believe in a world where every child has access to education, healthcare, and a safe environment to grow.",
+      "We believe in a world where every child has access to healthcare.",
     home_hero_programs_btn: "Our Programs",
     home_stats_lives: "Lives Changed",
     home_stats_referrals: "Advanced Global Referrals",
@@ -619,8 +619,7 @@ const translations: Record<Language, Translations> = {
     footer_terms: "የአገልግሎት ውሎች",
     footer_rights: "መብቱ በሕግ የተጠበቀ ነው።",
     home_hero_title_1: "በጎነት ለራስ ነው።",
-    home_hero_subtitle:
-      "ለእያንዳንዱ ልጅ ትምህርት፣ ጤና አጠባበቅ እና ደህንነቱ የተጠበቀ አካባቢ ያለበት ዓለም እናምናለን።",
+    home_hero_subtitle: "እያንዳንዱ ህጻን የጤና እንክብካቤ የሚያገኝበት ዓለም እንደሚኖር እናምናለን።",
     home_hero_programs_btn: "ፕሮግራሞቻችን",
     home_stats_lives: "የተቀየሩ ህይወቶች",
     home_stats_countries: "የሚያገለግሉ አገሮች",

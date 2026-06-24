@@ -8,8 +8,9 @@ import { useLanguage } from "../context/LanguageContext";
 import { useBeneficiaryStats } from "../context/BeneficiaryStatsContext";
 import { useEmergency } from "../context/EmergencyContext";
 import { useNews } from "../context/NewsContext";
-import ourProImage from "../svg/Our_Pro.png";
-import heroImage from "../assets/HomePage-Pic.png";
+// import ourProImage from "../svg/Our_Pro.png";
+import heroImg from "../../public/heroImg.png";
+import hospPic from "../../public/pic_proj.png";
 
 export function HomePage() {
   const { t } = useLanguage();
@@ -31,7 +32,7 @@ export function HomePage() {
     {
       title: t.home_program_hospital_title || "The Community Hospital Project",
       image:
-        ourProImage ||
+        hospPic ||
         "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       desc:
         t.home_program_hospital_desc ||
@@ -128,7 +129,7 @@ export function HomePage() {
       <section className="relative h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src={heroImage}
+            src={heroImg}
             alt="HomePage"
             className="w-full h-full object-cover"
           />
