@@ -347,10 +347,10 @@ const translations: Record<Language, Translations> = {
     about_mission_subtitle: "The principles that guide every decision we make.",
     about_value_integrity: "Our Mission",
     about_value_integrity_desc:
-      "To save lives and restore hope by supporting chronically ill children and adolescents through comprehensive medical, social, and economic support—empowering them to recover and thrive.",
+      "To improve health and save lives by expanding healthcare infrastructure and providing financial assistance to vulnerable patients requiring specialized medical care within Ethiopia and abroad.",
     about_value_empowerment: "Our Vision",
     about_value_empowerment_desc:
-      "An Ethiopia where no child or youth dies or suffers because they cannot afford medical treatment, and where communities unite to support one another in health and healing.",
+      "An Ethiopia where every individual, regardless of economic status, has access to quality healthcare services and life-saving medical treatment.",
     about_value_compassion: "Our Core Values",
     about_value_compassion_desc:
       "• Compassion\n• Integrity\n• Collaboration\n• Sustainability",
@@ -668,10 +668,10 @@ const translations: Record<Language, Translations> = {
     about_mission_subtitle: "እያንዳንዱን ውሳኔያችንን የሚመሩ መርሆዎች።",
     about_value_integrity: "ታማኝነት",
     about_value_integrity_desc:
-      "ሥር የሰደደ (ጽኑ) ሕመም ያለባቸውን ሕፃናት እና ታዳጊዎችን ሁለንተናዊ የሕክምና፣ የማኅበራዊ እና የኢኮኖሚ ድጋፍ በማድረግ ሕይወታቸውን ማዳን፣ ተስፋቸውን ማደስ፣ እንዲሁም አገግመው የተሻለ ሕይወት እንዲመሩ ማብቃት።",
+      "በኢትዮጵያ ውስጥና በውጭ አገር ልዩ የሕክምና ክትትል ለሚያስፈልጋቸው ተጋላጭ ታካሚዎች የፋይናንስ ድጋፍ በማድረግ እና የጤና መሠረተ ልማትን በማስፋፋት ጤናን ማሻሻልና ሕይወትን ማዳን።",
     about_value_empowerment: "ማብቃት",
     about_value_empowerment_desc:
-      "የሕክምና ወጪ ባለመቻላቸው ምክንያት የሚሞቱ ወይም የሚሰቃዩ ሕፃናትና ወጣቶች የሌሉባት፣ እንዲሁም ማኅበረሰቡ በጤናና በፈውስ ዙሪያ እርስ በርስ ለመደጋገፍ የሚተባበርባት ኢትዮጵያን ማየት።",
+      "ማንኛውም ግለሰብ፣ የኢኮኖሚ ደረጃው ምንም ይሁን ምን፣ ጥራት ያለው የጤና እንክብካቤ አገልግሎት እና ሕይወት አድን የሕክምና አገልግሎት የሚያገኝባት ኢትዮጵያ።",
     about_value_compassion: "መሠረታዊ እሴቶቻችን",
     about_value_compassion_desc: `ርኅራኄ፣
     ታማኝነት (ቅንነት)፣

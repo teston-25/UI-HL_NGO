@@ -43,36 +43,30 @@ export function HomePage() {
   const missionData = [
     {
       title: "Who We Are",
-      text:
-        t.home_who_we_are ||
-        "A dedicated charitable association focusing on scaling permanent public infrastructure and complex healthcare networks to establish sustainable, implementation-ready solutions.",
+      text: "Hibret Lebego Ethiopian Charity Organization is committed to improving the lives of vulnerable and disadvantaged Ethiopians suffering from chronic and life-threatening illnesses. Many patients and families face significant barriers to accessing quality healthcare services due to financial constraints, inadequate medical infrastructure, and limited availability of specialized treatment.",
       color:
         "border-[#B91C1C]/20 hover:border-[#B91C1C]/50 bg-white dark:bg-[#1a1a1a]",
     },
     {
       title: "What Problems We Solve",
-      text:
-        t.home_what_we_solve ||
-        "Bridging structural healthcare gaps by clearing critical engineering milestones, securing municipal healthcare payroll agreements, and completely managing financial processing burdens for patients.",
+      text: "Recognizing these challenges, Hibret Lebego works to bridge healthcare gaps through the development of healthcare facility and the provision of financial assistance to patients requiring specialized medical treatment both within Ethiopia and abroad.",
       color:
         "border-[#15803d]/20 hover:border-[#15803d]/50 bg-white dark:bg-[#1a1a1a]",
     },
     {
       title: "Who We Help",
-      text:
-        t.home_who_we_help ||
-        "Disadvantaged and severe-case chronic kidney and cardiac disease patients requiring specialized domestic medical treatments or complex international referral track management.",
+      text: "Hibret Lebego Ethiopian Charity Organization supports marginalized and economically disadvantaged individuals who are unable to access specialized healthcare services. We assist vulnerable patients living with chronic and complex medical conditions by helping them obtain essential medical treatment, both within Ethiopia and abroad, regardless of their financial circumstances.",
       color:
         "border-[#B91C1C]/20 hover:border-[#B91C1C]/50 bg-white dark:bg-[#1a1a1a]",
     },
-    {
-      title: "Our Long-Term Vision",
-      text:
-        t.home_our_vision ||
-        "Completing modern 3-story healthcare infrastructure designs, establishing 10-machine clinical dialysis suites, and serving over 5,000 vulnerable individuals annually across multiple regions.",
-      color:
-        "border-[#15803d]/20 hover:border-[#15803d]/50 bg-white dark:bg-[#1a1a1a]",
-    },
+    // {
+    //   title: "Our Long-Term Vision",
+    //   text:
+    //     t.home_our_vision ||
+    //     "Completing modern 3-story healthcare infrastructure designs, establishing 10-machine clinical dialysis suites, and serving over 5,000 vulnerable individuals annually across multiple regions.",
+    //   color:
+    //     "border-[#15803d]/20 hover:border-[#15803d]/50 bg-white dark:bg-[#1a1a1a]",
+    // },
   ];
 
   useEffect(() => {
@@ -281,7 +275,7 @@ export function HomePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {missionData.map((item, i) => (
               <motion.div
                 key={i}
@@ -289,16 +283,18 @@ export function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`group p-8 rounded-2xl border ${item.color} shadow-sm hover:shadow-md transition-all duration-300`}
+                className={`group h-full p-8 rounded-2xl border ${item.color}
+shadow-sm hover:shadow-lg hover:-translate-y-1
+transition-all duration-300 flex flex-col`}
               >
                 <h3
-                  className={`font-serif text-xl font-bold mb-4 ${
+                  className={`font-serif text-2xl font-bold mb-5 ${
                     i % 2 === 0 ? "text-[#B91C1C]" : "text-[#15803d]"
                   }`}
                 >
                   {item.title}
                 </h3>
-                <p className="text-gray-600 dark:text-zinc-300 leading-relaxed transition-colors">
+                <p className="text-gray-600 dark:text-zinc-300 leading-8 flex-1 transition-colors">
                   {item.text}
                 </p>
               </motion.div>
