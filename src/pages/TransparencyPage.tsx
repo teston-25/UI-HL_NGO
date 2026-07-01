@@ -4,8 +4,8 @@ import {
   FileText,
   PieChart,
   ShieldCheck,
-  Download,
   Loader2,
+  Eye, // 1. Imported Eye icon for "View/Read" context
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { useTransparency } from "../context/TransparencyContext";
@@ -189,13 +189,15 @@ export function TransparencyPage() {
                   <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-8 flex-1">
                     {doc.file_type?.toUpperCase()} Format
                   </p>
+
+                  {/* Modified Link Action to View Document instead of Download */}
                   <a
-                    href={doc.file_url}
+                    href={doc.file_url + "#toolbar=0"}
                     className="w-full border-2 border-[#B91C1C] text-[#B91C1C] dark:text-[#F87171] dark:border-[#F87171] py-3 rounded-xl font-bold hover:bg-[#B91C1C] hover:text-white transition-all flex items-center justify-center"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Download className="mr-2 h-5 w-5" />
+                    <Eye className="mr-2 h-5 w-5" />
                     {t.financial_download}
                   </a>
                 </motion.div>

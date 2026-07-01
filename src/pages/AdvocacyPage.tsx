@@ -1,58 +1,31 @@
 import { motion } from "framer-motion";
-import { Megaphone, FileCheck, Shield, BookOpen, Download } from "lucide-react";
+import { Megaphone, FileCheck, Shield, BookOpen, FileText } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { Link } from "react-router-dom";
+
 export function AdvocacyPage() {
   const { t } = useLanguage();
-  const campaigns = [
-    {
-      title: t.advocacy_campaign_1_title,
-      desc: t.advocacy_campaign_1_desc,
-    },
-    {
-      title: t.advocacy_campaign_2_title,
-      desc: t.advocacy_campaign_2_desc,
-    },
-    {
-      title: t.advocacy_campaign_3_title,
-      desc: t.advocacy_campaign_3_desc,
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h1
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             className="font-serif text-5xl font-bold text-[#B91C1C] mb-6"
           >
             {t.advocacy_title}
           </motion.h1>
           <motion.p
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.1,
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
             className="text-xl text-[#1a1a1a]/70 dark:text-white/70 max-w-3xl mx-auto"
           >
             {t.advocacy_subtitle}
           </motion.p>
         </div>
+
         {/* Why Advocacy Matters */}
         <div className="bg-[#B91C1C] text-white rounded-3xl p-12 mb-20 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 pattern-dots" />
@@ -71,44 +44,11 @@ export function AdvocacyPage() {
           </div>
         </div>
 
-        <h2 className="font-serif text-3xl font-bold text-[#111111] dark:text-white mb-10 text-center">
-          Active Campaigns
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {campaigns.map((campaign, index) => (
-            <motion.div
-              key={index}
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                delay: index * 0.1,
-              }}
-              className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20"
-            >
-              <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-4">
-                {campaign.title}
-              </h3>
-              <p className="text-[#1a1a1a]/70 dark:text-white/70 leading-relaxed">
-                {campaign.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Legal Registration & Certificate - from LegalPage */}
-        <h2 className="font-serif text-3xl font-bold  text-[#16df60] dark:text-white mb-10 text-center">
+        {/* Legal Registration & Certificate */}
+        <h2 className="font-serif text-3xl font-bold text-[#16df60] dark:text-white mb-10 text-center">
           Legal Registration & Certificate
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -124,12 +64,12 @@ export function AdvocacyPage() {
               certificate and legal status are available for verification.
             </p>
             <a
-              href="/NGO-Certificate.pdf"
+              href="/NGO-Certificate.pdf#toolbar=0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
             >
-              <Download className="h-4 w-4 mr-2" /> View Certificate
+              <FileText className="h-4 w-4 mr-2" /> View Certificate
             </a>
           </motion.div>
 
@@ -138,24 +78,15 @@ export function AdvocacyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20"
+            className="bg-white dark:bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 flex flex-col items-center justify-center text-center gap-4"
           >
-            <Shield className="h-12 w-12 text-[#86efac] mb-6" />
+            <Shield className="h-12 w-12 text-gray-300 dark:text-zinc-600 mb-6" />
             <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
               Governance Structure
             </h3>
-            <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-4">
-              Our governance includes a Board of Directors, executive
-              leadership, and transparent decision-making processes.
+            <p className="text-[#1a1a1a]/70 dark:text-white/70">
+              Documentation coming soon.
             </p>
-            <a
-              href="/HLB FINANCIAL MANUAL.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
-            >
-              <Download className="h-4 w-4 mr-2" /> View Structure
-            </a>
           </motion.div>
 
           <motion.div
@@ -163,22 +94,26 @@ export function AdvocacyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20"
+            className="bg-white dark:bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 flex flex-col items-start text-left gap-3"
           >
-            <BookOpen className="h-12 w-12 text-[#86efac] mb-6" />
+            <BookOpen className="h-12 w-12 text-gray-300 dark:text-zinc-600 mb-6" />
             <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
               Policies
             </h3>
             <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-4">
-              Child safeguarding, PSEA, financial accountability, and other
-              organizational policies are documented and enforced.
+              Documentation coming soon.
             </p>
-            <Link
-              to="/safeguarding"
-              className="text-[#B91C1C] dark:text-[#F87171] font-semibold hover:underline"
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                alert("Policies document coming soon");
+              }}
+              className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline transition-colors"
             >
+              <FileText className="h-4 w-4 mr-2" />
               View Policies
-            </Link>
+            </a>
           </motion.div>
         </div>
 

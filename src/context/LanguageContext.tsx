@@ -20,7 +20,6 @@ type Translations = {
   nav_partner: string;
   nav_financial: string;
   nav_advocacy: string;
-  nav_safeguarding: string;
   nav_volunteer_internship: string;
   nav_legal_governance: string;
   nav_impact_results: string;
@@ -242,19 +241,6 @@ type Translations = {
   advocacy_sign_petition: string;
   advocacy_share: string;
   advocacy_write: string;
-  // Safeguarding Page
-  safeguarding_title: string;
-  safeguarding_subtitle: string;
-  safeguarding_commitment_title: string;
-  safeguarding_commitment_desc: string;
-  safeguarding_child_title: string;
-  safeguarding_child_desc: string;
-  safeguarding_psea_title: string;
-  safeguarding_psea_desc: string;
-  safeguarding_reporting_title: string;
-  safeguarding_reporting_desc: string;
-  safeguarding_download_btn: string;
-  safeguarding_contact_label: string;
 };
 const translations: Record<Language, Translations> = {
   en: {
@@ -275,8 +261,7 @@ const translations: Record<Language, Translations> = {
     nav_news: "Latest News",
     nav_partner: "Partner With Us",
     nav_financial: "Financial Accountability",
-    nav_advocacy: "Advocacy & Policy",
-    nav_safeguarding: "Safeguarding",
+    nav_advocacy: "Policy",
     nav_volunteer_internship: "Volunteer & Internship",
     nav_legal_governance: "Legal & Governance",
     nav_impact_results: "Impact & Results",
@@ -540,7 +525,7 @@ const translations: Record<Language, Translations> = {
     financial_breakdown_title: "Expense Breakdown",
     financial_certifications: "Certifications & Ratings",
     // Advocacy Page
-    advocacy_title: "Advocacy & Policy",
+    advocacy_title: "Policies",
     advocacy_subtitle:
       "We don't just treat symptoms; we fight the root causes of poverty by advocating for systemic change.",
     advocacy_campaign_1_title: "Medical Equipment & Supply Chain Equity",
@@ -560,25 +545,6 @@ const translations: Record<Language, Translations> = {
     advocacy_sign_petition: "Sign the Petition",
     advocacy_share: "Share on Social Media",
     advocacy_write: "Write to Your Representative",
-    // Safeguarding Page
-    safeguarding_title: "Safeguarding & Ethics",
-    safeguarding_subtitle:
-      "We are committed to the highest ethical standards and the protection of the vulnerable people we serve.",
-    safeguarding_commitment_title: "Our Commitment",
-    safeguarding_commitment_desc:
-      "The Foundation has a zero-tolerance policy for abuse, exploitation, and harassment. We are committed to protecting all beneficiaries, especially children and vulnerable adults.",
-    safeguarding_child_title: "Child Safeguarding Policy",
-    safeguarding_child_desc:
-      "Strict protocols ensuring that all staff, volunteers, and partners interacting with children are vetted and trained to prevent harm.",
-    safeguarding_psea_title:
-      "Protection from Sexual Exploitation and Abuse (PSEA)",
-    safeguarding_psea_desc:
-      "Comprehensive measures to prevent sexual exploitation and abuse by our personnel and partners.",
-    safeguarding_reporting_title: "Reporting Mechanism",
-    safeguarding_reporting_desc:
-      "We have a confidential, safe, and accessible process for anyone to report concerns or violations. All reports are taken seriously and investigated thoroughly.",
-    safeguarding_download_btn: "Download Policy (PDF)",
-    safeguarding_contact_label: "Report a Concern",
     home_stats_countries: "",
     home_stats_water: "",
   },
@@ -601,7 +567,6 @@ const translations: Record<Language, Translations> = {
     nav_partner: "ከእኛ ጋር ይስሩ",
     nav_financial: "የፋይናንስ ተጠያቂነት",
     nav_advocacy: "ጥብቅና እና ፖሊሲ",
-    nav_safeguarding: "ደህንነት መጠበቅ",
     nav_volunteer_internship: "በጎ ፈቃደኝነት እና የስራ ልምድ",
     nav_legal_governance: "ህጋዊ እና አስተዳደር",
     nav_impact_results: "ተጽዕኖ እና ውጤቶች",
@@ -876,24 +841,6 @@ const translations: Record<Language, Translations> = {
     advocacy_sign_petition: "አቤቱታውን ይፈርሙ",
     advocacy_share: "በማህበራዊ ሚዲያ ያጋሩ",
     advocacy_write: "ለተወካይዎ ይጻፉ",
-    // Safeguarding Page
-    safeguarding_title: "ደህንነት መጠበቅ እና ስነ-ምግባር",
-    safeguarding_subtitle:
-      "ለከፍተኛ የስነ-ምግባር ደረጃዎች እና ለምናገለግላቸው ተጋላጭ ሰዎች ጥበቃ ቁርጠኞች ነን።",
-    safeguarding_commitment_title: "ቁርጠኝነታችን",
-    safeguarding_commitment_desc:
-      "ፋውንዴሽኑ ለጥቃት፣ ለብዝበዛ እና ለትንኮሳ ዜሮ መቻቻል ፖሊሲ አለው። ሁሉንም ተጠቃሚዎች፣ በተለይም ህጻናትን እና ተጋላጭ አዋቂዎችን ለመጠበቅ ቁርጠኞች ነን።",
-    safeguarding_child_title: "የህጻናት ደህንነት መጠበቅ ፖሊሲ",
-    safeguarding_child_desc:
-      "ከህጻናት ጋር የሚገናኙ ሁሉም ሰራተኞች፣ በጎ ፈቃደኞች እና አጋሮች ጉዳትን ለመከላከል የተጣሩ እና የሰለጠኑ መሆናቸውን የሚያረጋግጡ ጥብቅ ፕሮቶኮሎች።",
-    safeguarding_psea_title: "ከወሲባዊ ብዝበዛ እና ጥቃት ጥበቃ (PSEA)",
-    safeguarding_psea_desc:
-      "በሰራተኞቻችን እና በአጋሮቻችን የሚፈጸሙ ወሲባዊ ብዝበዛን እና ጥቃትን ለመከላከል አጠቃላይ እርምጃዎች።",
-    safeguarding_reporting_title: "የሪፖርት ማድረጊያ ዘዴ",
-    safeguarding_reporting_desc:
-      "ማንኛውም ሰው ስጋቶችን ወይም ጥሰቶችን ሪፖርት የሚያደርግበት ሚስጥራዊ፣ ደህንነቱ የተጠበቀ እና ተደራሽ ሂደት አለን። ሁሉም ሪፖርቶች በቁም ነገር ይታያሉ እና በጥልቀት ይመረመራሉ።",
-    safeguarding_download_btn: "ፖሊሲ አውርድ (PDF)",
-    safeguarding_contact_label: "ስጋትን ሪፖርት ያድርጉ",
   },
 };
 interface LanguageContextType {

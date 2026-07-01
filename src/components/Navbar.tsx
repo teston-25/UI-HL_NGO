@@ -94,10 +94,6 @@ export function Navbar() {
           name: t.nav_advocacy,
           path: "/advocacy",
         },
-        {
-          name: t.nav_safeguarding,
-          path: "/safeguarding",
-        },
       ],
     },
   ];
@@ -136,58 +132,61 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <div
-                key={item.id}
-                className="relative group"
-                onMouseEnter={() => setActiveDropdown(item.id)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button className="flex items-center text-sm font-medium text-[#1a1a1a]/80 dark:text-white/80 hover:text-[#B91C1C] dark:hover:text-[#F87171] transition-colors py-2">
+            {navItems.map((item) =>
+              item.id === "policies" ? (
+                <Link
+                  key={item.id}
+                  to="/advocacy"
+                  className={`text-sm font-medium transition-colors hover:text-[#B91C1C] dark:hover:text-[#F87171] ${
+                    isActive("/advocacy")
+                      ? "text-[#B91C1C] dark:text-[#F87171] font-semibold"
+                      : "text-[#1a1a1a]/80 dark:text-white/80"
+                  }`}
+                >
                   {item.label}
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </button>
+                </Link>
+              ) : (
+                <div
+                  key={item.id}
+                  className="relative group"
+                  onMouseEnter={() => setActiveDropdown(item.id)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <button className="flex items-center text-sm font-medium text-[#1a1a1a]/80 dark:text-white/80 hover:text-[#B91C1C] dark:hover:text-[#F87171] transition-colors py-2">
+                    {item.label}
+                    <ChevronDown className="ml-1 h-4 w-4" />
+                  </button>
 
-                <AnimatePresence>
-                  {activeDropdown === item.id && (
-                    <motion.div
-                      initial={{
-                        opacity: 0,
-                        y: 10,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        y: 10,
-                      }}
-                      transition={{
-                        duration: 0.2,
-                      }}
-                      className="absolute left-0 mt-0 w-56 bg-white dark:bg-[#1a1a1a] rounded-xl shadow-xl border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 overflow-hidden z-50"
-                    >
-                      <div className="py-2">
-                        {item.links.map((link) => (
-                          <Link
-                            key={link.path}
-                            to={link.path}
-                            className={`block px-4 py-2 text-sm hover:bg-[#B91C1C]/5 dark:hover:bg-[#B91C1C]/20 hover:text-[#B91C1C] dark:hover:text-[#F87171] transition-colors ${
-                              isActive(link.path)
-                                ? "text-[#B91C1C] dark:text-[#F87171] font-semibold"
-                                : "text-[#1a1a1a]/80 dark:text-white/80"
-                            }`}
-                          >
-                            {link.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                  <AnimatePresence>
+                    {activeDropdown === item.id && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute left-0 mt-0 w-56 bg-white dark:bg-[#1a1a1a] rounded-xl shadow-xl border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 overflow-hidden z-50"
+                      >
+                        <div className="py-2">
+                          {item.links.map((link) => (
+                            <Link
+                              key={link.path}
+                              to={link.path}
+                              className={`block px-4 py-2 text-sm hover:bg-[#B91C1C]/5 dark:hover:bg-[#B91C1C]/20 hover:text-[#B91C1C] dark:hover:text-[#F87171] transition-colors ${
+                                isActive(link.path)
+                                  ? "text-[#B91C1C] dark:text-[#F87171] font-semibold"
+                                  : "text-[#1a1a1a]/80 dark:text-white/80"
+                              }`}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ),
+            )}
 
             <Link
               to="/contact"
@@ -260,30 +259,45 @@ export function Navbar() {
             className="lg:hidden bg-[#F9F9F9] dark:bg-[#1a1a1a] border-b border-[#B91C1C]/10 dark:border-[#B91C1C]/20 overflow-hidden max-h-[80vh] overflow-y-auto"
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
-              {navItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="border-b border-gray-200 dark:border-gray-800 pb-2"
-                >
-                  <div className="text-sm font-bold text-[#B91C1C] dark:text-[#F87171] mb-2 px-4 uppercase tracking-wider">
+              {navItems.map((item) =>
+                item.id === "policies" ? (
+                  <Link
+                    key={item.id}
+                    to="/advocacy"
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-4 py-3 rounded-lg text-base font-bold ${
+                      isActive("/advocacy")
+                        ? "bg-[#B91C1C]/5 dark:bg-[#B91C1C]/20 text-[#B91C1C] dark:text-[#F87171]"
+                        : "text-[#1a1a1a]/80 dark:text-white/80 hover:bg-[#B91C1C]/5 dark:hover:bg-white/5 hover:text-[#B91C1C] dark:hover:text-[#F87171]"
+                    }`}
+                  >
                     {item.label}
+                  </Link>
+                ) : (
+                  <div
+                    key={item.id}
+                    className="border-b border-gray-200 dark:border-gray-800 pb-2"
+                  >
+                    <div className="text-sm font-bold text-[#B91C1C] dark:text-[#F87171] mb-2 px-4 uppercase tracking-wider">
+                      {item.label}
+                    </div>
+                    {item.links.map((link) => (
+                      <Link
+                        key={link.path}
+                        to={link.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`block px-4 py-2 rounded-lg text-base font-medium ${
+                          isActive(link.path)
+                            ? "bg-[#B91C1C]/5 dark:bg-[#B91C1C]/20 text-[#B91C1C] dark:text-[#F87171]"
+                            : "text-[#1a1a1a]/80 dark:text-white/80 hover:bg-[#B91C1C]/5 dark:hover:bg-white/5 hover:text-[#B91C1C] dark:hover:text-[#F87171]"
+                        }`}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
                   </div>
-                  {item.links.map((link) => (
-                    <Link
-                      key={link.path}
-                      to={link.path}
-                      onClick={() => setIsOpen(false)}
-                      className={`block px-4 py-2 rounded-lg text-base font-medium ${
-                        isActive(link.path)
-                          ? "bg-[#B91C1C]/5 dark:bg-[#B91C1C]/20 text-[#B91C1C] dark:text-[#F87171]"
-                          : "text-[#1a1a1a]/80 dark:text-white/80 hover:bg-[#B91C1C]/5 dark:hover:bg-white/5 hover:text-[#B91C1C] dark:hover:text-[#F87171]"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
-              ))}
+                ),
+              )}
 
               <Link
                 to="/contact"

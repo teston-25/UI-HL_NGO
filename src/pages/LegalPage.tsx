@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FileCheck, Shield, BookOpen, Download } from "lucide-react";
+import { FileCheck, Shield, BookOpen, FileText } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 export function LegalPage() {
   const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,12 +43,12 @@ export function LegalPage() {
               certificate and legal status are available for verification.
             </p>
             <a
-              href="/NGO-Certificate.pdf"
+              href="/NGO-Certificate.pdf#toolbar=0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
             >
-              <Download className="h-4 w-4 mr-2" /> View Certificate
+              <FileText className="h-4 w-4 mr-2" /> View Certificate
             </a>
           </motion.div>
 
@@ -57,26 +57,15 @@ export function LegalPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20"
+            className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 flex flex-col items-center justify-center text-center"
           >
-            <Shield className="h-12 w-12 text-[#86efac] mb-6" />
+            <Shield className="h-12 w-12 text-gray-300 dark:text-zinc-600 mb-6" />
             <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
               Financial Accountability & Controls
             </h3>
-            <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-4">
-              Our operations adhere strictly to an institutional Financial
-              Policies and Procedures Manual, establishing rigorous standards
-              for internal controls, fund segregation, and transparent
-              procurement workflows.
+            <p className="text-[#1a1a1a]/70 dark:text-white/70">
+              Documentation coming soon.
             </p>
-            <a
-              href="/HLB FINANCIAL MANUAL.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
-            >
-              <Download className="h-4 w-4 mr-2" /> View Structure
-            </a>
           </motion.div>
 
           <motion.div
@@ -84,22 +73,15 @@ export function LegalPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20"
+            className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 flex flex-col items-center justify-center text-center"
           >
-            <BookOpen className="h-12 w-12 text-[#86efac] mb-6" />
+            <BookOpen className="h-12 w-12 text-gray-300 dark:text-zinc-600 mb-6" />
             <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
               Policies
             </h3>
-            <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-4">
-              Child safeguarding, PSEA, financial accountability, and other
-              organizational policies are documented and enforced.
+            <p className="text-[#1a1a1a]/70 dark:text-white/70">
+              Documentation coming soon.
             </p>
-            <Link
-              to="/safeguarding"
-              className="text-[#B91C1C] dark:text-[#F87171] font-semibold hover:underline"
-            >
-              View Policies
-            </Link>
           </motion.div>
         </div>
 

@@ -152,7 +152,6 @@ UI-HL_NGO/
 │   │   ├── PartnerPage.tsx  
 │   │   ├── PastProjectsPage.tsx  
 │   │   ├── ProgramsPage.tsx  
-│   │   ├── SafeguardingPage.tsx  
 │   │   ├── TransparencyPage.tsx  
 │   │   ├── VolunteerPage.tsx  
 │   │   └── WhatWeDo.tsx  
@@ -256,7 +255,6 @@ The dev server starts at **http://localhost:3000**. API requests to `/api/*` are
 | `/news`                     | `NewsPage`           | Latest news, featured stories, field reports       |  
 | `/partner`                  | `PartnerPage`        | Corporate sponsorship and partnership info         |  
 | `/advocacy`                 | `AdvocacyPage`       | Policy campaigns and civic engagement              |  
-| `/safeguarding`             | `SafeguardingPage`   | Child protection and ethics policies               |  
 | `/volunteer-internship`     | `VolunteerPage`      | Volunteer and internship opportunities             |  
 | `/legal-governance`         | `LegalPage`          | Legal structure and governance info                |  
 | `/impact`                   | `ImpactPage`         | Impact metrics and results                         |  

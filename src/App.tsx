@@ -69,11 +69,6 @@ const PartnerPage = lazy(() =>
 const AdvocacyPage = lazy(() =>
   import("./pages/AdvocacyPage").then((m) => ({ default: m.AdvocacyPage })),
 );
-const SafeguardingPage = lazy(() =>
-  import("./pages/SafeguardingPage").then((m) => ({
-    default: m.SafeguardingPage,
-  })),
-);
 const VolunteerPage = lazy(() =>
   import("./pages/VolunteerPage").then((m) => ({ default: m.VolunteerPage })),
 );
@@ -186,27 +181,22 @@ export function App() {
                                     element={<EmergenciesPage />}
                                   />
                                   <Route path="/news" element={<NewsPage />} />
-                                  <Route
-                                    path="/partner"
-                                    element={<PartnerPage />}
-                                  />
-                                  <Route
-                                    path="/financial-accountability"
-                                    element={<TransparencyPage />}
-                                  />
-
-                                  <Route
-                                    path="/advocacy"
-                                    element={<AdvocacyPage />}
-                                  />
-                                  <Route
-                                    path="/safeguarding"
-                                    element={<SafeguardingPage />}
-                                  />
-                                  <Route
-                                    path="/volunteer-internship"
-                                    element={<VolunteerPage />}
-                                  />
+<Route
+                    path="/partner"
+                    element={<PartnerPage />}
+                  />
+                  <Route
+                    path="/financial-accountability"
+                    element={<TransparencyPage />}
+                  />
+                  <Route
+                    path="/advocacy"
+                    element={<AdvocacyPage />}
+                  />
+                  <Route
+                    path="/volunteer-internship"
+                    element={<VolunteerPage />}
+                  />
                                   <Route
                                     path="/legal-governance"
                                     element={<LegalPage />}

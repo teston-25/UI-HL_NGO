@@ -264,23 +264,17 @@ export function Footer() {
           <p>
             &copy; {new Date().getFullYear()} Hibret Lebego. {t.footer_rights}
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link
-              to="/safeguarding"
-              className="hover:text-[#B91C1C] transition-colors"
-            >
-              {t.nav_safeguarding}
-            </Link>
-            <Link
-              to="/advocacy"
-              className="hover:text-[#B91C1C] transition-colors"
-            >
-              {t.nav_advocacy}
-            </Link>
-            <a href="#" className="hover:text-[#B91C1C] transition-colors">
-              {t.footer_privacy}
-            </a>
-          </div>
+<div className="flex space-x-6 mt-4 md:mt-0">
+             <Link
+               to="/advocacy"
+               className="hover:text-[#B91C1C] transition-colors"
+             >
+               {t.nav_advocacy}
+             </Link>
+             <a href="#" className="hover:text-[#B91C1C] transition-colors">
+               {t.footer_privacy}
+             </a>
+           </div>
         </div>
       </div>
     </footer>
