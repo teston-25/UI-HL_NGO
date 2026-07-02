@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Megaphone, FileCheck, Shield, BookOpen, FileText } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useState } from "react";
 
 export function AdvocacyPage() {
   const { t } = useLanguage();
-
+  const [openFinancial, setOpenFinancial] = useState(false);
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,15 +79,25 @@ export function AdvocacyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 flex flex-col items-center justify-center text-center gap-4"
+            className="bg-white dark:bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-sm border border-[#B91C1C]/10 dark:border-[#B91C1C]/20 flex flex-col items-center text-center gap-4"
           >
-            <Shield className="h-12 w-12 text-gray-300 dark:text-zinc-600 mb-6" />
-            <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
-              Governance Structure
+            <Shield className="h-12 w-12 text-[#B91C1C] mb-4" />
+
+            <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white">
+              Financial Manual
             </h3>
+
             <p className="text-[#1a1a1a]/70 dark:text-white/70">
-              Documentation coming soon.
+              Internal financial control and accountability framework.
             </p>
+
+            <button
+              onClick={() => setOpenFinancial(true)}
+              className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              View Financial Manual
+            </button>
           </motion.div>
 
           <motion.div
@@ -135,6 +146,20 @@ export function AdvocacyPage() {
           </div>
         </motion.div>
       </div>
+      {openFinancial && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-5xl h-[90vh] rounded-xl overflow-hidden relative">
+            <button
+              onClick={() => setOpenFinancial(false)}
+              className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded"
+            >
+              Close
+            </button>
+
+            <iframe src="/hlb-financial-manual.pdf" className="w-full h-full" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

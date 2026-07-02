@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { FileCheck, Shield, BookOpen, FileText } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useState } from "react";
 
 export function LegalPage() {
   const { t } = useLanguage();
+  const [openCertificate, setOpenCertificate] = useState(false);
+  const [openFinancial, setOpenFinancial] = useState(false);
+  const [openPolicies, setOpenPolicies] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#F9F9F9] dark:bg-[#0f0f0f] pt-12 pb-24 transition-colors duration-300">
@@ -22,8 +26,7 @@ export function LegalPage() {
             transition={{ delay: 0.1 }}
             className="text-xl text-[#B91C1C]/70 dark:text-white/70 max-w-3xl mx-auto"
           >
-            Legal information, governance structure, and organizational
-            policies.
+            Legal information, Financial Manual, and organizational policies.
           </motion.p>
         </div>
 
@@ -42,14 +45,12 @@ export function LegalPage() {
               Hibret Lebego is a legally registered NGO. Our registration
               certificate and legal status are available for verification.
             </p>
-            <a
-              href="/NGO-Certificate.pdf#toolbar=0"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setOpenCertificate(true)}
               className="text-[#B91C1C] dark:text-[#F87171] font-semibold flex items-center hover:underline"
             >
               <FileText className="h-4 w-4 mr-2" /> View Certificate
-            </a>
+            </button>
           </motion.div>
 
           <motion.div
@@ -63,9 +64,17 @@ export function LegalPage() {
             <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
               Financial Accountability & Controls
             </h3>
-            <p className="text-[#1a1a1a]/70 dark:text-white/70">
-              Documentation coming soon.
+            <p className="text-[#1a1a1a]/70 dark:text-white/70 mb-4 text-sm">
+              Internal financial structure, audit systems, and transparency
+              framework.
             </p>
+            <button
+              onClick={() => setOpenFinancial(true)}
+              className="text-[#B91C1C] font-semibold hover:underline flex items-center"
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              View Financial Manual
+            </button>{" "}
           </motion.div>
 
           <motion.div
@@ -79,9 +88,13 @@ export function LegalPage() {
             <h3 className="font-serif text-xl font-bold text-[#111111] dark:text-white mb-3">
               Policies
             </h3>
-            <p className="text-[#1a1a1a]/70 dark:text-white/70">
-              Documentation coming soon.
-            </p>
+            <button
+              onClick={() => setOpenPolicies(true)}
+              className="text-[#B91C1C] dark:text-[#F87171] font-semibold hover:underline"
+            >
+              <FileText className="h-4 w-4 inline mr-2" />
+              View Policies
+            </button>
           </motion.div>
         </div>
 
@@ -103,6 +116,50 @@ export function LegalPage() {
           </div>
         </motion.div>
       </div>
+      {openCertificate && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-5xl h-[90vh] rounded-xl overflow-hidden relative">
+            {/* Close button */}
+            <button
+              onClick={() => setOpenCertificate(false)}
+              className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded"
+            >
+              Close
+            </button>
+
+            {/* PDF Viewer */}
+            <iframe src="/NGO-Certificate.pdf" className="w-full h-full" />
+          </div>
+        </div>
+      )}
+      {openFinancial && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-5xl h-[90vh] rounded-xl overflow-hidden relative">
+            <button
+              onClick={() => setOpenFinancial(false)}
+              className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded"
+            >
+              Close
+            </button>
+
+            <iframe src="/hlb-financial-manual.pdf" className="w-full h-full" />
+          </div>
+        </div>
+      )}
+      {openPolicies && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-5xl h-[90vh] rounded-xl overflow-hidden relative">
+            <button
+              onClick={() => setOpenPolicies(false)}
+              className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded"
+            >
+              Close
+            </button>
+
+            <iframe src="/Policies.pdf" className="w-full h-full" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

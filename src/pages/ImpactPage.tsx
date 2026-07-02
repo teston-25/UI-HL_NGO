@@ -18,6 +18,7 @@ import sucSto from "../../public/sucSto.jpg";
 import hospPro from "../../public/medicalH-1.png";
 import { title } from "framer-motion/client";
 import pic1 from "../../public/gal-0.jpg";
+import { galleryImages } from "../assets/galleryImages";
 
 export function ImpactPage() {
   const { t } = useLanguage();
@@ -27,6 +28,8 @@ export function ImpactPage() {
   const [activeModal, setActiveModal] = useState<
     "stories" | "case-studies" | null
   >(null);
+  const [showAllMedia, setShowAllMedia] = useState(false);
+  const [selectedMedia, setSelectedMedia] = useState<null | any>(null);
 
   // 2. Lock background body scroll when a modal is open
   useEffect(() => {
@@ -57,6 +60,48 @@ export function ImpactPage() {
       value: stats?.annual_target?.toLocaleString() || "5,000",
       label: t.home_stats_capacity || "Projected Annual Patient Capacity",
       icon: BarChart3,
+    },
+  ];
+  const mediaItems = [
+    {
+      type: "video",
+      src: "https://www.youtube.com/embed/EOBzJ2XfpaU?si=0pkuPQyedXa4vgip",
+      title: "Hibret lebego program",
+    },
+    {
+      type: "image",
+      src: pic1,
+      alt: "Lege Tafo Site Allocation Location",
+    },
+    {
+      type: "video",
+      src: "https://www.youtube.com/embed/5jocea5BFAA?si=SXCOEFTT2ELBAZd3",
+      title: "Hibret Lebego Project Briefing",
+    },
+    {
+      type: "image",
+      src: galleryImages[1],
+      alt: "hibret 1",
+    },
+    {
+      type: "image",
+      src: galleryImages[3],
+      alt: "hibret 3",
+    },
+    {
+      type: "image",
+      src: galleryImages[4],
+      alt: "hibret 4",
+    },
+    {
+      type: "image",
+      src: galleryImages[5],
+      alt: "hibret 5",
+    },
+    {
+      type: "image",
+      src: galleryImages[6],
+      alt: "hibret 8",
     },
   ];
 
@@ -183,6 +228,7 @@ export function ImpactPage() {
         </motion.div>
 
         {/* Media Attachments Frame */}
+        {/* Media Attachments Frame */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -192,46 +238,49 @@ export function ImpactPage() {
           <h2 className="font-serif text-3xl font-bold text-[#111111] dark:text-white mb-8 text-center">
             Operational Documentation & Field Visuals
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              {
-                type: "video",
-                src: "https://www.youtube.com/embed/EOBzJ2XfpaU?si=0pkuPQyedXa4vgip",
-                title: "Hibret lebego program",
-              },
-              {
-                type: "image",
-                src: pic1,
-                alt: "Lege Tafo Site Allocation Location",
-              },
-              {
-                type: "video",
-                src: "https://www.youtube.com/embed/5jocea5BFAA?si=SXCOEFTT2ELBAZd3",
-                title: "Hibret Lebego Project Briefing",
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="rounded-xl overflow-hidden shadow-md aspect-video"
-              >
-                {item.type === "image" ? (
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform"
-                  />
-                ) : (
-                  <iframe
-                    className="w-full h-full"
-                    src={item.src}
-                    title={item.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  ></iframe>
-                )}
-              </div>
-            ))}
+
+          {/* GRID */}
+          <div className="relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {(showAllMedia ? mediaItems : mediaItems.slice(0, 6)).map(
+                (item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl overflow-hidden shadow-md aspect-video cursor-pointer"
+                    onClick={() => setSelectedMedia(item)}
+                  >
+                    {item.type === "image" ? (
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform"
+                      />
+                    ) : (
+                      <iframe
+                        className="w-full h-full pointer-events-none"
+                        src={item.src}
+                        title={item.title}
+                      />
+                    )}
+                  </div>
+                ),
+              )}
+            </div>
+
+            {/* Blur overlay when collapsed */}
+            {!showAllMedia && (
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F9F9F9] dark:from-[#0f0f0f] to-transparent pointer-events-none" />
+            )}
+          </div>
+
+          {/* BUTTON */}
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setShowAllMedia(!showAllMedia)}
+              className="bg-[#B91C1C] hover:bg-[#991B1B] text-white px-6 py-3 rounded-full font-semibold transition"
+            >
+              {showAllMedia ? "Show Less" : "See More"}
+            </button>
           </div>
         </motion.div>
 
@@ -422,6 +471,30 @@ export function ImpactPage() {
           </motion.div>
         )}
       </AnimatePresence>
+      {selectedMedia && (
+        <div
+          className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center p-4"
+          onClick={() => setSelectedMedia(null)}
+        >
+          <div
+            className="max-w-5xl w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {selectedMedia.type === "image" ? (
+              <img
+                src={selectedMedia.src}
+                className="w-full max-h-[80vh] object-contain rounded-xl"
+              />
+            ) : (
+              <iframe
+                className="w-full h-[70vh] rounded-xl"
+                src={selectedMedia.src}
+                allowFullScreen
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
